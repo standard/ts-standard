@@ -1,4 +1,12 @@
-# 1.0.0
+# Changelog
+
+## 1.0.1
+
+- **Change**: Updates to readme file and badges
+- **Change**: Updated `eslint-config-standard-with-typescript` away from custom branch back to the
+official version ^9.0.0
+
+## 1.0.0
 
 - Initial release
 - Utilizes the official `eslint-config-standard-with-typescript` ruleset

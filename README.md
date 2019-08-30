@@ -7,7 +7,7 @@
 
 # ts-standard
 
-TypeScript Style Guide, with linter and automatic code fixer based on Standard
+TypeScript Style Guide, with linter and automatic code fixer based on [StandardJS](https://standardjs.com/)
 
 ## 💾 Install
 
@@ -55,7 +55,7 @@ Flags (advanced):
     -p, --project   Use custom tsconfig file to get type information
 ```
 
-## 🧬 TSConfig: Linting with Type Information 
+## 🧬 TSConfig: Linting with Type Information
 
 By default `ts-standard` will search the current working director (cwd) for the following in order
 
