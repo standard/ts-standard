@@ -1,4 +1,4 @@
-[![Travis](https://travis-ci.org/toddbluhm/env-cmd.svg?branch=master)](https://travis-ci.org/toddbluhm/ts-standard)
+[![Travis](https://travis-ci.com/toddbluhm/env-cmd.svg?branch=master)](https://travis-ci.com/toddbluhm/ts-standard)
 [![npm](https://img.shields.io/npm/v/env-cmd.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/dm/env-cmd.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/l/env-cmd.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
