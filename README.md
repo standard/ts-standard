@@ -25,7 +25,9 @@ Enable auto code fixing
 npx ts-standard --fix
 ```
 
-Note: A `tsconfig.json` or similar project file is required. See **TSConfig** below for more details
+Note: A `tsconfig.json` or similar project file is required. See 
+**[TSConfig](https://github.com/toddbluhm/ts-standard#tsconfig-linting-with-type-information)**
+below for more details
 
 ## 📜 Help
 
@@ -53,7 +55,7 @@ Flags (advanced):
     -p, --project   Use custom tsconfig file to get type information
 ```
 
-## TSConfig: Linting with Type Information 
+## 🧬 TSConfig: Linting with Type Information 
 
 By default `ts-standard` will search the current working director (cwd) for the following in order
 
@@ -71,7 +73,7 @@ the `--project` flag or adding a `ts-standard` configuration property to your `p
 }
 ```
 
-## Ignoring files and folders
+## 🗑 Ignoring files and folders
 
 You can ignore files and folders by either providing specific files/globs of the files you want linted
 to `ts-standard` when running the command or you can add an `ignore` property to your `package.json`
@@ -88,7 +90,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
 }
 ```
 
-## Do not like/Please change X rule
+## 🚫 Please change X rule
 
 This project has no control over the rules implemented, as such this project cannot change any of the
 rules that have been configured. If you want to discuss the rules, please visit the rules configuration repo
