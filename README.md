@@ -1,13 +1,13 @@
-[![Travis](https://travis-ci.com/toddbluhm/env-cmd.svg?branch=master)](https://travis-ci.com/toddbluhm/ts-standard)
-[![npm](https://img.shields.io/npm/v/env-cmd.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
-[![npm](https://img.shields.io/npm/dm/env-cmd.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
-[![npm](https://img.shields.io/npm/l/env-cmd.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
+[![Travis](https://travis-ci.com/toddbluhm/ts-standard.svg?branch=master)](https://travis-ci.com/toddbluhm/ts-standard)
+[![npm](https://img.shields.io/npm/v/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
+[![npm](https://img.shields.io/npm/dm/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
+[![npm](https://img.shields.io/npm/l/ts-standard.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
 [![TS-Standard - Typescript Standard Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/toddbluhm/ts-standard)
 [![Greenkeeper badge](https://badges.greenkeeper.io/toddbluhm/ts-standard.svg)](https://greenkeeper.io/)
 
 # ts-standard
 
-TypeScript Style Guide, with linter &amp; automatic code fixer based on Standard
+TypeScript Style Guide, with linter and automatic code fixer based on Standard
 
 ## 💾 Install
 
@@ -29,7 +29,7 @@ Note: A `tsconfig.json` or similar project file is required. See **TSConfig** be
 
 ## 📜 Help
 
-```
+```text
 ts-standard - Standard for Typescript! (https://github.com/toddbluhm/ts-standard)
 
 Usage:
@@ -91,7 +91,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
 ## Do not like/Please change X rule
 
 This project has no control over the rules implemented, as such this project cannot change any of the
-rules that have been setup. If you want to discuss the rules, please visit the rules configuration repo
+rules that have been configured. If you want to discuss the rules, please visit the rules configuration repo
 [`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript).
 
 ## 🧙‍ Why
@@ -107,15 +107,11 @@ You can also choose to just use [`eslint`](https://github.com/eslint/eslint) wit
 this project. But `ts-standard` saves you from having to manually install all the extra dependencies
 and may reduce configuration overhead.
 
-## Related Projects
-
-[`standard`](https://github.com/standard/standard) - The original JavaScript Style Guide, with linter & automatic code fixer
-
-[`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript) - The ruleset configuration used for `ts-standard`
-
 ## 🎊 Special Thanks
 
-Special thanks to [`standard`](https://github.com/standard/standard) for inspiration and some shared code.
+Special thanks to [`standard`](https://github.com/standard/standard) for inspiration and some shared code and
+to [`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript) for
+creating a typescript specific standard.
 
 ## 📋 Contributing Guide
 
