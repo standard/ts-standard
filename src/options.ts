@@ -1,6 +1,6 @@
 import { join } from 'path'
 import * as eslint from 'eslint'
-import { getTSConfigFile } from './tsconfig'
+import { TSConfig } from './tsconfig'
 
 export interface Options {
   cmd: string
@@ -13,6 +13,7 @@ export interface Options {
 }
 
 export async function getOptions (): Promise<Options> {
+  const tsConfig = new TSConfig()
   return {
     // cmd, homepage, bugs all pulled from package.json
     cmd: 'ts-standard',
@@ -24,7 +25,7 @@ export async function getOptions (): Promise<Options> {
     eslintConfig: {
       configFile: join(__dirname, '../eslintrc.json'),
       parserOptions: {
-        project: await getTSConfigFile()
+        project: await tsConfig.getConfigFilePath()
       }
     }
   }

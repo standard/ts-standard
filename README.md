@@ -1,4 +1,5 @@
 [![Travis](https://travis-ci.com/toddbluhm/ts-standard.svg?branch=master)](https://travis-ci.com/toddbluhm/ts-standard)
+[![Coverage Status](https://coveralls.io/repos/github/toddbluhm/ts-standard/badge.svg?branch=master)](https://coveralls.io/github/toddbluhm/ts-standard?branch=master)
 [![npm](https://img.shields.io/npm/v/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/dm/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/l/ts-standard.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
@@ -26,8 +27,8 @@ npx ts-standard --fix
 ```
 
 Note: A `tsconfig.json` or similar project file is required. See 
-**[TSConfig](https://github.com/toddbluhm/ts-standard#tsconfig-linting-with-type-information)**
-below for more details
+**[TSConfig](https://github.com/toddbluhm/ts-standard#-tsconfig-linting-with-type-information)**
+section below for more details
 
 ## 📜 Help
 
@@ -109,7 +110,7 @@ You can also choose to just use [`eslint`](https://github.com/eslint/eslint) wit
 this project. But `ts-standard` saves you from having to manually install all the extra dependencies
 and may reduce configuration overhead.
 
-## 🎊 Special Thanks
+## 🎉 Special Thanks
 
 Special thanks to [`standard`](https://github.com/standard/standard) for inspiration and some shared code and
 to [`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript) for

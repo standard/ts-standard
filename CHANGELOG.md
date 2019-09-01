@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2 - Pending
+
+-- **Tests**: Added more test cases and improved overall code coverage
+
 ## 1.0.1
 
 - **Change**: Updates to readme file and badges

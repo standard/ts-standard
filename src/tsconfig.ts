@@ -1,6 +1,6 @@
 import * as path from 'path'
 import { statSync } from 'fs'
-import * as pkgConf from 'pkg-conf'
+import pkgConf from 'pkg-conf'
 
 interface TSStandardConfig {
   project?: string
@@ -15,45 +15,50 @@ interface TSStandardConfig {
   parser: string
 }
 
-const DEFAULT_TSCONFIG_LOCATIONS = [
+export const DEFAULT_TSCONFIG_LOCATIONS = [
   'tsconfig.eslint.json',
   'tsconfig.json'
 ]
 
-function getTSConfigFromDefaultLocations (): string | undefined {
-  const cwd = process.cwd()
-  for (const tsFile of DEFAULT_TSCONFIG_LOCATIONS) {
-    const absPath = path.join(cwd, tsFile)
-    if (isValidPath(absPath)) {
-      return absPath
-    }
+export class TSConfig {
+  private readonly cwd: string;
+  constructor () {
+    this.cwd = process.cwd()
   }
-}
 
-function isValidPath (pathToValidate: string): boolean {
-  try {
-    statSync(pathToValidate)
-  } catch (e) {
-    return false
-  }
-  return true
-}
-
-async function getTSConfigPathFromSettings (): Promise<string | undefined> {
-  const cwd = process.cwd()
-  const res: TSStandardConfig = await pkgConf('ts-standard', { cwd }) as any
-  if (res.project !== undefined) {
-    const settingsPath = path.join(cwd, res.project)
-    if (isValidPath(settingsPath)) {
+  async getConfigFilePath (): Promise<string | undefined> {
+    const settingsPath = await this._getTSConfigPathFromSettings()
+    if (settingsPath !== undefined) {
       return settingsPath
     }
+    return this._getTSConfigFromDefaultLocations()
   }
-}
 
-export async function getTSConfigFile (): Promise<string | undefined> {
-  const settingsPath = await getTSConfigPathFromSettings()
-  if (settingsPath !== undefined) {
-    return settingsPath
+  async _getTSConfigPathFromSettings (): Promise<string | undefined> {
+    const res: TSStandardConfig = await pkgConf('ts-standard', { cwd: this.cwd }) as any
+    if (res.project !== undefined) {
+      const settingsPath = path.join(this.cwd, res.project)
+      if (this._isValidPath(settingsPath)) {
+        return settingsPath
+      }
+    }
   }
-  return getTSConfigFromDefaultLocations()
+
+  _getTSConfigFromDefaultLocations (): string | undefined {
+    for (const tsFile of DEFAULT_TSCONFIG_LOCATIONS) {
+      const absPath = path.join(this.cwd, tsFile)
+      if (this._isValidPath(absPath)) {
+        return absPath
+      }
+    }
+  }
+
+  _isValidPath (pathToValidate: string): boolean {
+    try {
+      statSync(pathToValidate)
+    } catch (e) {
+      return false
+    }
+    return true
+  }
 }
