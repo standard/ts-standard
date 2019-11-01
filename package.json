@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register ./test/**/*.ts",
-    "test-cover": "nyc --reporter=lcov --reporter=text npm test",
+    "test-cover": "nyc npm test",
     "coveralls": "coveralls < coverage/lcov.info",
     "lint": "bin/cmd.js --fix && tsc --noEmit",
     "build": "tsc",
@@ -24,16 +24,16 @@
   "license": "MIT",
   "homepage": "https://github.com/toddbluhm/ts-standard",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
-    "eslint": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
+    "eslint": "^6.6.0",
     "eslint-config-standard": "^14.0.0",
-    "eslint-config-standard-with-typescript": "^9.0.0",
+    "eslint-config-standard-with-typescript": "^10.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^4.0.0",
-    "pkg-conf": "^3.1.0",
+    "pkg-conf": "^3.0.0",
     "standard-engine": "^12.0.0"
   },
   "peerDependencies": {
@@ -52,12 +52,13 @@
     "chai": "^4.0.0",
     "coveralls": "^3.0.0",
     "get-stdin": "^7.0.0",
+    "husky": "^3.0.0",
     "minimist": "^1.0.0",
     "mocha": "^6.0.0",
     "nyc": "^14.0.0",
     "sinon": "^7.0.0",
     "ts-node": "^8.0.0",
-    "typescript": "^3.0.0"
+    "typescript": "^3.6.0"
   },
   "keywords": [
     "Typescript Standard Style",
@@ -101,13 +102,14 @@
       "ts-node/register"
     ],
     "reporter": [
-      "text-summary",
-      "html"
+      "text",
+      "lcov"
     ],
     "sourceMap": true,
     "instrument": true
   },
   "ts-standard": {
+    "project": "./tsconfig.eslint.json",
     "ignore": [
       "dist"
     ]
