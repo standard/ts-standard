@@ -1,8 +1,12 @@
 # Changelog
 
-## 1.0.2 - Pending
+## 2.0.0
 
--- **Tests**: Added more test cases and improved overall code coverage
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^10.0.0`. Please visit
+their github page for any style/linter changes
+- **Change**: Updated fetching package settings to use a synchronous call. This means that fetching
+options provided to ts-standard is now a synchronous operation
+- Tests: Added more test cases and improved overall code coverage
 
 ## 1.0.1
 
