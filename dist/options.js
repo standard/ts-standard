@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path_1 = require("path");
 const eslint = require("eslint");
 const tsconfig_1 = require("./tsconfig");
-async function getOptions() {
+function getOptions() {
+    const tsConfig = new tsconfig_1.TSConfig();
     return {
         // cmd, homepage, bugs all pulled from package.json
         cmd: 'ts-standard',
@@ -15,7 +16,7 @@ async function getOptions() {
         eslintConfig: {
             configFile: path_1.join(__dirname, '../eslintrc.json'),
             parserOptions: {
-                project: await tsconfig_1.getTSConfigFile()
+                project: tsConfig.getConfigFilePath()
             }
         }
     };

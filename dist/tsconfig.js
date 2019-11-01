@@ -3,43 +3,46 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 const fs_1 = require("fs");
 const pkgConf = require("pkg-conf");
-const DEFAULT_TSCONFIG_LOCATIONS = [
+exports.DEFAULT_TSCONFIG_LOCATIONS = [
     'tsconfig.eslint.json',
     'tsconfig.json'
 ];
-function getTSConfigFromDefaultLocations() {
-    const cwd = process.cwd();
-    for (const tsFile of DEFAULT_TSCONFIG_LOCATIONS) {
-        const absPath = path.join(cwd, tsFile);
-        if (isValidPath(absPath)) {
-            return absPath;
-        }
+class TSConfig {
+    constructor() {
+        this.cwd = process.cwd();
     }
-}
-function isValidPath(pathToValidate) {
-    try {
-        fs_1.statSync(pathToValidate);
-    }
-    catch (e) {
-        return false;
-    }
-    return true;
-}
-async function getTSConfigPathFromSettings() {
-    const cwd = process.cwd();
-    const res = await pkgConf('ts-standard', { cwd });
-    if (res.project !== undefined) {
-        const settingsPath = path.join(cwd, res.project);
-        if (isValidPath(settingsPath)) {
+    getConfigFilePath() {
+        const settingsPath = this._getTSConfigPathFromSettings();
+        if (settingsPath !== undefined) {
             return settingsPath;
         }
+        return this._getTSConfigFromDefaultLocations();
+    }
+    _getTSConfigPathFromSettings() {
+        const res = pkgConf.sync('ts-standard', { cwd: this.cwd });
+        if (res.project !== undefined) {
+            const settingsPath = path.join(this.cwd, res.project);
+            if (this._isValidPath(settingsPath)) {
+                return settingsPath;
+            }
+        }
+    }
+    _getTSConfigFromDefaultLocations() {
+        for (const tsFile of exports.DEFAULT_TSCONFIG_LOCATIONS) {
+            const absPath = path.join(this.cwd, tsFile);
+            if (this._isValidPath(absPath)) {
+                return absPath;
+            }
+        }
+    }
+    _isValidPath(pathToValidate) {
+        try {
+            fs_1.statSync(pathToValidate);
+        }
+        catch (e) {
+            return false;
+        }
+        return true;
     }
 }
-async function getTSConfigFile() {
-    const settingsPath = await getTSConfigPathFromSettings();
-    if (settingsPath !== undefined) {
-        return settingsPath;
-    }
-    return getTSConfigFromDefaultLocations();
-}
-exports.getTSConfigFile = getTSConfigFile;
+exports.TSConfig = TSConfig;

@@ -12,7 +12,7 @@ export interface Options {
   eslintConfig: eslint.CLIEngine.Options
 }
 
-export async function getOptions (): Promise<Options> {
+export function getOptions (): Options {
   const tsConfig = new TSConfig()
   return {
     // cmd, homepage, bugs all pulled from package.json
@@ -25,7 +25,7 @@ export async function getOptions (): Promise<Options> {
     eslintConfig: {
       configFile: join(__dirname, '../eslintrc.json'),
       parserOptions: {
-        project: await tsConfig.getConfigFilePath()
+        project: tsConfig.getConfigFilePath()
       }
     }
   }

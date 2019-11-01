@@ -67,7 +67,7 @@ describe('tsconfig', () => {
     let _pkgConfStub: sinon.SinonStub<any, any>
 
     before((): void => {
-      _pkgConfStub = sinon.stub(pkgConfLib, 'default')
+      _pkgConfStub = sinon.stub(pkgConfLib, 'sync')
     })
 
     after((): void => {
@@ -89,6 +89,7 @@ describe('tsconfig', () => {
     it('should return undefined if no valid path found', async (): Promise<void> => {
       _pkgConfStub.returns({ project: './non-existent-file.ts' })
       const validPath = await tsConfig._getTSConfigPathFromSettings()
+      console.log(`validPath: ${validPath}`)
       assert.isUndefined(validPath)
     })
 

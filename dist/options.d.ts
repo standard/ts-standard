@@ -8,4 +8,4 @@ export interface Options {
     eslint: any;
     eslintConfig: eslint.CLIEngine.Options;
 }
-export declare function getOptions(): Promise<Options>;
+export declare function getOptions(): Options;

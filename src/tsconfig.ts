@@ -1,8 +1,8 @@
 import * as path from 'path'
 import { statSync } from 'fs'
-import pkgConf from 'pkg-conf'
+import * as pkgConf from 'pkg-conf'
 
-interface TSStandardConfig {
+interface TSStandardConfig extends pkgConf.Config {
   project?: string
   ignore?: string[]
   noDefaultIgnore?: boolean
@@ -26,16 +26,16 @@ export class TSConfig {
     this.cwd = process.cwd()
   }
 
-  async getConfigFilePath (): Promise<string | undefined> {
-    const settingsPath = await this._getTSConfigPathFromSettings()
+  getConfigFilePath (): string | undefined {
+    const settingsPath = this._getTSConfigPathFromSettings()
     if (settingsPath !== undefined) {
       return settingsPath
     }
     return this._getTSConfigFromDefaultLocations()
   }
 
-  async _getTSConfigPathFromSettings (): Promise<string | undefined> {
-    const res: TSStandardConfig = await pkgConf('ts-standard', { cwd: this.cwd }) as any
+  _getTSConfigPathFromSettings (): string | undefined {
+    const res: TSStandardConfig = pkgConf.sync('ts-standard', { cwd: this.cwd })
     if (res.project !== undefined) {
       const settingsPath = path.join(this.cwd, res.project)
       if (this._isValidPath(settingsPath)) {
