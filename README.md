@@ -97,7 +97,7 @@ This project has no control over the rules implemented, as such this project can
 rules that have been configured. If you want to discuss the rules, please visit the rules configuration repo
 [`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript).
 
-## 🧙‍ Why
+## 🧙 Why
 
 This utility was designed to be the [`standard`](https://github.com/standard/standard) equivalent for typescript.
 Underneath the hood, this utility uses the same [`standard-engine`](https://github.com/standard/standard-engine)
