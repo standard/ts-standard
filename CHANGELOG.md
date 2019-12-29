@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.1.0
+- **Upgrade**: Updated the following dependencies: `eslint-plugin-node`, `sinon`, `nyc`
+- **Change**: Removed dependency on `@typescript-eslint/parser` as it is now a dependency of
+`eslint-config-standard-with-typescript`
+
 ## 3.0.0
 
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^11.0.1`. Please visit

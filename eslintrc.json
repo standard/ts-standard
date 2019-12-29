@@ -1,4 +1,3 @@
 {
-  "extends": "standard-with-typescript",
-  "parser": "@typescript-eslint/parser"
+  "extends": "standard-with-typescript"
 }
