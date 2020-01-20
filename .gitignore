@@ -12,3 +12,7 @@ node_modules/
 
 # Ignore lock file
 package-lock.json
+
+# Editor folders
+.idea
+.vscode
