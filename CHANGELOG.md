@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^12.0.1`. Please visit
+their github page for any style/linter changes
+- **Upgrade**: Updated devDependency `@types/mocha`
+- **Docs**: Simplified execution command in the docs to make it more friendly to new users
+
 ## 3.1.0
 - **Upgrade**: Updated the following dependencies: `eslint-plugin-node`, `sinon`, `nyc`, `mocha`, `husky`
 - **Change**: Removed dependency on `@typescript-eslint/parser` as it is now a dependency of

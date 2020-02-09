@@ -89,7 +89,6 @@ describe('tsconfig', () => {
     it('should return undefined if no valid path found', async (): Promise<void> => {
       _pkgConfStub.returns({ project: './non-existent-file.ts' })
       const validPath = await tsConfig._getTSConfigPathFromSettings()
-      console.log(`validPath: ${validPath}`)
       assert.isUndefined(validPath)
     })
 

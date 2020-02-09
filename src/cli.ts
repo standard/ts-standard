@@ -1,6 +1,8 @@
 import * as minimist from 'minimist'
 import * as getStdin from 'get-stdin'
-import { linter as Linter, LintReport } from 'standard-engine'
+import {
+  linter as Linter, LintReport, LintResult, LintMessage
+} from 'standard-engine'
 import { CLIEngine } from 'eslint'
 
 const DEFAULT_PATTERNS = [
@@ -182,12 +184,12 @@ Flags (advanced):
     )
   }
 
-  result.results.forEach((res: any) => {
-    res.messages.forEach((msg: any) => {
+  result.results.forEach((res: LintResult) => {
+    res.messages.forEach((msg: LintMessage) => {
       log(
-        `  ${res.filePath}:${msg.line !== undefined ? msg.line : 0}:` +
-        `${msg.column !== undefined ? msg.column : 0}: ${msg.message}` +
-        `${argv.verbose ? ` (${msg.ruleId})` : ''}`
+        `  ${res.filePath}:${msg.line !== undefined ? msg.line.toString(10) : '0'}:` +
+        `${msg.column !== undefined ? msg.column.toString(10) : '0'}: ${msg.message}` +
+        `${argv.verbose ? ` (${msg.ruleId ?? ''})` : ''}`
       )
     })
   })
@@ -199,7 +201,7 @@ Flags (advanced):
    * Note: When fixing code from stdin (`standard --stdin --fix`), the transformed
    * code is printed to stdout, so print lint errors to stderr in this case.
    */
-  function log (...args: any[]): void {
+  function log (...args: string[]): void {
     if (argv.stdin && argv.fix) {
       args[0] = `${options.cmd}: ${args[0]}`
       console.error(...args)

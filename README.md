@@ -17,13 +17,13 @@ TypeScript Style Guide, with linter and automatic code fixer based on [StandardJ
 ## ⌨️ Basic Usage
 
 ```sh
-npx ts-standard
+ts-standard
 ```
 
 Enable auto code fixing
 
 ```sh
-npx ts-standard --fix
+ts-standard --fix
 ```
 
 Note: A `tsconfig.json` or similar project file is required. See 
