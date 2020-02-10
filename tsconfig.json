@@ -6,7 +6,9 @@
     "strict": true,
     "declaration": true,
     "lib": [
-      "es2018"
+      "es2018",
+      "es2019",
+      "es2020"
     ]
   },
   "include": [
