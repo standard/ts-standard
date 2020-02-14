@@ -27,7 +27,7 @@
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "eslint": "^6.0.0",
     "eslint-config-standard": "^14.0.0",
-    "eslint-config-standard-with-typescript": "^12.0.1",
+    "eslint-config-standard-with-typescript": "^13.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.0",
