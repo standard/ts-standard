@@ -10,7 +10,8 @@ const DEFAULT_PATTERNS = [
   '**/*.jsx',
   '**/*.mjs',
   '**/*.cjs',
-  '**/*.ts'
+  '**/*.ts',
+  '**/*.tsx'
 ]
 
 export interface CLIOptions {
@@ -82,7 +83,7 @@ export async function CLI (options: CLIOptions): Promise<void> {
     console.log(`
 Usage:
     ${options.cmd} <flags> [FILES...]
-    If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts)
+    If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts, *.tsx)
     in the current working directory are checked, recursively.
     Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
     files/folders that begin with '.' like .git/) are automatically ignored.
