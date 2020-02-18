@@ -1,4 +1,4 @@
-[![Travis](https://travis-ci.com/toddbluhm/ts-standard.svg?branch=master)](https://travis-ci.com/toddbluhm/ts-standard)
+[![Tests](https://github.com/toddbluhm/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/toddbluhm/ts-standard/actions?query=workflow%3A%22tests%22)
 [![Coverage Status](https://coveralls.io/repos/github/toddbluhm/ts-standard/badge.svg?branch=master)](https://coveralls.io/github/toddbluhm/ts-standard?branch=master)
 [![npm](https://img.shields.io/npm/v/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/dm/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
