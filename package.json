@@ -116,6 +116,15 @@
   "greenkeeper": {
     "ignore": [
       "@types/node"
-    ]
+    ],
+    "commitMessages": {
+      "initialBadge": "docs: add greenkeeper badge",
+      "initialDependencies": "chore: update dependencies",
+      "initialBranches": "chore: whitelist greenkeeper branches",
+      "dependencyUpdate": "chore: update dependency ${dependency}",
+      "devDependencyUpdate": "chore: update devDependecy ${dependency}",
+      "dependencyPin": "fix: pin dependency ${dependency}",
+      "devDependencyPin": "fix: pin devDependecy ${dependency}"
+    }
   }
 }
