@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/dm/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://img.shields.io/npm/l/ts-standard.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
-[![TS-Standard - Typescript Standard Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/toddbluhm/ts-standard)
+[![TS-Standard - Typescript Standard Style Guide](https://img.shields.io/badge/code%20style-ts--standard-blue.svg)](https://github.com/toddbluhm/ts-standard)
 [![Greenkeeper badge](https://badges.greenkeeper.io/toddbluhm/ts-standard.svg)](https://greenkeeper.io/)
 
 # ts-standard

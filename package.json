@@ -126,5 +126,10 @@
       "dependencyPin": "fix: pin dependency ${dependency}",
       "devDependencyPin": "fix: pin devDependecy ${dependency}"
     }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
