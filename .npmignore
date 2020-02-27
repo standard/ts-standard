@@ -2,6 +2,7 @@
 .nyc_output
 .vscode
 .idea
+.editorconfig
 coverage/
 node_modules/
 src/
