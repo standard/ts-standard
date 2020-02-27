@@ -145,7 +145,7 @@ Flags (advanced):
             var _a;
             log(`  ${res.filePath}:${msg.line !== undefined ? msg.line.toString(10) : '0'}:` +
                 `${msg.column !== undefined ? msg.column.toString(10) : '0'}: ${msg.message}` +
-                `${argv.verbose ? ` (${_a = msg.ruleId, (_a !== null && _a !== void 0 ? _a : '')})` : ''}`);
+                `${argv.verbose ? ` (${(_a = msg.ruleId) !== null && _a !== void 0 ? _a : ''})` : ''}`);
         });
     });
     process.exitCode = result.errorCount > 0 ? 1 : 0;
