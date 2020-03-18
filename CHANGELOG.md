@@ -1,5 +1,9 @@
 # Changelog
 
+## 7.0.0
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^15.0.0`. Please visit
+their github page for any style/linter changes
+
 ## 6.0.0
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^14.0.0`. Please visit
 their github page for any style/linter changes

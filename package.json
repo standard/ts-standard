@@ -1,7 +1,7 @@
 {
   "name": "ts-standard",
   "description": "Typescript Standard Style based on StandardJS",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register ./test/**/*.ts",
@@ -28,7 +28,7 @@
     "eslint": "^6.0.0",
     "eslint-config-standard": "^14.0.0",
     "eslint-config-standard-jsx": "^8.0.0",
-    "eslint-config-standard-with-typescript": "^14.0.0",
+    "eslint-config-standard-with-typescript": "^15.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.0.0",
