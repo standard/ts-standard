@@ -1,10 +1,10 @@
 [![Tests](https://github.com/toddbluhm/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/toddbluhm/ts-standard/actions?query=workflow%3A%22tests%22)
-[![Coverage Status](https://coveralls.io/repos/github/toddbluhm/ts-standard/badge.svg?branch=master)](https://coveralls.io/github/toddbluhm/ts-standard?branch=master)
-[![npm](https://img.shields.io/npm/v/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
-[![npm](https://img.shields.io/npm/dm/ts-standard.svg?maxAge=86400)](https://www.npmjs.com/package/ts-standard)
-[![npm](https://img.shields.io/npm/l/ts-standard.svg?maxAge=2592000)](https://www.npmjs.com/package/ts-standard)
-[![TS-Standard - Typescript Standard Style Guide](https://img.shields.io/badge/code%20style-ts--standard-blue.svg)](https://github.com/toddbluhm/ts-standard)
-[![Greenkeeper badge](https://badges.greenkeeper.io/toddbluhm/ts-standard.svg)](https://greenkeeper.io/)
+[![Coverage Status](https://badgen.net/coveralls/c/github/toddbluhm/ts-standard)](https://coveralls.io/github/toddbluhm/ts-standard?branch=master)
+[![npm](https://badgen.net/npm/v/ts-standard)](https://www.npmjs.com/package/ts-standard)
+[![npm](https://badgen.net/npm/dm/ts-standard)](https://www.npmjs.com/package/ts-standard)
+[![License](https://badgen.net/github/license/toddbluhm/ts-standard)](https://github.com/toddbluhm/ts-standard/blob/master/LICENSE)
+[![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/toddbluhm/ts-standard)
+[![Dependabot badge](https://badgen.net/dependabot/toddbluhm/ts-standard?icon=dependabot)](https://dependabot.com/)
 
 # ts-standard
 
