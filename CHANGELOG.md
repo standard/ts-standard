@@ -1,25 +1,39 @@
 # Changelog
 
+## 8.0.0 - Pending
+
+- **BREAKING**: Changed the default linter output format. Now uses the `eslint` default output format.
+The format can be changed using a cli flag or `package.json` option. All built-in eslint
+formatters are supported along with eslint style custom formatters.
+- **Feature**: Added the ability to enable/disable `fix` from the `package.json` setttings. CLI args
+will override `package.json` value.
+- **Change**: Converted over to using `jest` for tests, assertions, mocks, and code coverage.
+
 ## 7.0.0
+
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^15.0.0`. Please visit
 their github page for any style/linter changes
 
 ## 6.0.0
+
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^14.0.0`. Please visit
 their github page for any style/linter changes
 
 ## 5.0.0
+
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^13.0.0`. Please visit
 their github page for any style/linter changes
 - **Feature**: added support for linting .tsx files by default
 
 ## 4.0.0
+
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^12.0.1`. Please visit
 their github page for any style/linter changes
 - **Upgrade**: Updated devDependency `@types/mocha`
 - **Docs**: Simplified execution command in the docs to make it more friendly to new users
 
 ## 3.1.0
+
 - **Upgrade**: Updated the following dependencies: `eslint-plugin-node`, `sinon`, `nyc`, `mocha`, `husky`
 - **Change**: Removed dependency on `@typescript-eslint/parser` as it is now a dependency of
 `eslint-config-standard-with-typescript`

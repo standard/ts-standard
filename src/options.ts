@@ -1,6 +1,6 @@
 import { join } from 'path'
 import * as eslint from 'eslint'
-import { TSConfig } from './tsconfig'
+import { TSStandardSettings, getTSStandardSettings } from './ts-standard-settings'
 
 export interface Options {
   cmd: string
@@ -10,10 +10,12 @@ export interface Options {
   tagline: string
   eslint: any
   eslintConfig: eslint.CLIEngine.Options
+  formatter: TSStandardSettings['formatter']
+  fix: TSStandardSettings['fix']
 }
 
-export function getOptions (): Options {
-  const tsConfig = new TSConfig()
+export async function getOptions (): Promise<Options> {
+  const settings = await getTSStandardSettings()
   return {
     // cmd, homepage, bugs all pulled from package.json
     cmd: 'ts-standard',
@@ -25,8 +27,10 @@ export function getOptions (): Options {
     eslintConfig: {
       configFile: join(__dirname, '../eslintrc.json'),
       parserOptions: {
-        project: tsConfig.getConfigFilePath()
+        project: settings.project
       }
-    }
+    },
+    formatter: settings.formatter,
+    fix: settings.fix
   }
 }

@@ -26,7 +26,7 @@ Enable auto code fixing
 ts-standard --fix
 ```
 
-Note: A `tsconfig.json` or similar project file is required. See 
+Note: A `tsconfig.json` or similar project file is required. See
 **[TSConfig](https://github.com/toddbluhm/ts-standard#-tsconfig-linting-with-type-information)**
 section below for more details
 
@@ -52,8 +52,9 @@ Flags (advanced):
         --global    Declare global variable
         --plugin    Use custom eslint plugin
         --env       Use custom eslint environment
-        --parser    Use custom js parser (e.g. babel-eslint)
+        --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
     -p, --project   Use custom tsconfig file to get type information
+    -f, --formatter Use a built-in eslint formatter or custom eslint formatter (default: stylish)
 ```
 
 ## 🧬 TSConfig: Linting with Type Information
@@ -87,6 +88,27 @@ to `ts-standard` when running the command or you can add an `ignore` property to
       "dist",
       "src/**/*.js"
     ]
+  }
+}
+```
+
+## 🎛 Package.json Options
+
+```jsonc
+{
+  "ts-standard": {
+    "ignore": [],               // files/folders/globs to ignore
+    "noDefaultIgnore": false,   // disable ignoring default locations (e.g. node_modules, .git, etc...)
+    "global": [],               // global variables to define (e.g. $, jquery, etc...)
+    "globals": [],              // same as `global`
+    "plugin": [],               // Extra eslint plugins to use
+    "plugins": [],              // same as `plugin`
+    "env": [],                  // eslint environments to use (e.g. node, browser, etc...)
+    "envs": [],                 // same as `env`
+    "parser": "",               // a different eslint parser to use (e.g. babel, etc...)
+    "project": "",              // relative path to `tsconfig.json` file
+    "formatter": "",            // an eslint formatter to output the lint results as. Can use eslint built-in or custom (e.g. stylish, json, etc...)
+    "fix": false                // auto fix any lint errors found that are fixable
   }
 }
 ```
