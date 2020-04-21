@@ -2,10 +2,12 @@
 
 ## 8.0.0 - Pending
 
-- **BREAKING**: Changed the default linter output format. Now uses the `eslint` default output format.
-The format can be changed using a cli flag or `package.json` option. All built-in eslint
-formatters are supported along with eslint style custom formatters.
-- **Feature**: Added the ability to enable/disable `fix` from the `package.json` setttings. CLI args
+- **BREAKING**: Changed the default linter output format. Now uses the `eslint` default output format
+`stylish`.
+- **Feature**: Added the ability to select the style of linter output formatter. You can use a
+built-in eslint formatter or use your own eslint style custom formatter. The option can be set via
+CLI flag or `package.json`. CLI flag will override `package.json` value.
+- **Feature**: Added the ability to enable/disable `fix` from `package.json`. CLI flag
 will override `package.json` value.
 - **Change**: Converted over to using `jest` for tests, assertions, mocks, and code coverage.
 
