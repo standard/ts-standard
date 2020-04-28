@@ -3,11 +3,9 @@
 .vscode
 .idea
 .editorconfig
+.github
 coverage/
 node_modules/
 src/
-test/
-*.yml
-commitlint.config.js
 tsconfig.eslint.json
 tsconfig.json
