@@ -22,16 +22,16 @@ export function parseOpts (options: ParseOptions): ParseOptions {
       cwd: options.cwd
     })
   }
-  return options
+  return { ...options }
 }
 
 // Export some function overload signatures to help with intellisense
-export function lintText(text: string, options: LintCallBack): void;
+export function lintText(text: string, options: LintCallBack): void
 export function lintText(
   text: string,
   options: TSStandardLintOptions & ParseOptions,
   callback: LintCallBack
-): void;
+): void
 export function lintText (
   text: string,
   options: TSStandardLintOptions & ParseOptions | LintCallBack,
@@ -45,7 +45,15 @@ export function lintText (
   if (singletonInstance == null) {
     exports.parseOpts(options)
   }
-  singletonInstance.lintText(text, options)
+  let filename: string | undefined
+  if (options.filename != null) {
+    // the vscode-standardjs extention provided the filename as a uri, so remove the uri component
+    filename = options.filename.replace('file://', '')
+  }
+  singletonInstance.lintText(text, {
+    ...options,
+    filename
+  })
     .then(res => cb(undefined, res))
     .catch(cb)
 }

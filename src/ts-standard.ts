@@ -86,7 +86,7 @@ export class TSStandard {
     }
   }
 
-  async lintText (text: string, options?: TSStandardLintOptions): Promise<LintReport> {
+  async lintText (text: string, options?: TSStandardLintOptions & { filename?: string }): Promise<LintReport> {
     options = options ?? {}
     options = {
       ...this.defaultPerLintOptions,

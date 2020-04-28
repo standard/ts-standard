@@ -18,7 +18,8 @@ function getPackageOptions(cwd) {
         plugins: settings.plugins,
         envs: settings.envs,
         parser: settings.parser,
-        eslint: settings.eslint
+        eslint: settings.eslint,
+        cwd
     };
 }
 exports.getPackageOptions = getPackageOptions;

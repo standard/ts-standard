@@ -159,6 +159,28 @@ describe('standard-engine-api', () => {
         }
       })
     })
+
+    it('should replace any uri tokens in filename if provided', (cb): void => {
+      const text = 'The darkside is strong in this one.'
+      lintTextSpy.mockResolvedValueOnce('success!')
+
+      expect.assertions(6)
+      lintText(text, {
+        filename: 'file:///some/path/to/the/darkside'
+      }, (err, res) => {
+        try {
+          expect(err).toBeUndefined()
+          expect(res).toEqual('success!')
+          expect(tsStandardSpy).toHaveBeenCalledTimes(1)
+          expect(lintTextSpy).toHaveBeenCalledTimes(1)
+          expect(lintTextSpy.mock.calls[0][0]).toEqual(text)
+          expect(lintTextSpy.mock.calls[0][1].filename).toEqual('/some/path/to/the/darkside')
+          cb()
+        } catch (e) {
+          cb(e)
+        }
+      })
+    })
   })
 
   describe('lintFiles', () => {

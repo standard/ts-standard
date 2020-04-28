@@ -1,9 +1,13 @@
 # Changelog
 
-## 8.0.0 - Pending
+## 8.0.0
 
 - **BREAKING**: Changed the default linter output format to now include rule name by default. The
 verbose cli option has been removed.
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^16.0.0`. Please visit
+their github page for any style/linter changes
+- **REFACTOR**: Completely refactored every aspect of the entire library. Many new test cases added,
+better code architecture, exported `standard-engine` compliant API and easy to use `TSStandard` class
 - **Feature**: Added the ability to select the report style of linter output. You can use a
 built-in eslint formatter/reporter or use your own eslint custom reporter. The option can be set via
 CLI flag or `package.json`. CLI flag will override `package.json` value.

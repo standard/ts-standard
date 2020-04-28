@@ -16,7 +16,7 @@ function parseOpts(options) {
             cwd: options.cwd
         });
     }
-    return options;
+    return Object.assign({}, options);
 }
 exports.parseOpts = parseOpts;
 function lintText(text, options, callback) {
@@ -28,7 +28,12 @@ function lintText(text, options, callback) {
     if (singletonInstance == null) {
         exports.parseOpts(options);
     }
-    singletonInstance.lintText(text, options)
+    let filename;
+    if (options.filename != null) {
+        // the vscode-standardjs extention provided the filename as a uri, so remove the uri component
+        filename = options.filename.replace('file://', '');
+    }
+    singletonInstance.lintText(text, Object.assign(Object.assign({}, options), { filename }))
         .then(res => cb(undefined, res))
         .catch(cb);
 }

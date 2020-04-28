@@ -49,9 +49,9 @@ Flags:
     -h, --help      Show usage information
 Flags (advanced):
         --stdin     Read file text from stdin
-        --global    Declare global variable
-        --plugin    Use custom eslint plugin
-        --env       Use custom eslint environment
+        --globals   Declare global variable
+        --plugins   Use custom eslint plugin
+        --envs      Use custom eslint environment
         --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
         --report    Use a built-in eslint reporter or custom eslint reporter (default: standard)
 ```
@@ -96,18 +96,18 @@ to `ts-standard` when running the command or you can add an `ignore` property to
 ```jsonc
 {
   "ts-standard": {
-    "ignore": [],               // files/folders/globs to ignore
+    "ignore": [""],             // files/folders/globs to ignore
     "noDefaultIgnore": false,   // disable ignoring default locations (e.g. node_modules, .git, etc...)
-    "global": [],               // global variables to define (e.g. $, jquery, etc...)
-    "globals": [],              // same as `global`
-    "plugin": [],               // Extra eslint plugins to use
-    "plugins": [],              // same as `plugin`
-    "env": [],                  // eslint environments to use (e.g. node, browser, etc...)
-    "envs": [],                 // same as `env`
+    "globals": [""],            // global variables to define (e.g. $, jquery, etc...)
+    "plugins": [""],            // Extra eslint plugins to use
+    "envs": [""],               // eslint environments to use (e.g. node, browser, etc...)
     "parser": "",               // a different eslint parser to use (e.g. babel, etc...)
+    "cwd": "",                  // the root working directory where the project file is located
+    "eslint": "",               // path to a custom eslint linter
+    "files": [""],              // files/folders/globs to include in the linting
     "project": "",              // relative path to `tsconfig.json` file
+    "fix": false,               // auto fix any lint errors found that are fixable
     "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
-    "fix": false                // auto fix any lint errors found that are fixable
   }
 }
 ```

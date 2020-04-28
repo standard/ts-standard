@@ -5,7 +5,6 @@ import { _isValidPath } from './default-options'
 // Note most of these options are passed to `standard-engine` automagically because
 // `standard-engine` also uses `pkg-conf` under the hood as well
 interface PackageConfigOptions extends pkgConf.Config {
-  // Automagically imported by `standard-engine`
   ignore?: string[]
   noDefaultIgnore?: boolean
   globals?: string[]
@@ -14,7 +13,6 @@ interface PackageConfigOptions extends pkgConf.Config {
   parser?: string
   cwd?: string
   eslint?: string
-  // Custom options manually brough
   files?: string[]
   project?: string
   fix?: boolean
@@ -33,6 +31,7 @@ interface PackageOptions {
   envs?: string[]
   parser?: string
   eslint?: string
+  cwd?: string
 }
 
 export function getPackageOptions (cwd?: string): PackageOptions {
@@ -49,7 +48,8 @@ export function getPackageOptions (cwd?: string): PackageOptions {
     plugins: settings.plugins,
     envs: settings.envs,
     parser: settings.parser,
-    eslint: settings.eslint
+    eslint: settings.eslint,
+    cwd
   }
 }
 

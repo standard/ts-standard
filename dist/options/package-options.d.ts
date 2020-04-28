@@ -10,6 +10,7 @@ interface PackageOptions {
     envs?: string[];
     parser?: string;
     eslint?: string;
+    cwd?: string;
 }
 export declare function getPackageOptions(cwd?: string): PackageOptions;
 export declare function _resolveTSConfigPath(cwd: string, settingsProjectPath?: string): string | undefined;

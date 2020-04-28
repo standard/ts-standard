@@ -26,6 +26,8 @@ export declare class TSStandard {
     private readonly standardEngine;
     private readonly defaultPerLintOptions;
     constructor(options?: Options);
-    lintText(text: string, options?: TSStandardLintOptions): Promise<LintReport>;
+    lintText(text: string, options?: TSStandardLintOptions & {
+        filename?: string;
+    }): Promise<LintReport>;
     lintFiles(files: string[], options?: TSStandardLintOptions): Promise<LintReport>;
 }
