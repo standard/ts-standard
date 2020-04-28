@@ -5,6 +5,7 @@
     "module": "commonjs",
     "strict": true,
     "declaration": true,
+    "resolveJsonModule": true,
     "lib": [
       "es2018",
       "es2019",
@@ -16,6 +17,6 @@
   "include": [
     "src/**/*.ts",
     "bin/*.js",
-    "*.js"
+    "*.json"
   ]
 }

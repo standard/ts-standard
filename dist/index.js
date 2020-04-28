@@ -1,6 +1,9 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-// programmatic usage
-const standard_engine_1 = require("standard-engine");
-const options_1 = require("./options");
-module.exports = new standard_engine_1.linter(options_1.getOptions());
+// Export the real API usage class
+__export(require("./ts-standard"));
+// Export standard-engine compatible api for so that editor extensions work as expected
+__export(require("./standard-engine-api"));

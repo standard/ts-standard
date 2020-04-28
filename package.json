@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "test-cover": "npm test -- --coverage",
+    "coverage": "npm test -- --coverage",
     "coveralls": "coveralls < coverage/lcov.info",
     "lint": "bin/cmd.js --fix && tsc --noEmit",
     "build": "tsc",
@@ -113,6 +113,12 @@
       "ts-jest": {
         "diagnostics": false
       }
-    }
+    },
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/*.d.ts",
+      "!**/dist/**",
+      "!**/node_modules/**"
+    ]
   }
 }

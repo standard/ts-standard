@@ -2,10 +2,10 @@
 
 ## 8.0.0 - Pending
 
-- **BREAKING**: Changed the default linter output format. Now uses the `eslint` default output format
-`stylish`.
-- **Feature**: Added the ability to select the style of linter output formatter. You can use a
-built-in eslint formatter or use your own eslint style custom formatter. The option can be set via
+- **BREAKING**: Changed the default linter output format to now include rule name by default. The
+verbose cli option has been removed.
+- **Feature**: Added the ability to select the report style of linter output. You can use a
+built-in eslint formatter/reporter or use your own eslint custom reporter. The option can be set via
 CLI flag or `package.json`. CLI flag will override `package.json` value.
 - **Feature**: Added the ability to enable/disable `fix` from `package.json`. CLI flag
 will override `package.json` value.

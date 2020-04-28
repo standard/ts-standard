@@ -31,10 +31,10 @@ jobs:
     - name: Lint Files
       run: npm run lint
 
-    - name: Run Tests and Converage
+    - name: Run Tests and Coverage
       env:
         CI: true
-      run: npm run test-cover
+      run: npm run coverage
 
     - name: Coveralls Parallel
       uses: coverallsapp/github-action@master

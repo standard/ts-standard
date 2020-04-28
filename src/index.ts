@@ -1,5 +1,5 @@
-// programmatic usage
-import { linter as Linter } from 'standard-engine'
-import { getOptions } from './options'
+// Export the real API usage class
+export * from './ts-standard'
 
-module.exports = new Linter(getOptions())
+// Export standard-engine compatible api for so that editor extensions work as expected
+export * from './standard-engine-api'

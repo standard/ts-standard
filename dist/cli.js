@@ -1,184 +1,142 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const minimist = require("minimist");
 const getStdin = require("get-stdin");
-const standard_engine_1 = require("standard-engine");
-const DEFAULT_PATTERNS = [
-    '**/*.js',
-    '**/*.jsx',
-    '**/*.mjs',
-    '**/*.cjs',
-    '**/*.ts',
-    '**/*.tsx'
-];
-const ESLINT_BUILTIN_FORMATTERS = [
+const options_1 = require("./options");
+const ts_standard_1 = require("./ts-standard");
+exports.ESLINT_BUILTIN_REPORTERS = [
     'stylish', 'checkstyle', 'codeframe', 'compact',
     'html', 'jslint-xml', 'json', 'junit', 'table',
     'tap', 'unix', 'visualstudio'
 ];
-async function CLI(options) {
-    var _a, _b;
-    const standard = new standard_engine_1.linter(options);
-    // Add in some required options
-    options = Object.assign({ cmd: 'standard-engine', tagline: 'JavaScript Custom Style', version: '0.0.0' }, options);
-    // Parse the command line arguments
-    const argv = minimist(process.argv.slice(2), {
-        alias: {
-            global: 'globals',
-            plugin: 'plugins',
-            env: 'envs',
-            help: 'h',
-            verbose: 'v',
-            project: 'p',
-            formatter: 'f'
-        },
-        boolean: [
-            'fix',
-            'help',
-            'stdin',
-            'verbose',
-            'version'
-        ],
-        string: [
-            'global',
-            'plugin',
-            'parser',
-            'env',
-            'project'
-        ]
+async function cli() {
+    // Get the default/cli options
+    const defaultOptions = options_1.getDefaultOptions();
+    const packageOptions = options_1.getPackageOptions();
+    const cliOptions = options_1.getCLIOptions();
+    const options = options_1.mergeOptions(defaultOptions, packageOptions, cliOptions);
+    // Linting requires a project file
+    if (options.project == null) {
+        console.error('Unable to locate the project file. A project file (tsconfig.json or ' +
+            'tsconfig.eslint.json) is reqired in order to use ts-standard.');
+        return process.exit(1);
+    }
+    const tsStandard = new ts_standard_1.TSStandard({
+        project: options.project,
+        fix: options.fix,
+        ignore: options.ignore,
+        noDefaultIgnore: options.noDefaultIgnore,
+        envs: options.envs,
+        globals: options.globals,
+        plugins: options.plugins,
+        parser: options.parser,
+        eslint: options.eslint,
+        cwd: options.cwd
     });
-    // Unix convention: Command line argument `-` is a shorthand for `--stdin`
-    if (argv._[0] === '-') {
-        argv.stdin = true;
-        argv._.shift();
-    }
-    // Print the help section if so requested
-    if (argv.help) {
-        if (options.tagline !== undefined) {
-            console.log('%s - %s (%s)', options.cmd, options.tagline, options.homepage);
-        }
-        console.log(`
-Usage:
-    ${options.cmd} <flags> [FILES...]
-    If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts, *.tsx)
-    in the current working directory are checked, recursively.
-    Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
-    files/folders that begin with '.' like .git/) are automatically ignored.
-    Paths in a project's root .gitignore file are also automatically ignored.
-Flags:
-        --fix       Automatically fix problems
-    -v, --verbose   Show rule names for errors (to ignore specific rules)
-        --version   Show current version
-    -h, --help      Show usage information
-Flags (advanced):
-        --stdin     Read file text from stdin
-        --global    Declare global variable
-        --plugin    Use custom eslint plugin
-        --env       Use custom eslint environment
-        --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
-    -p, --project   Use custom tsconfig file to get type information
-    -f, --formatter Use a built-in eslint formatter or custom eslint formatter (default: stylish)
-    `);
-        process.exitCode = 0;
-        return;
-    }
-    // Print out the version number if requested
-    if (argv.version) {
-        console.log(options.version);
-        process.exitCode = 0;
-        return;
-    }
-    // Override any previous project setting with the command line argument project setting
-    if (argv.project !== undefined) {
-        if (options.eslintConfig.parserOptions === undefined) {
-            options.eslintConfig.parserOptions = {};
-        }
-        options.eslintConfig.parserOptions.project = argv.project;
-    }
-    // Set the standard-engine linter options
-    const lintOpts = {
-        fix: (_a = argv.fix) !== null && _a !== void 0 ? _a : options.fix,
-        globals: argv.global,
-        plugins: argv.plugin,
-        envs: argv.env,
-        parser: argv.parser
-    };
-    // Figure out what files need to be parsed, use last cli arg as pattern
-    const filesToLint = argv._.length !== 0 ? argv._ : DEFAULT_PATTERNS;
-    // If stdin option provided then use stdin as text to lint
-    let textToLint = '';
-    if (argv.stdin) {
-        textToLint = await getStdin();
-    }
     // Perform the lint operation on the given files or text
-    let report;
+    let lintReport;
+    if (options.useStdIn) {
+        lintReport = await exports.lintStdIn(tsStandard, options);
+    }
+    else {
+        lintReport = await exports.lintFiles(tsStandard, options);
+    }
+    // If no errors or warnings return success
+    if (lintReport.errorCount === 0 && lintReport.warningCount === 0) {
+        return process.exit(0);
+    }
+    // Print the lint report results to console
+    await exports.printReport(lintReport, options);
+    // Only set exit code 1 if there were errors (warnings do not count)
+    process.exit(lintReport.errorCount > 0 ? 1 : 0);
+}
+exports.cli = cli;
+async function lintStdIn(linter, options) {
+    // Get text from stdin
+    const text = await getStdin();
+    // Lint the text
+    let lintReport;
     try {
-        report = await new Promise((resolve, reject) => {
-            const cb = (err, results) => {
-                if (err != null) {
-                    return reject(err);
-                }
-                if (results == null) {
-                    return reject(new Error('Linter error: No lint results returned.'));
-                }
-                return resolve(results);
-            };
-            if (argv.stdin) {
-                standard.lintText(textToLint, lintOpts, cb);
-            }
-            else {
-                standard.lintFiles(filesToLint, lintOpts, cb);
-            }
-        });
+        lintReport = await linter.lintText(text);
     }
     catch (e) {
-        console.error(`${options.cmd}: Unexpected linter output:\n`);
-        console.error(e.stack !== undefined ? e.stack : e.message);
-        console.error(`\nIf you think this is a bug in \`${options.cmd}\`, open an issue: ${options.bugs}`);
-        process.exitCode = 1;
-        return;
+        const err = e;
+        console.error(`${options_1.CMD}: Unexpected linter output:\n`);
+        console.error(`${err.message}: ${err.stack}`);
+        console.error(`\nIf you think this is a bug in \`${options_1.CMD}\`, open an issue: ` +
+            `${require('../package.json').bugs}`);
+        return process.exit(1);
     }
-    // If the input was via stdin then write the code to stdout
-    if (argv.stdin && argv.fix) {
-        if (report.results[0].output !== undefined) {
+    // If we performed fixes then maybe return the fixed text
+    if (options.fix) {
+        if (lintReport.results[0].output !== undefined) {
             // Code contained fixable errors, so print the fixed code
-            process.stdout.write(report.results[0].output);
+            process.stdout.write(lintReport.results[0].output);
         }
         else {
             // Code did not contain fixable errors, so print original code
-            process.stdout.write(textToLint);
+            process.stdout.write(text);
         }
     }
-    // If no errors or warnings return success
-    if (report.errorCount === 0 && report.warningCount === 0) {
-        process.exitCode = 0;
-        return;
+    return lintReport;
+}
+exports.lintStdIn = lintStdIn;
+async function lintFiles(linter, options) {
+    // Lint the text
+    let lintReport;
+    try {
+        lintReport = await linter.lintFiles(options.files);
     }
+    catch (e) {
+        const err = e;
+        console.error(`${options_1.CMD}: Unexpected linter output:\n`);
+        console.error(`${err.message}: ${err.stack}`);
+        console.error(`\nIf you think this is a bug in \`${options_1.CMD}\`, open an issue: ` +
+            `${require('../package.json').bugs}`);
+        return process.exit(1);
+    }
+    return lintReport;
+}
+exports.lintFiles = lintFiles;
+async function printReport(lintReport, options) {
+    // Print tag line to stay consistent with standard output
+    console.error(`${options_1.CMD}: ${options_1.TAGLINE} (${require('../package.json').homepage})`);
     // Check for any fixable rules
-    const isFixable = report.results.some((res) => {
+    const isFixable = lintReport.results.some((res) => {
         return res.messages.some((msg) => {
             return msg.fix !== undefined;
         });
     });
     // If there were fixable rules, then that means that `--fix` was not provided
-    if (isFixable) {
-        console.error(`${options.cmd}: Run \`${options.cmd} --fix\` to automatically fix some problems.`);
+    if (isFixable && !options.fix) {
+        console.error(`${options_1.CMD}: Run \`${options_1.CMD} --fix\` to automatically fix some problems.`);
     }
-    // Check to see if a custom formatter was given, if so use that.
-    const useFormatter = (_b = argv.formmatter) !== null && _b !== void 0 ? _b : options.formatter;
-    let formatter;
-    if (ESLINT_BUILTIN_FORMATTERS.includes(useFormatter)) {
-        formatter = require(`eslint/lib/cli-engine/formatters/${useFormatter}`);
+    // Check to see if a custom reporter was given, if so use that.
+    let reporter;
+    if (options.report === 'standard') {
+        // Use standard reporter
+        const { standardReporter } = await Promise.resolve().then(() => require('./standard-reporter'));
+        reporter = standardReporter(options.useStdIn && options.fix);
+    }
+    else if (exports.ESLINT_BUILTIN_REPORTERS.includes(options.report)) {
+        // Use built-in eslint reporter
+        reporter = require(`eslint/lib/cli-engine/formatters/${options.report}`);
     }
     else {
-        formatter = require(useFormatter);
-        if (formatter == null) {
+        // Use a custom reporter
+        reporter = require(options.report);
+        if (reporter == null) {
             throw new Error('Error: Unable to import custom formatter.');
         }
     }
-    // print the lint results to console using the requested formatter
-    console.error(formatter(report.results));
-    // Only set exit code 1 if there were errors (warnings do not count)
-    process.exitCode = report.errorCount > 0 ? 1 : 0;
+    // Print the lint results to console using the requested formatter
+    const outputReport = reporter(lintReport.results);
+    // When fixing code from stdin (`standard --stdin --fix`), the transformed
+    // code is printed to stdout, so print lint errors to stderr in this case.
+    if (options.useStdIn && options.fix) {
+        console.error(outputReport);
+    }
+    else {
+        console.log(outputReport);
+    }
 }
-exports.CLI = CLI;
+exports.printReport = printReport;

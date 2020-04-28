@@ -44,7 +44,7 @@ Usage:
     Paths in a project's root .gitignore file are also automatically ignored.
 Flags:
         --fix       Automatically fix problems
-    -v, --verbose   Show rule names for errors (to ignore specific rules)
+    -p, --project   Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
         --version   Show current version
     -h, --help      Show usage information
 Flags (advanced):
@@ -53,8 +53,7 @@ Flags (advanced):
         --plugin    Use custom eslint plugin
         --env       Use custom eslint environment
         --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
-    -p, --project   Use custom tsconfig file to get type information
-    -f, --formatter Use a built-in eslint formatter or custom eslint formatter (default: stylish)
+        --report    Use a built-in eslint reporter or custom eslint reporter (default: standard)
 ```
 
 ## 🧬 TSConfig: Linting with Type Information
@@ -107,7 +106,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
     "envs": [],                 // same as `env`
     "parser": "",               // a different eslint parser to use (e.g. babel, etc...)
     "project": "",              // relative path to `tsconfig.json` file
-    "formatter": "",            // an eslint formatter to output the lint results as. Can use eslint built-in or custom (e.g. stylish, json, etc...)
+    "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
     "fix": false                // auto fix any lint errors found that are fixable
   }
 }
@@ -145,4 +144,4 @@ added. Before opening a PR please make sure to run the following scripts:
 
 - `npm run lint` checks for code errors and format according to [ts-standard](https://github.com/toddbluhm/ts-standard)
 - `npm test` make sure all tests pass
-- `npm run test-cover` make sure the coverage has not decreased from current master
+- `npm run coverage` make sure the coverage has not decreased from current master

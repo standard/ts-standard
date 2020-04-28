@@ -2,17 +2,17 @@ declare module 'standard-engine' {
   // Typing ported over from @types/eslint
   export type Severity = 0 | 1 | 2
   export interface LintMessage {
-    column: number
-    line: number
+    column?: number
+    line?: number
     endColumn?: number
     endLine?: number
-    ruleId: string | null
+    ruleId?: string
     message: string
     nodeType: string
     fatal?: true
     severity: Severity
     fix?: Object
-    source: string | null
+    source?: string
   }
 
   export interface FixReport {
@@ -43,7 +43,7 @@ declare module 'standard-engine' {
 
   export class linter {
     constructor(options: any)
-    lintText(text: string, options: any, callback: (err: Error | null, results: LintReport | null) => void): void
-    lintFiles(files: string[], options: any, callback: (err: Error | null, results: LintReport | null) => void): void
+    lintText(text: string, options: any, callback: (err?: Error, results?: LintReport) => void): void
+    lintFiles(files: string[], options: any, callback: (err?: Error, results?: LintReport) => void): void
   }
 }
