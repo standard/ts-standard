@@ -2,7 +2,7 @@ import * as lintLib from 'standard-engine'
 import { resolve } from 'path'
 import * as eslint from 'eslint'
 import * as optionsLib from './options'
-import { TSStandard } from './ts-standard'
+import { TSStandard, Options } from './ts-standard'
 
 jest.mock('standard-engine')
 
@@ -38,6 +38,7 @@ describe('ts-standard', () => {
           tagline: optionsLib.TAGLINE,
           eslint: options.eslint,
           eslintConfig: {
+            cwd: options.cwd,
             configFile: resolve(`${__dirname}/../eslintrc.json`),
             parserOptions: {
               project: options.project,
@@ -56,7 +57,7 @@ describe('ts-standard', () => {
         const linter = new TSStandard(options)
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
-        expect((linterSpy.mock.calls[0][0]).eslint).toEqual(customEslint)
+        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(customEslint)
       })
 
       it('should use the provide eslint if given', () => {
@@ -68,7 +69,7 @@ describe('ts-standard', () => {
         const linter = new TSStandard(options)
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
-        expect((linterSpy.mock.calls[0][0]).eslint).toEqual(options.eslint)
+        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(options.eslint)
       })
 
       it('should use the default eslint if eslint option not provided', () => {
@@ -76,7 +77,7 @@ describe('ts-standard', () => {
         const linter = new TSStandard()
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
-        expect((linterSpy.mock.calls[0][0]).eslint).toEqual(eslint)
+        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(eslint)
       })
 
       it('should throw error if no project file can be found', () => {
