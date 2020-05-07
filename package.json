@@ -1,7 +1,7 @@
 {
   "name": "ts-standard",
   "description": "Typescript Standard Style based on StandardJS",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
@@ -24,21 +24,23 @@
   "license": "MIT",
   "homepage": "https://github.com/toddbluhm/ts-standard",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
     "eslint": "^6.0.0",
     "eslint-config-standard": "^14.0.0",
     "eslint-config-standard-jsx": "^8.0.0",
     "eslint-config-standard-with-typescript": "^16.0.0",
-    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.0.0",
     "eslint-plugin-standard": "^4.0.0",
+    "get-stdin": "^7.0.0",
+    "minimist": "^1.0.0",
     "pkg-conf": "^3.0.0",
     "standard-engine": "^12.0.0"
   },
   "peerDependencies": {
-    "typescript": "^3.0.0"
+    "typescript": ">=3.8"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
@@ -48,13 +50,11 @@
     "@types/minimist": "^1.0.0",
     "@types/node": "^12.0.0",
     "coveralls": "^3.0.0",
-    "get-stdin": "^7.0.0",
     "husky": "^4.0.0",
     "jest": "^25.4.0",
-    "minimist": "^1.0.0",
     "ts-jest": "^25.4.0",
     "ts-node": "^8.0.0",
-    "typescript": "^3.7.0"
+    "typescript": "^3.8.3"
   },
   "keywords": [
     "Typescript Standard Style",

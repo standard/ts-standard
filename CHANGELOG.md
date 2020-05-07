@@ -1,5 +1,12 @@
 # Changelog
 
+## 8.0.1
+
+- **Change**: Updated minimum typescript version to `>=3.8` (Note: this requirement already existed
+with `8.0.0`, it just was not explicitly set in the `package.json` as it should have been)
+- **Fix**: Pass working directory (cwd) option to eslint constructor
+- **Chore**: Update explicit minimum required versions for regular dependencies
+
 ## 8.0.0
 
 - **BREAKING**: Changed the default linter output format to now include rule name by default. The

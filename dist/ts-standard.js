@@ -36,6 +36,7 @@ class TSStandard {
             eslint: eslintLib,
             eslintConfig: {
                 configFile: path_1.resolve(path_1.join(__dirname, '../eslintrc.json')),
+                cwd: options.cwd,
                 parserOptions: {
                     project: options.project,
                     tsconfigRootDir: options.cwd
