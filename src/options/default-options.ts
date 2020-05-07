@@ -1,4 +1,4 @@
-import * as path from 'path'
+import { join } from 'path'
 import { statSync } from 'fs'
 
 export const DEFAULT_TSCONFIG_LOCATIONS = [
@@ -51,7 +51,7 @@ export function getDefaultOptions (cwd: string = process.cwd()): DefaultOptions 
 
 export function _getTSConfigFromDefaultLocations (cwd: string): string | undefined {
   for (const tsFile of DEFAULT_TSCONFIG_LOCATIONS) {
-    const absPath = path.join(cwd, tsFile)
+    const absPath = join(cwd, tsFile)
     if (exports._isValidPath(absPath) as boolean) {
       return absPath
     }

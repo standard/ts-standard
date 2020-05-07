@@ -1,5 +1,5 @@
-import * as eslint from 'eslint';
-import { LintReport } from 'standard-engine';
+import type * as eslint from 'eslint';
+import type { LintReport } from 'standard-engine';
 import { DefaultOptions } from './options';
 import { TSStandard } from './ts-standard';
 export declare const ESLINT_BUILTIN_REPORTERS: string[];

@@ -1,8 +1,7 @@
 import * as minimist from 'minimist'
 
-const CMD = 'ts-standard'
-const TAGLINE = 'Typescript Standard Style!'
-export { CMD, TAGLINE }
+export const CMD = 'ts-standard'
+export const TAGLINE = 'Typescript Standard Style!'
 
 interface ParsedArgs extends minimist.ParsedArgs {
   fix: boolean

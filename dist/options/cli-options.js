@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const minimist = require("minimist");
-const CMD = 'ts-standard';
-exports.CMD = CMD;
-const TAGLINE = 'Typescript Standard Style!';
-exports.TAGLINE = TAGLINE;
+exports.CMD = 'ts-standard';
+exports.TAGLINE = 'Typescript Standard Style!';
 function getCLIOptions() {
     // Parse the command line arguments
     const argv = minimist(process.argv.slice(2), {
@@ -37,10 +35,10 @@ function getCLIOptions() {
     }
     // Print the help section if so requested
     if (argv.help) {
-        console.log('%s - %s (%s)', CMD, TAGLINE, require('../../package.json').homepage);
+        console.log('%s - %s (%s)', exports.CMD, exports.TAGLINE, require('../../package.json').homepage);
         console.log(`
 Usage:
-    ${CMD} <flags> [FILES...]
+    ${exports.CMD} <flags> [FILES...]
     If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts, *.tsx)
     in the current working directory are checked, recursively.
     Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and

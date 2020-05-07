@@ -1,6 +1,6 @@
+import type * as eslint from 'eslint'
+import type { LintReport, LintResult } from 'standard-engine'
 import * as getStdin from 'get-stdin'
-import * as eslint from 'eslint'
-import { LintReport, LintResult } from 'standard-engine'
 import {
   getCLIOptions, getPackageOptions,
   getDefaultOptions, mergeOptions, CMD,

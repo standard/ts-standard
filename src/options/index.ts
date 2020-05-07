@@ -2,6 +2,7 @@ export * from './default-options'
 export * from './cli-options'
 export * from './package-options'
 
+// A simple utility function to merge objects together ignoring any undefined values
 export function mergeOptions (...objects: any[]): any {
   const result: any = {}
   for (const obj of objects) {

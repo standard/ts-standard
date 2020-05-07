@@ -1,10 +1,10 @@
-import * as path from 'path'
-import * as pkgConf from 'pkg-conf'
+import { join } from 'path'
+import { Config, sync } from 'pkg-conf'
 import { _isValidPath } from './default-options'
 
 // Note most of these options are passed to `standard-engine` automagically because
 // `standard-engine` also uses `pkg-conf` under the hood as well
-interface PackageConfigOptions extends pkgConf.Config {
+interface PackageConfigOptions extends Config {
   ignore?: string[]
   noDefaultIgnore?: boolean
   globals?: string[]
@@ -35,7 +35,7 @@ interface PackageOptions {
 }
 
 export function getPackageOptions (cwd?: string): PackageOptions {
-  const settings: PackageConfigOptions = pkgConf.sync('ts-standard', { cwd })
+  const settings: PackageConfigOptions = sync('ts-standard', { cwd })
   cwd = cwd ?? settings.cwd ?? process.cwd()
   return {
     files: settings.files,
@@ -55,7 +55,7 @@ export function getPackageOptions (cwd?: string): PackageOptions {
 
 export function _resolveTSConfigPath (cwd: string, settingsProjectPath?: string): string | undefined {
   if (settingsProjectPath !== undefined) {
-    const settingsPath = path.join(cwd, settingsProjectPath)
+    const settingsPath = join(cwd, settingsProjectPath)
     if (_isValidPath(settingsPath)) {
       return settingsPath
     }

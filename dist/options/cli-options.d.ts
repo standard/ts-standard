@@ -1,6 +1,5 @@
-declare const CMD = "ts-standard";
-declare const TAGLINE = "Typescript Standard Style!";
-export { CMD, TAGLINE };
+export declare const CMD = "ts-standard";
+export declare const TAGLINE = "Typescript Standard Style!";
 export interface CLIOptions {
     fix: boolean;
     useStdIn: boolean;

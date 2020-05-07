@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
+const path_1 = require("path");
 const fs_1 = require("fs");
 exports.DEFAULT_TSCONFIG_LOCATIONS = [
     'tsconfig.eslint.json',
@@ -34,7 +34,7 @@ function getDefaultOptions(cwd = process.cwd()) {
 exports.getDefaultOptions = getDefaultOptions;
 function _getTSConfigFromDefaultLocations(cwd) {
     for (const tsFile of exports.DEFAULT_TSCONFIG_LOCATIONS) {
-        const absPath = path.join(cwd, tsFile);
+        const absPath = path_1.join(cwd, tsFile);
         if (exports._isValidPath(absPath)) {
             return absPath;
         }

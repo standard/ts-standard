@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./default-options"));
 __export(require("./cli-options"));
 __export(require("./package-options"));
+// A simple utility function to merge objects together ignoring any undefined values
 function mergeOptions(...objects) {
     var _a;
     const result = {};

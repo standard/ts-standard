@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
-const pkgConf = require("pkg-conf");
+const path_1 = require("path");
+const pkg_conf_1 = require("pkg-conf");
 const default_options_1 = require("./default-options");
 function getPackageOptions(cwd) {
     var _a;
-    const settings = pkgConf.sync('ts-standard', { cwd });
+    const settings = pkg_conf_1.sync('ts-standard', { cwd });
     cwd = (_a = cwd !== null && cwd !== void 0 ? cwd : settings.cwd) !== null && _a !== void 0 ? _a : process.cwd();
     return {
         files: settings.files,
@@ -25,7 +25,7 @@ function getPackageOptions(cwd) {
 exports.getPackageOptions = getPackageOptions;
 function _resolveTSConfigPath(cwd, settingsProjectPath) {
     if (settingsProjectPath !== undefined) {
-        const settingsPath = path.join(cwd, settingsProjectPath);
+        const settingsPath = path_1.join(cwd, settingsProjectPath);
         if (default_options_1._isValidPath(settingsPath)) {
             return settingsPath;
         }

@@ -1,4 +1,4 @@
-import { LintResult } from 'standard-engine'
+import type { LintResult } from 'standard-engine'
 
 export function standardReporter (isUsingStdInAndFix: boolean): (results: LintResult[]) => string {
   return (lintResults: LintResult[]): string => {
