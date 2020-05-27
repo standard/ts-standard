@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._resolveTSConfigPath = exports.getPackageOptions = void 0;
 const path_1 = require("path");
 const pkg_conf_1 = require("pkg-conf");
 const default_options_1 = require("./default-options");

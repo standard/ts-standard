@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TSStandard = void 0;
 const eslint = require("eslint");
 const path_1 = require("path");
 const standard_engine_1 = require("standard-engine");

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._convertToArray = exports.getCLIOptions = exports.TAGLINE = exports.CMD = void 0;
 const minimist = require("minimist");
 exports.CMD = 'ts-standard';
 exports.TAGLINE = 'Typescript Standard Style!';

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.lintFiles = exports.lintText = exports.parseOpts = void 0;
 const ts_standard_1 = require("./ts-standard");
 // All exports are to satisfy the `standard-engine` export interface used by
 // the vscode standard extension and other editor extensions

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._isValidPath = exports._getTSConfigFromDefaultLocations = exports.getDefaultOptions = exports.DEFAULT_TSCONFIG_LOCATIONS = void 0;
 const path_1 = require("path");
 const fs_1 = require("fs");
 exports.DEFAULT_TSCONFIG_LOCATIONS = [
