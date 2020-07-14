@@ -24,7 +24,7 @@
   "license": "MIT",
   "homepage": "https://github.com/toddbluhm/ts-standard",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
     "eslint": "^6.0.0",
     "eslint-config-standard": "^14.0.0",
     "eslint-config-standard-jsx": "^8.0.0",
