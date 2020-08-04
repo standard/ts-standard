@@ -121,5 +121,9 @@
       "!**/dist/**",
       "!**/node_modules/**"
     ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   }
 }

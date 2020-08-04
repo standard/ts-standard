@@ -4,6 +4,7 @@
 .idea
 .editorconfig
 .github
+.prettierignore
 coverage/
 node_modules/
 src/
