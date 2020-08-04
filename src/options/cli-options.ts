@@ -1,7 +1,5 @@
 import * as minimist from 'minimist'
-
-export const CMD = 'ts-standard'
-export const TAGLINE = 'Typescript Standard Style!'
+import { CMD, TAGLINE, HOMEPAGE, VERSION } from '../constants'
 
 interface ParsedArgs extends minimist.ParsedArgs {
   fix: boolean
@@ -38,20 +36,8 @@ export function getCLIOptions (): CLIOptions {
       help: 'h',
       project: 'p'
     },
-    boolean: [
-      'fix',
-      'help',
-      'stdin',
-      'version'
-    ],
-    string: [
-      'globals',
-      'plugins',
-      'parser',
-      'envs',
-      'project',
-      'report'
-    ]
+    boolean: ['fix', 'help', 'stdin', 'version'],
+    string: ['globals', 'plugins', 'parser', 'envs', 'project', 'report']
   }) as ParsedArgs
 
   // Unix convention: Command line argument `-` is a shorthand for `--stdin`
@@ -62,7 +48,7 @@ export function getCLIOptions (): CLIOptions {
 
   // Print the help section if so requested
   if (argv.help) {
-    console.log('%s - %s (%s)', CMD, TAGLINE, require('../../package.json').homepage)
+    console.log('%s - %s (%s)', CMD, TAGLINE, HOMEPAGE)
     console.log(`
 Usage:
     ${CMD} <flags> [FILES...]
@@ -89,7 +75,7 @@ Flags (advanced):
 
   // Print out the version number if requested
   if (argv.version) {
-    console.log(require('../../package.json').version)
+    console.log(VERSION)
     return process.exit(0)
   }
 

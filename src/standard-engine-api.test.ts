@@ -9,13 +9,15 @@ jest.mock('custom-eslint', () => customEslint, { virtual: true })
 describe('standard-engine-api', () => {
   beforeEach(() => {
     jest.isolateModules(() => {
-      ({ parseOpts, lintFiles, lintText } = require('./standard-engine-api'))
+      ;({ parseOpts, lintFiles, lintText } = require('./standard-engine-api'))
     })
   })
 
   describe('parseOpts', () => {
     it('should initialize a new ts-standard linter with the given settings', () => {
-      const tsStandardSpy = jest.spyOn(tsStandardLib, 'TSStandard').mockReturnThis()
+      const tsStandardSpy = jest
+        .spyOn(tsStandardLib, 'TSStandard')
+        .mockReturnThis()
       const options = {
         cwd: '/some/cwd',
         filename: 'file:///jedi/yoda.ts'
@@ -29,7 +31,9 @@ describe('standard-engine-api', () => {
     })
 
     it('should use cached ts-standard instance on subsequent calls', () => {
-      const tsStandardSpy = jest.spyOn(tsStandardLib, 'TSStandard').mockReturnThis()
+      const tsStandardSpy = jest
+        .spyOn(tsStandardLib, 'TSStandard')
+        .mockReturnThis()
       const options = {
         cwd: '/some/cwd',
         filename: 'file:///jedi/yoda.ts'
@@ -45,7 +49,9 @@ describe('standard-engine-api', () => {
     })
 
     it('should use re-initialize ts-standard instance if cwd changes', () => {
-      const tsStandardSpy = jest.spyOn(tsStandardLib, 'TSStandard').mockReturnThis()
+      const tsStandardSpy = jest
+        .spyOn(tsStandardLib, 'TSStandard')
+        .mockReturnThis()
       const options = {
         cwd: '/some/cwd',
         filename: 'file:///jedi/yoda.ts'
@@ -80,9 +86,11 @@ describe('standard-engine-api', () => {
     let tsStandardSpy: jest.SpyInstance
     const lintTextSpy = jest.fn()
     beforeEach(() => {
-      tsStandardSpy = jest.spyOn(tsStandardLib, 'TSStandard').mockReturnValueOnce({
-        lintText: lintTextSpy
-      } as any)
+      tsStandardSpy = jest
+        .spyOn(tsStandardLib, 'TSStandard')
+        .mockReturnValueOnce({
+          lintText: lintTextSpy
+        } as any)
     })
 
     it('should lint the given text without providing options', (cb): void => {
@@ -165,21 +173,27 @@ describe('standard-engine-api', () => {
       lintTextSpy.mockResolvedValueOnce('success!')
 
       expect.assertions(6)
-      lintText(text, {
-        filename: 'file:///some/path/to/the/darkside'
-      }, (err, res) => {
-        try {
-          expect(err).toBeUndefined()
-          expect(res).toEqual('success!')
-          expect(tsStandardSpy).toHaveBeenCalledTimes(1)
-          expect(lintTextSpy).toHaveBeenCalledTimes(1)
-          expect(lintTextSpy.mock.calls[0][0]).toEqual(text)
-          expect(lintTextSpy.mock.calls[0][1].filename).toEqual('/some/path/to/the/darkside')
-          cb()
-        } catch (e) {
-          cb(e)
+      lintText(
+        text,
+        {
+          filename: 'file:///some/path/to/the/darkside'
+        },
+        (err, res) => {
+          try {
+            expect(err).toBeUndefined()
+            expect(res).toEqual('success!')
+            expect(tsStandardSpy).toHaveBeenCalledTimes(1)
+            expect(lintTextSpy).toHaveBeenCalledTimes(1)
+            expect(lintTextSpy.mock.calls[0][0]).toEqual(text)
+            expect(lintTextSpy.mock.calls[0][1].filename).toEqual(
+              '/some/path/to/the/darkside'
+            )
+            cb()
+          } catch (e) {
+            cb(e)
+          }
         }
-      })
+      )
     })
   })
 
@@ -194,9 +208,11 @@ describe('standard-engine-api', () => {
     let tsStandardSpy: jest.SpyInstance
     const lintFilesSpy = jest.fn()
     beforeEach(() => {
-      tsStandardSpy = jest.spyOn(tsStandardLib, 'TSStandard').mockReturnValueOnce({
-        lintFiles: lintFilesSpy
-      } as any)
+      tsStandardSpy = jest
+        .spyOn(tsStandardLib, 'TSStandard')
+        .mockReturnValueOnce({
+          lintFiles: lintFilesSpy
+        } as any)
     })
 
     it('should lint the given files without providing options', (cb): void => {

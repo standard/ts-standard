@@ -1,5 +1,15 @@
 # Changelog
 
+## 9.0.0
+
+- **BREAKING**: Dropped support for NodeJS `8.x`
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^18.0.0`. Please visit
+their github page for any style/linter changes
+- **BREAKING**: Updated `eslint` to version `^7.0.0` (from `6.0.0`)
+- **BREAKING**: Updated `@typescript-eslint/eslint-plugin` to version `^7.6.0` (from `6.0.0`)
+- **Chore**: Updated a number of devDependencies
+- **Feature**: Added prettier for formatting before standard fixing
+
 ## 8.0.1
 
 - **Change**: Updated minimum typescript version to `>=3.8` (Note: this requirement already existed

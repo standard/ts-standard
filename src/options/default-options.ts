@@ -49,7 +49,9 @@ export function getDefaultOptions (cwd: string = process.cwd()): DefaultOptions 
   }
 }
 
-export function _getTSConfigFromDefaultLocations (cwd: string): string | undefined {
+export function _getTSConfigFromDefaultLocations (
+  cwd: string
+): string | undefined {
   for (const tsFile of DEFAULT_TSCONFIG_LOCATIONS) {
     const absPath = join(cwd, tsFile)
     if (exports._isValidPath(absPath) as boolean) {

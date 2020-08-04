@@ -6,17 +6,9 @@
     "strict": true,
     "declaration": true,
     "resolveJsonModule": true,
-    "lib": [
-      "es2018",
-      "es2019",
-      "es2020"
-    ],
+    "lib": ["es2018", "es2019", "es2020"],
     "allowJs": true,
     "checkJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "bin/*.js",
-    "*.json"
-  ]
+  "include": ["src/**/*.ts", "bin/*.js", "*.json"]
 }

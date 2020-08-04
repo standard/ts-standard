@@ -1,7 +1,8 @@
 import { join, resolve } from 'path'
 import { statSync } from 'fs'
 import {
-  _isValidPath, _getTSConfigFromDefaultLocations,
+  _isValidPath,
+  _getTSConfigFromDefaultLocations,
   getDefaultOptions
 } from './default-options'
 
@@ -13,7 +14,9 @@ const mockStatSync = statSync as jest.MockedFunction<typeof statSync>
 describe('default-options', () => {
   describe('_isValidPath', () => {
     beforeEach(() => {
-      mockStatSync.mockImplementation((...args) => jest.requireActual('fs').statSync(...args))
+      mockStatSync.mockImplementation((...args) =>
+        jest.requireActual('fs').statSync(...args)
+      )
     })
 
     it('should return true for a valid path', () => {
@@ -44,7 +47,9 @@ describe('default-options', () => {
     })
 
     it('should return undefined if no valid path found', (): void => {
-      mockStatSync.mockImplementation(() => { throw new Error('Error') })
+      mockStatSync.mockImplementation(() => {
+        throw new Error('Error')
+      })
       const validPath = _getTSConfigFromDefaultLocations(process.cwd())
       expect(validPath).toBeUndefined()
     })
@@ -52,7 +57,9 @@ describe('default-options', () => {
 
   describe('getDefaultOptions', (): void => {
     it('should return all default options', async (): Promise<void> => {
-      mockStatSync.mockImplementation((...args) => jest.requireActual('fs').statSync(...args))
+      mockStatSync.mockImplementation((...args) =>
+        jest.requireActual('fs').statSync(...args)
+      )
       const options = await getDefaultOptions()
       expect(options.files).toHaveLength(6)
       expect(options.project).toMatch(/tsconfig.eslint.json/gi)
@@ -87,8 +94,12 @@ describe('default-options', () => {
       expect(options.parser).toBeUndefined()
     })
 
-    it('should return undefined if project options not provided', async (): Promise<void> => {
-      mockStatSync.mockImplementation(() => { throw new Error('Error') })
+    it('should return undefined if project options not provided', async (): Promise<
+    void
+    > => {
+      mockStatSync.mockImplementation(() => {
+        throw new Error('Error')
+      })
       const options = await getDefaultOptions()
       expect(options.project).toBeUndefined()
     })

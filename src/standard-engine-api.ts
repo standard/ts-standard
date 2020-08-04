@@ -26,15 +26,15 @@ export function parseOpts (options: ParseOptions): ParseOptions {
 }
 
 // Export some function overload signatures to help with intellisense
-export function lintText(text: string, options: LintCallBack): void
-export function lintText(
+export function lintText (text: string, options: LintCallBack): void
+export function lintText (
   text: string,
   options: TSStandardLintOptions & ParseOptions,
   callback: LintCallBack
 ): void
 export function lintText (
   text: string,
-  options: TSStandardLintOptions & ParseOptions | LintCallBack,
+  options: (TSStandardLintOptions & ParseOptions) | LintCallBack,
   callback?: LintCallBack
 ): void {
   let cb = callback as LintCallBack
@@ -50,24 +50,25 @@ export function lintText (
     // the vscode-standardjs extention provided the filename as a uri, so remove the uri component
     filename = options.filename.replace('file://', '')
   }
-  singletonInstance.lintText(text, {
-    ...options,
-    filename
-  })
-    .then(res => cb(undefined, res))
+  singletonInstance
+    .lintText(text, {
+      ...options,
+      filename
+    })
+    .then((res) => cb(undefined, res))
     .catch(cb)
 }
 
 // Export some function overload signatures to help with intellisense
-export function lintFiles(files: string[], options: LintCallBack): void
-export function lintFiles(
+export function lintFiles (files: string[], options: LintCallBack): void
+export function lintFiles (
   files: string[],
   options: TSStandardLintOptions & ParseOptions,
   callback: LintCallBack
 ): void
 export function lintFiles (
   files: string[],
-  options: TSStandardLintOptions & ParseOptions | LintCallBack,
+  options: (TSStandardLintOptions & ParseOptions) | LintCallBack,
   callback?: LintCallBack
 ): void {
   let cb = callback as LintCallBack
@@ -78,7 +79,8 @@ export function lintFiles (
   if (singletonInstance == null) {
     exports.parseOpts(options)
   }
-  singletonInstance.lintFiles(files, options)
-    .then(res => cb(undefined, res))
+  singletonInstance
+    .lintFiles(files, options)
+    .then((res) => cb(undefined, res))
     .catch(cb)
 }
