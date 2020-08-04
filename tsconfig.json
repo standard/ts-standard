@@ -5,16 +5,9 @@
     "module": "commonjs",
     "strict": true,
     "declaration": true,
-    "lib": [
-      "es2018",
-      "es2019",
-      "es2020"
-    ],
+    "resolveJsonModule": true,
+    "lib": ["es2018", "es2019", "es2020"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "src/**/*.test.ts"
-  ]
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts"]
 }

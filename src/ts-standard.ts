@@ -1,10 +1,8 @@
 import * as eslint from 'eslint'
 import { join, resolve } from 'path'
 import { linter as Linter, LintReport } from 'standard-engine'
-import {
-  getDefaultOptions, getPackageOptions,
-  mergeOptions, CMD, TAGLINE
-} from './options'
+import { getDefaultOptions, getPackageOptions, mergeOptions } from './options'
+import { CMD, TAGLINE, BUGS_URL, HOMEPAGE, VERSION } from './constants'
 
 export interface Options {
   project?: string
@@ -44,8 +42,10 @@ export class TSStandard {
 
     // Linting requires a project file
     if (options.project == null) {
-      throw new Error('Unable to locate the project file. A project file (tsconfig.json or ' +
-        'tsconfig.eslint.json) is reqired in order to use ts-standard.')
+      throw new Error(
+        'Unable to locate the project file. A project file (tsconfig.json or ' +
+          'tsconfig.eslint.json) is reqired in order to use ts-standard.'
+      )
     }
 
     // Handle the case where eslint lib could be a string, library, or undefined (use default lib)
@@ -61,9 +61,9 @@ export class TSStandard {
     // Compile all the various options needed to construct standard-engine linter
     const standardEngineOptions = {
       cmd: CMD,
-      version: require('../package.json').version,
-      homepage: require('../package.json').homepage,
-      bugs: require('../package.json').bugs.url,
+      version: VERSION,
+      homepage: HOMEPAGE,
+      bugs: BUGS_URL,
       tagline: TAGLINE,
       eslint: eslintLib,
       eslintConfig: {
@@ -87,7 +87,10 @@ export class TSStandard {
     }
   }
 
-  async lintText (text: string, options?: TSStandardLintOptions & { filename?: string }): Promise<LintReport> {
+  async lintText (
+    text: string,
+    options?: TSStandardLintOptions & { filename?: string }
+  ): Promise<LintReport> {
     options = options ?? {}
     options = {
       ...this.defaultPerLintOptions,
@@ -103,7 +106,10 @@ export class TSStandard {
     })
   }
 
-  async lintFiles (files: string[], options: TSStandardLintOptions = {}): Promise<LintReport> {
+  async lintFiles (
+    files: string[],
+    options: TSStandardLintOptions = {}
+  ): Promise<LintReport> {
     options = {
       ...this.defaultPerLintOptions,
       ...options

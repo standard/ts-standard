@@ -1,8 +1,10 @@
 import * as lintLib from 'standard-engine'
 import { resolve } from 'path'
 import * as eslint from 'eslint'
-import * as optionsLib from './options'
+import * as defaultOptions from './options/default-options'
+import * as packageOptions from './options/package-options'
 import { TSStandard, Options } from './ts-standard'
+import { CMD, TAGLINE, BUGS_URL, HOMEPAGE, VERSION } from './constants'
 
 jest.mock('standard-engine')
 
@@ -31,11 +33,11 @@ describe('ts-standard', () => {
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
         expect(linterSpy).toHaveBeenCalledWith({
-          cmd: optionsLib.CMD,
-          version: require('../package.json').version,
-          homepage: require('../package.json').homepage,
-          bugs: require('../package.json').bugs.url,
-          tagline: optionsLib.TAGLINE,
+          cmd: CMD,
+          version: VERSION,
+          homepage: HOMEPAGE,
+          bugs: BUGS_URL,
+          tagline: TAGLINE,
           eslint: options.eslint,
           eslintConfig: {
             cwd: options.cwd,
@@ -57,7 +59,9 @@ describe('ts-standard', () => {
         const linter = new TSStandard(options)
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
-        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(customEslint)
+        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(
+          customEslint
+        )
       })
 
       it('should use the provide eslint if given', () => {
@@ -69,7 +73,9 @@ describe('ts-standard', () => {
         const linter = new TSStandard(options)
         expect(linter).toBeDefined()
         expect(linterSpy).toHaveBeenCalledTimes(1)
-        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(options.eslint)
+        expect((linterSpy.mock.calls[0][0] as Options).eslint).toEqual(
+          options.eslint
+        )
       })
 
       it('should use the default eslint if eslint option not provided', () => {
@@ -81,12 +87,16 @@ describe('ts-standard', () => {
       })
 
       it('should throw error if no project file can be found', () => {
-        jest.spyOn(optionsLib, 'getDefaultOptions').mockReturnValue(undefined)
-        jest.spyOn(optionsLib, 'getPackageOptions').mockReturnValue(undefined)
+        jest
+          .spyOn(defaultOptions, 'getDefaultOptions')
+          .mockReturnValue(undefined)
+        jest
+          .spyOn(packageOptions, 'getPackageOptions')
+          .mockReturnValue(undefined)
         expect.assertions(1)
 
         try {
-          (new TSStandard()) // eslint-disable-line no-new
+          new TSStandard() // eslint-disable-line no-new
         } catch (e) {
           expect(e.message).toMatch(/unable to locate the project file/gi)
         }
@@ -113,9 +123,13 @@ describe('ts-standard', () => {
         })
       })
 
-      it('should lint the given text with default options', async (): Promise<void> => {
+      it('should lint the given text with default options', async (): Promise<
+      void
+      > => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) => cb(undefined, 'success!'))
+        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+          cb(undefined, 'success!')
+        )
         const res = await tsStandard.lintText(text)
 
         expect(res).toEqual('success!')
@@ -124,9 +138,13 @@ describe('ts-standard', () => {
         expect(lintTextSpy.mock.calls[0][1]).toEqual(defaultOptions)
       })
 
-      it('should overide default options with method options', async (): Promise<void> => {
+      it('should overide default options with method options', async (): Promise<
+      void
+      > => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) => cb(undefined, 'success!'))
+        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+          cb(undefined, 'success!')
+        )
         const newOptions = {
           fix: false,
           globals: ['jquery'],
@@ -144,7 +162,9 @@ describe('ts-standard', () => {
 
       it('should return error if linting failed', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) => cb(new Error('the darkside')))
+        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+          cb(new Error('the darkside'))
+        )
         expect.assertions(2)
 
         try {
@@ -176,9 +196,13 @@ describe('ts-standard', () => {
         })
       })
 
-      it('should lint the given files with default options', async (): Promise<void> => {
+      it('should lint the given files with default options', async (): Promise<
+      void
+      > => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) => cb(undefined, 'success!'))
+        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+          cb(undefined, 'success!')
+        )
         const res = await tsStandard.lintFiles(files)
 
         expect(res).toEqual('success!')
@@ -187,9 +211,13 @@ describe('ts-standard', () => {
         expect(lintFilesSpy.mock.calls[0][1]).toEqual(defaultOptions)
       })
 
-      it('should overide default options with method options', async (): Promise<void> => {
+      it('should overide default options with method options', async (): Promise<
+      void
+      > => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) => cb(undefined, 'success!'))
+        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+          cb(undefined, 'success!')
+        )
         const newOptions = {
           fix: false,
           globals: ['jquery'],
@@ -207,7 +235,9 @@ describe('ts-standard', () => {
 
       it('should return error if linting failed', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) => cb(new Error('the darkside')))
+        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+          cb(new Error('the darkside'))
+        )
         expect.assertions(2)
 
         try {

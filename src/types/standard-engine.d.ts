@@ -42,8 +42,16 @@ declare module 'standard-engine' {
   // End eslint types porting
 
   export class linter {
-    constructor(options: any)
-    lintText(text: string, options: any, callback: (err?: Error, results?: LintReport) => void): void
-    lintFiles(files: string[], options: any, callback: (err?: Error, results?: LintReport) => void): void
+    constructor (options: any)
+    lintText (
+      text: string,
+      options: any,
+      callback: (err?: Error, results?: LintReport) => void
+    ): void
+    lintFiles (
+      files: string[],
+      options: any,
+      callback: (err?: Error, results?: LintReport) => void
+    ): void
   }
 }

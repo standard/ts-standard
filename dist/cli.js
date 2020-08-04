@@ -1,12 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.printReport = exports.lintFiles = exports.lintStdIn = exports.cli = exports.ESLINT_BUILTIN_REPORTERS = void 0;
 const getStdin = require("get-stdin");
 const options_1 = require("./options");
 const ts_standard_1 = require("./ts-standard");
+const constants_1 = require("./constants");
 exports.ESLINT_BUILTIN_REPORTERS = [
-    'stylish', 'checkstyle', 'codeframe', 'compact',
-    'html', 'jslint-xml', 'json', 'junit', 'table',
-    'tap', 'unix', 'visualstudio'
+    'stylish',
+    'checkstyle',
+    'codeframe',
+    'compact',
+    'html',
+    'jslint-xml',
+    'json',
+    'junit',
+    'table',
+    'tap',
+    'unix',
+    'visualstudio'
 ];
 async function cli() {
     // Get the default/cli options
@@ -60,10 +71,10 @@ async function lintStdIn(linter, options) {
     }
     catch (e) {
         const err = e;
-        console.error(`${options_1.CMD}: Unexpected linter output:\n`);
+        console.error(`${constants_1.CMD}: Unexpected linter output:\n`);
         console.error(`${err.message}: ${err.stack}`);
-        console.error(`\nIf you think this is a bug in \`${options_1.CMD}\`, open an issue: ` +
-            `${require('../package.json').bugs}`);
+        console.error(`\nIf you think this is a bug in \`${constants_1.CMD}\`, open an issue: ` +
+            `${constants_1.BUGS_URL}`);
         return process.exit(1);
     }
     // If we performed fixes then maybe return the fixed text
@@ -88,10 +99,10 @@ async function lintFiles(linter, options) {
     }
     catch (e) {
         const err = e;
-        console.error(`${options_1.CMD}: Unexpected linter output:\n`);
+        console.error(`${constants_1.CMD}: Unexpected linter output:\n`);
         console.error(`${err.message}: ${err.stack}`);
-        console.error(`\nIf you think this is a bug in \`${options_1.CMD}\`, open an issue: ` +
-            `${require('../package.json').bugs}`);
+        console.error(`\nIf you think this is a bug in \`${constants_1.CMD}\`, open an issue: ` +
+            `${constants_1.BUGS_URL}`);
         return process.exit(1);
     }
     return lintReport;
@@ -99,7 +110,7 @@ async function lintFiles(linter, options) {
 exports.lintFiles = lintFiles;
 async function printReport(lintReport, options) {
     // Print tag line to stay consistent with standard output
-    console.error(`${options_1.CMD}: ${options_1.TAGLINE} (${require('../package.json').homepage})`);
+    console.error(`${constants_1.CMD}: ${constants_1.TAGLINE} (${constants_1.HOMEPAGE})`);
     // Check for any fixable rules
     const isFixable = lintReport.results.some((res) => {
         return res.messages.some((msg) => {
@@ -108,7 +119,7 @@ async function printReport(lintReport, options) {
     });
     // If there were fixable rules, then that means that `--fix` was not provided
     if (isFixable && !options.fix) {
-        console.error(`${options_1.CMD}: Run \`${options_1.CMD} --fix\` to automatically fix some problems.`);
+        console.error(`${constants_1.CMD}: Run \`${constants_1.CMD} --fix\` to automatically fix some problems.`);
     }
     // Check to see if a custom reporter was given, if so use that.
     let reporter;
@@ -119,11 +130,11 @@ async function printReport(lintReport, options) {
     }
     else if (exports.ESLINT_BUILTIN_REPORTERS.includes(options.report)) {
         // Use built-in eslint reporter
-        reporter = require(`eslint/lib/cli-engine/formatters/${options.report}`);
+        reporter = await Promise.resolve().then(() => require(`eslint/lib/cli-engine/formatters/${options.report}`));
     }
     else {
         // Use a custom reporter
-        reporter = require(options.report);
+        reporter = await Promise.resolve().then(() => require(options.report));
         if (reporter == null) {
             throw new Error('Error: Unable to import custom formatter.');
         }

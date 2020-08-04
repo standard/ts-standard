@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.lintFiles = exports.lintText = exports.parseOpts = void 0;
 const ts_standard_1 = require("./ts-standard");
 // All exports are to satisfy the `standard-engine` export interface used by
 // the vscode standard extension and other editor extensions
@@ -33,8 +34,9 @@ function lintText(text, options, callback) {
         // the vscode-standardjs extention provided the filename as a uri, so remove the uri component
         filename = options.filename.replace('file://', '');
     }
-    singletonInstance.lintText(text, Object.assign(Object.assign({}, options), { filename }))
-        .then(res => cb(undefined, res))
+    singletonInstance
+        .lintText(text, Object.assign(Object.assign({}, options), { filename }))
+        .then((res) => cb(undefined, res))
         .catch(cb);
 }
 exports.lintText = lintText;
@@ -47,8 +49,9 @@ function lintFiles(files, options, callback) {
     if (singletonInstance == null) {
         exports.parseOpts(options);
     }
-    singletonInstance.lintFiles(files, options)
-        .then(res => cb(undefined, res))
+    singletonInstance
+        .lintFiles(files, options)
+        .then((res) => cb(undefined, res))
         .catch(cb);
 }
 exports.lintFiles = lintFiles;

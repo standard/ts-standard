@@ -1,7 +1,5 @@
 import * as pkgConf from 'pkg-conf'
-import {
-  _resolveTSConfigPath, getPackageOptions
-} from './package-options'
+import { _resolveTSConfigPath, getPackageOptions } from './package-options'
 import * as defaultLib from './default-options'
 
 describe('package-options', () => {

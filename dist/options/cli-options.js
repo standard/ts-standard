@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports._convertToArray = exports.getCLIOptions = void 0;
 const minimist = require("minimist");
-exports.CMD = 'ts-standard';
-exports.TAGLINE = 'Typescript Standard Style!';
+const constants_1 = require("../constants");
 function getCLIOptions() {
     // Parse the command line arguments
     const argv = minimist(process.argv.slice(2), {
@@ -13,20 +13,8 @@ function getCLIOptions() {
             help: 'h',
             project: 'p'
         },
-        boolean: [
-            'fix',
-            'help',
-            'stdin',
-            'version'
-        ],
-        string: [
-            'globals',
-            'plugins',
-            'parser',
-            'envs',
-            'project',
-            'report'
-        ]
+        boolean: ['fix', 'help', 'stdin', 'version'],
+        string: ['globals', 'plugins', 'parser', 'envs', 'project', 'report']
     });
     // Unix convention: Command line argument `-` is a shorthand for `--stdin`
     if (argv._[0] === '-') {
@@ -35,10 +23,10 @@ function getCLIOptions() {
     }
     // Print the help section if so requested
     if (argv.help) {
-        console.log('%s - %s (%s)', exports.CMD, exports.TAGLINE, require('../../package.json').homepage);
+        console.log('%s - %s (%s)', constants_1.CMD, constants_1.TAGLINE, constants_1.HOMEPAGE);
         console.log(`
 Usage:
-    ${exports.CMD} <flags> [FILES...]
+    ${constants_1.CMD} <flags> [FILES...]
     If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts, *.tsx)
     in the current working directory are checked, recursively.
     Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
@@ -61,7 +49,7 @@ Flags (advanced):
     }
     // Print out the version number if requested
     if (argv.version) {
-        console.log(require('../../package.json').version);
+        console.log(constants_1.VERSION);
         return process.exit(0);
     }
     // Get the files/globs to lint

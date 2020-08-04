@@ -53,7 +53,10 @@ export function getPackageOptions (cwd?: string): PackageOptions {
   }
 }
 
-export function _resolveTSConfigPath (cwd: string, settingsProjectPath?: string): string | undefined {
+export function _resolveTSConfigPath (
+  cwd: string,
+  settingsProjectPath?: string
+): string | undefined {
   if (settingsProjectPath !== undefined) {
     const settingsPath = join(cwd, settingsProjectPath)
     if (_isValidPath(settingsPath)) {

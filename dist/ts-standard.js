@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TSStandard = void 0;
 const eslint = require("eslint");
 const path_1 = require("path");
 const standard_engine_1 = require("standard-engine");
 const options_1 = require("./options");
+const constants_1 = require("./constants");
 class TSStandard {
     constructor(options = {}) {
         // Get the default/cli options
@@ -28,11 +30,11 @@ class TSStandard {
         }
         // Compile all the various options needed to construct standard-engine linter
         const standardEngineOptions = {
-            cmd: options_1.CMD,
-            version: require('../package.json').version,
-            homepage: require('../package.json').homepage,
-            bugs: require('../package.json').bugs.url,
-            tagline: options_1.TAGLINE,
+            cmd: constants_1.CMD,
+            version: constants_1.VERSION,
+            homepage: constants_1.HOMEPAGE,
+            bugs: constants_1.BUGS_URL,
+            tagline: constants_1.TAGLINE,
             eslint: eslintLib,
             eslintConfig: {
                 configFile: path_1.resolve(path_1.join(__dirname, '../eslintrc.json')),

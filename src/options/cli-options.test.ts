@@ -1,6 +1,4 @@
-import {
-  getCLIOptions, _convertToArray
-} from './cli-options'
+import { getCLIOptions, _convertToArray } from './cli-options'
 
 const mockProcess = process as any
 
@@ -36,8 +34,12 @@ describe('tsconfig', () => {
     it('should print help and exit if `--help` passed', () => {
       const oldArgs = mockProcess.argv
       mockProcess.argv = ['path', 'node', '--help']
-      const exitSpy = jest.spyOn(mockProcess, 'exit').mockImplementation((() => undefined) as any)
-      const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation((() => undefined) as any)
+      const exitSpy = jest
+        .spyOn(mockProcess, 'exit')
+        .mockImplementation((() => undefined) as any)
+      const consoleLogSpy = jest
+        .spyOn(console, 'log')
+        .mockImplementation((() => undefined) as any)
       const res = getCLIOptions()
       expect(res).toBeUndefined()
       expect(exitSpy.mock.calls[0][0]).toEqual(0)
@@ -48,8 +50,12 @@ describe('tsconfig', () => {
     it('should print version and exit if `--version` passed', () => {
       const oldArgs = mockProcess.argv
       mockProcess.argv = ['path', 'node', '--version']
-      const exitSpy = jest.spyOn(mockProcess, 'exit').mockImplementation((() => undefined) as any)
-      const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation((() => undefined) as any)
+      const exitSpy = jest
+        .spyOn(mockProcess, 'exit')
+        .mockImplementation((() => undefined) as any)
+      const consoleLogSpy = jest
+        .spyOn(console, 'log')
+        .mockImplementation((() => undefined) as any)
       const res = getCLIOptions()
       expect(res).toBeUndefined()
       expect(exitSpy.mock.calls[0][0]).toEqual(0)
@@ -76,15 +82,23 @@ describe('tsconfig', () => {
     it('should return all cli options provided', () => {
       const oldArgs = mockProcess.argv
       mockProcess.argv = [
-        'path', 'node',
+        'path',
+        'node',
         '--fix',
-        '--env', 'env1',
-        '--plugins', 'plugin1',
-        '--parser', 'death-star',
-        '-p', './project-file.json',
-        '--envs', 'env2',
-        '--globals', '$',
-        '--report', 'stylish',
+        '--env',
+        'env1',
+        '--plugins',
+        'plugin1',
+        '--parser',
+        'death-star',
+        '-p',
+        './project-file.json',
+        '--envs',
+        'env2',
+        '--globals',
+        '$',
+        '--report',
+        'stylish',
         './**/*.ts'
       ]
       const res = getCLIOptions()

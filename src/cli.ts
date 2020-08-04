@@ -2,16 +2,28 @@ import type * as eslint from 'eslint'
 import type { LintReport, LintResult } from 'standard-engine'
 import * as getStdin from 'get-stdin'
 import {
-  getCLIOptions, getPackageOptions,
-  getDefaultOptions, mergeOptions, CMD,
-  DefaultOptions, TAGLINE
+  getCLIOptions,
+  getPackageOptions,
+  getDefaultOptions,
+  mergeOptions,
+  DefaultOptions
 } from './options'
 import { TSStandard } from './ts-standard'
+import { CMD, TAGLINE, BUGS_URL, HOMEPAGE } from './constants'
 
 export const ESLINT_BUILTIN_REPORTERS = [
-  'stylish', 'checkstyle', 'codeframe', 'compact',
-  'html', 'jslint-xml', 'json', 'junit', 'table',
-  'tap', 'unix', 'visualstudio'
+  'stylish',
+  'checkstyle',
+  'codeframe',
+  'compact',
+  'html',
+  'jslint-xml',
+  'json',
+  'junit',
+  'table',
+  'tap',
+  'unix',
+  'visualstudio'
 ]
 
 export interface Options {
@@ -39,13 +51,17 @@ export async function cli (): Promise<void> {
   const packageOptions = getPackageOptions()
   const cliOptions = getCLIOptions()
 
-  const options: DefaultOptions = mergeOptions(defaultOptions, packageOptions, cliOptions)
+  const options: DefaultOptions = mergeOptions(
+    defaultOptions,
+    packageOptions,
+    cliOptions
+  )
 
   // Linting requires a project file
   if (options.project == null) {
     console.error(
       'Unable to locate the project file. A project file (tsconfig.json or ' +
-      'tsconfig.eslint.json) is reqired in order to use ts-standard.'
+        'tsconfig.eslint.json) is reqired in order to use ts-standard.'
     )
     return process.exit(1)
   }
@@ -83,7 +99,10 @@ export async function cli (): Promise<void> {
   process.exit(lintReport.errorCount > 0 ? 1 : 0)
 }
 
-export async function lintStdIn (linter: TSStandard, options: Pick<DefaultOptions, 'fix'>): Promise<LintReport> {
+export async function lintStdIn (
+  linter: TSStandard,
+  options: Pick<DefaultOptions, 'fix'>
+): Promise<LintReport> {
   // Get text from stdin
   const text = await getStdin()
 
@@ -97,7 +116,7 @@ export async function lintStdIn (linter: TSStandard, options: Pick<DefaultOption
     console.error(`${err.message}: ${err.stack as string}`)
     console.error(
       `\nIf you think this is a bug in \`${CMD}\`, open an issue: ` +
-      `${require('../package.json').bugs as string}`
+        `${BUGS_URL}`
     )
     return process.exit(1)
   }
@@ -116,7 +135,10 @@ export async function lintStdIn (linter: TSStandard, options: Pick<DefaultOption
   return lintReport
 }
 
-export async function lintFiles (linter: TSStandard, options: Pick<DefaultOptions, 'files'>): Promise<LintReport> {
+export async function lintFiles (
+  linter: TSStandard,
+  options: Pick<DefaultOptions, 'files'>
+): Promise<LintReport> {
   // Lint the text
   let lintReport: LintReport
   try {
@@ -127,7 +149,7 @@ export async function lintFiles (linter: TSStandard, options: Pick<DefaultOption
     console.error(`${err.message}: ${err.stack as string}`)
     console.error(
       `\nIf you think this is a bug in \`${CMD}\`, open an issue: ` +
-      `${require('../package.json').bugs as string}`
+        `${BUGS_URL}`
     )
     return process.exit(1)
   }
@@ -135,9 +157,12 @@ export async function lintFiles (linter: TSStandard, options: Pick<DefaultOption
   return lintReport
 }
 
-export async function printReport (lintReport: LintReport, options: Pick<DefaultOptions, 'report' | 'fix' | 'useStdIn'>): Promise<void> {
+export async function printReport (
+  lintReport: LintReport,
+  options: Pick<DefaultOptions, 'report' | 'fix' | 'useStdIn'>
+): Promise<void> {
   // Print tag line to stay consistent with standard output
-  console.error(`${CMD}: ${TAGLINE} (${require('../package.json').homepage as string})`)
+  console.error(`${CMD}: ${TAGLINE} (${HOMEPAGE})`)
 
   // Check for any fixable rules
   const isFixable: boolean = lintReport.results.some((res: any) => {
@@ -161,10 +186,12 @@ export async function printReport (lintReport: LintReport, options: Pick<Default
     reporter = standardReporter(options.useStdIn && options.fix)
   } else if (ESLINT_BUILTIN_REPORTERS.includes(options.report)) {
     // Use built-in eslint reporter
-    reporter = require(`eslint/lib/cli-engine/formatters/${options.report}`)
+    reporter = await import(
+      `eslint/lib/cli-engine/formatters/${options.report}`
+    )
   } else {
     // Use a custom reporter
-    reporter = require(options.report)
+    reporter = await import(options.report)
     if (reporter == null) {
       throw new Error('Error: Unable to import custom formatter.')
     }

@@ -3,23 +3,27 @@ import { standardReporter } from './standard-reporter'
 describe('standard-reporter', () => {
   describe('standardReporter', () => {
     it('return a formatted string containing the lint results in standardjs output format', () => {
-      const res = standardReporter(false)([{
-        filePath: '/some/path',
-        messages: [{
-          column: 1,
-          line: 1,
-          endColumn: 2,
-          endLine: 2,
-          ruleId: 'custom-rule',
-          message: 'lint error',
-          fatal: true,
-          severity: 0
-        }],
-        errorCount: 1,
-        warningCount: 0,
-        fixableErrorCount: 0,
-        fixableWarningCount: 0
-      }])
+      const res = standardReporter(false)([
+        {
+          filePath: '/some/path',
+          messages: [
+            {
+              column: 1,
+              line: 1,
+              endColumn: 2,
+              endLine: 2,
+              ruleId: 'custom-rule',
+              message: 'lint error',
+              fatal: true,
+              severity: 0
+            }
+          ],
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0
+        }
+      ])
       expect(res).toEqual('  /some/path:1:1: lint error (custom-rule)')
     })
 
@@ -27,25 +31,28 @@ describe('standard-reporter', () => {
       const res = standardReporter(false)([
         {
           filePath: '/some/path',
-          messages: [{
-            column: 1,
-            line: 1,
-            endColumn: 2,
-            endLine: 2,
-            ruleId: 'custom-rule',
-            message: 'lint error',
-            fatal: true,
-            severity: 0
-          }, {
-            column: 21,
-            line: 35,
-            endColumn: 10,
-            endLine: 36,
-            ruleId: 'other-rule',
-            message: 'another lint error',
-            fatal: false,
-            severity: 2
-          }],
+          messages: [
+            {
+              column: 1,
+              line: 1,
+              endColumn: 2,
+              endLine: 2,
+              ruleId: 'custom-rule',
+              message: 'lint error',
+              fatal: true,
+              severity: 0
+            },
+            {
+              column: 21,
+              line: 35,
+              endColumn: 10,
+              endLine: 36,
+              ruleId: 'other-rule',
+              message: 'another lint error',
+              fatal: false,
+              severity: 2
+            }
+          ],
           errorCount: 1,
           warningCount: 1,
           fixableErrorCount: 1,
@@ -53,16 +60,18 @@ describe('standard-reporter', () => {
         },
         {
           filePath: '/some-other/path',
-          messages: [{
-            column: 4,
-            line: 16,
-            endColumn: 2,
-            endLine: 2,
-            ruleId: 'other-custom-rule',
-            message: 'other lint error',
-            fatal: false,
-            severity: 1
-          }],
+          messages: [
+            {
+              column: 4,
+              line: 16,
+              endColumn: 2,
+              endLine: 2,
+              ruleId: 'other-custom-rule',
+              message: 'other lint error',
+              fatal: false,
+              severity: 1
+            }
+          ],
           errorCount: 0,
           warningCount: 1,
           fixableErrorCount: 0,
@@ -70,7 +79,7 @@ describe('standard-reporter', () => {
         }
       ])
       expect(res).toEqual(
-`  /some/path:1:1: lint error (custom-rule)
+        `  /some/path:1:1: lint error (custom-rule)
   /some/path:35:21: another lint error (other-rule)
   /some-other/path:16:4: other lint error (other-custom-rule)`
       )
@@ -80,25 +89,28 @@ describe('standard-reporter', () => {
       const res = standardReporter(true)([
         {
           filePath: '/some/path',
-          messages: [{
-            column: 1,
-            line: 1,
-            endColumn: 2,
-            endLine: 2,
-            ruleId: 'custom-rule',
-            message: 'lint error',
-            fatal: true,
-            severity: 0
-          }, {
-            column: 21,
-            line: 35,
-            endColumn: 10,
-            endLine: 36,
-            ruleId: 'other-rule',
-            message: 'another lint error',
-            fatal: false,
-            severity: 2
-          }],
+          messages: [
+            {
+              column: 1,
+              line: 1,
+              endColumn: 2,
+              endLine: 2,
+              ruleId: 'custom-rule',
+              message: 'lint error',
+              fatal: true,
+              severity: 0
+            },
+            {
+              column: 21,
+              line: 35,
+              endColumn: 10,
+              endLine: 36,
+              ruleId: 'other-rule',
+              message: 'another lint error',
+              fatal: false,
+              severity: 2
+            }
+          ],
           errorCount: 1,
           warningCount: 1,
           fixableErrorCount: 1,
@@ -106,11 +118,13 @@ describe('standard-reporter', () => {
         },
         {
           filePath: '/some-other/path',
-          messages: [{
-            message: 'other lint error',
-            fatal: false,
-            severity: 1
-          }],
+          messages: [
+            {
+              message: 'other lint error',
+              fatal: false,
+              severity: 1
+            }
+          ],
           errorCount: 0,
           warningCount: 1,
           fixableErrorCount: 0,
