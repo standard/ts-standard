@@ -1,6 +1,7 @@
 export interface CLIOptions {
     fix: boolean;
     useStdIn: boolean;
+    stdInFilename?: string;
     files?: string[];
     project?: string;
     globals?: string[];

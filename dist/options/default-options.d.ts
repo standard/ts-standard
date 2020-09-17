@@ -7,6 +7,7 @@ export interface DefaultOptions {
     noDefaultIgnore: boolean;
     eslint: undefined;
     cwd: string;
+    stdInFilename?: string;
     project?: string;
     ignore?: string[];
     envs?: string[];

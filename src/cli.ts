@@ -101,7 +101,7 @@ export async function cli (): Promise<void> {
 
 export async function lintStdIn (
   linter: TSStandard,
-  options: Pick<DefaultOptions, 'fix'>
+  options: Pick<DefaultOptions, 'fix' | 'stdInFilename'>
 ): Promise<LintReport> {
   // Get text from stdin
   const text = await getStdin()
@@ -109,7 +109,10 @@ export async function lintStdIn (
   // Lint the text
   let lintReport: LintReport
   try {
-    lintReport = await linter.lintText(text)
+    lintReport = await linter.lintText(text, {
+      filename: options.stdInFilename,
+      fix: options.fix
+    })
   } catch (e) {
     const err = e as Error
     console.error(`${CMD}: Unexpected linter output:\n`)
