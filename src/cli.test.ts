@@ -405,11 +405,11 @@ describe('cli', () => {
       const mockLinter = { lintText: jest.fn() }
       mockLinter.lintText.mockResolvedValue('linted!')
 
-      const options = { fix: false }
+      const options = { fix: false, stdInFilename: './test-file.ts' }
       const res = await lintStdIn(mockLinter as any, options)
 
       expect(mockLinter.lintText).toHaveBeenCalledTimes(1)
-      expect(mockLinter.lintText).toHaveBeenCalledWith(stdinText)
+      expect(mockLinter.lintText.mock.calls[0][0]).toEqual(stdinText)
 
       expect(res).toEqual('linted!')
     })
@@ -428,11 +428,11 @@ describe('cli', () => {
         .spyOn(process.stdout, 'write')
         .mockReturnValue(true)
 
-      const options = { fix: true }
+      const options = { fix: true, stdInFilename: './test-file.ts' }
       const res = await lintStdIn(mockLinter as any, options)
 
       expect(mockLinter.lintText).toHaveBeenCalledTimes(1)
-      expect(mockLinter.lintText).toHaveBeenCalledWith(stdinText)
+      expect(mockLinter.lintText.mock.calls[0][0]).toEqual(stdinText)
 
       expect(res).toEqual(lintReport)
 
@@ -456,11 +456,11 @@ describe('cli', () => {
         .spyOn(process.stdout, 'write')
         .mockReturnValue(true)
 
-      const options = { fix: true }
+      const options = { fix: true, stdInFilename: './test-file.ts' }
       const res = await lintStdIn(mockLinter as any, options)
 
       expect(mockLinter.lintText).toHaveBeenCalledTimes(1)
-      expect(mockLinter.lintText).toHaveBeenCalledWith(stdinText)
+      expect(mockLinter.lintText.mock.calls[0][0]).toEqual(stdinText)
 
       expect(res).toEqual(lintResults)
 
@@ -482,11 +482,11 @@ describe('cli', () => {
         .spyOn(mockProcess, 'exit')
         .mockImplementation((() => undefined) as any)
 
-      const options = { fix: true }
+      const options = { fix: true, stdInFilename: './test-file.ts' }
       await lintStdIn(mockLinter as any, options)
 
       expect(mockLinter.lintText).toHaveBeenCalledTimes(1)
-      expect(mockLinter.lintText).toHaveBeenCalledWith(stdinText)
+      expect(mockLinter.lintText.mock.calls[0][0]).toEqual(stdinText)
 
       expect(consoleErrorSpy).toHaveBeenCalledTimes(3)
       expect(exitSpy).toHaveBeenCalledTimes(1)
@@ -525,9 +525,10 @@ describe('cli', () => {
       jest
         .spyOn(packageOptionsLib, 'getPackageOptions')
         .mockReturnValue({} as any)
-      jest
-        .spyOn(cliOptionsLib, 'getCLIOptions')
-        .mockReturnValue({ useStdIn: true } as any)
+      jest.spyOn(cliOptionsLib, 'getCLIOptions').mockReturnValue({
+        useStdIn: true,
+        stdInFilename: './test-file.ts'
+      } as any)
 
       const lintStdInSpy = jest.spyOn(cliLib, 'lintStdIn').mockResolvedValue({
         errorCount: 0,

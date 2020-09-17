@@ -14,7 +14,15 @@ function getCLIOptions() {
             project: 'p'
         },
         boolean: ['fix', 'help', 'stdin', 'version'],
-        string: ['globals', 'plugins', 'parser', 'envs', 'project', 'report']
+        string: [
+            'globals',
+            'plugins',
+            'parser',
+            'envs',
+            'project',
+            'report',
+            'stdin-filename'
+        ]
     });
     // Unix convention: Command line argument `-` is a shorthand for `--stdin`
     if (argv._[0] === '-') {
@@ -33,17 +41,18 @@ Usage:
     files/folders that begin with '.' like .git/) are automatically ignored.
     Paths in a project's root .gitignore file are also automatically ignored.
 Flags:
-        --fix       Automatically fix problems
-    -p, --project   Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
-        --version   Show current version
-    -h, --help      Show usage information
+        --fix              Automatically fix problems
+    -p, --project          Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
+        --version          Show current version
+    -h, --help             Show usage information
 Flags (advanced):
-        --stdin     Read file text from stdin
-        --globals   Declare global variable
-        --plugins   Use custom eslint plugin
-        --envs      Use custom eslint environment
-        --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
-        --report    Use a built-in eslint reporter or custom eslint reporter (default: standard)
+        --stdin            Read file text from stdin (requires using --stdin-filename)
+        --stdin-filename   The filename and path of the contents read by stdin
+        --globals          Declare global variable
+        --plugins          Use custom eslint plugin
+        --envs             Use custom eslint environment
+        --parser           Use custom ts/js parser (default: @typescript-eslint/parser)
+        --report           Use a built-in eslint reporter or custom eslint reporter (default: standard)
     `);
         return process.exit(0);
     }
@@ -54,9 +63,10 @@ Flags (advanced):
     }
     // Get the files/globs to lint
     const files = argv._.length !== 0 ? argv._ : undefined;
-    return {
+    const options = {
         fix: argv.fix,
         useStdIn: argv.stdin,
+        stdInFilename: argv['stdin-filename'],
         files,
         project: argv.project,
         globals: exports._convertToArray(argv.globals),
@@ -65,6 +75,11 @@ Flags (advanced):
         parser: argv.parser,
         report: argv.report
     };
+    if (options.useStdIn && options.stdInFilename == null) {
+        console.error('Must provide the `--stdin-filename` flag when using the `--stdin` flag.');
+        process.exit(1);
+    }
+    return options;
 }
 exports.getCLIOptions = getCLIOptions;
 function _convertToArray(val) {

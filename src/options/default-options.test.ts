@@ -74,6 +74,7 @@ describe('default-options', () => {
       expect(options.globals).toBeUndefined()
       expect(options.plugins).toBeUndefined()
       expect(options.parser).toBeUndefined()
+      expect(options.stdInFilename).toBeUndefined()
     })
 
     it('should use provided cwd', async (): Promise<void> => {
@@ -92,6 +93,7 @@ describe('default-options', () => {
       expect(options.globals).toBeUndefined()
       expect(options.plugins).toBeUndefined()
       expect(options.parser).toBeUndefined()
+      expect(options.stdInFilename).toBeUndefined()
     })
 
     it('should return undefined if project options not provided', async (): Promise<

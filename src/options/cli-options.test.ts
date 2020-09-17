@@ -25,10 +25,45 @@ describe('tsconfig', () => {
   describe('getCLIOptions', () => {
     it('should enable stdIn if `-` used as first unparsed argument', () => {
       const oldArgs = mockProcess.argv
-      mockProcess.argv = ['path', 'node', '-']
+      mockProcess.argv = [
+        'path',
+        'node',
+        '-',
+        '--stdin-filename',
+        './test-file.ts'
+      ]
       const res = getCLIOptions()
       expect(res.useStdIn).toEqual(true)
       mockProcess.argv = oldArgs
+    })
+
+    it('should throw error if `--stdin` used without `--stdin-filename`', () => {
+      // Mock argv
+      const oldArgs = mockProcess.argv
+      mockProcess.argv = ['path', 'node', '--stdin']
+
+      // Mock process.exit
+      const mockExit = jest.fn()
+      const oldExit = mockProcess.exit
+      mockProcess.exit = mockExit
+
+      // mock console.error
+      const mockError = jest.fn()
+      const oldError = console.error
+      console.error = mockError
+
+      // Run test
+      getCLIOptions()
+
+      // Restore the mocked methods
+      mockProcess.exit = oldExit
+      console.error = oldError
+      mockProcess.argv = oldArgs
+
+      expect(mockExit).toHaveBeenCalledTimes(1)
+      expect(mockExit.mock.calls[0][0]).toEqual(1)
+      expect(mockError).toHaveBeenCalledTimes(1)
+      expect(mockError.mock.calls[0][0]).toMatch('--stdin-filename')
     })
 
     it('should print help and exit if `--help` passed', () => {
@@ -99,7 +134,9 @@ describe('tsconfig', () => {
         '$',
         '--report',
         'stylish',
-        './**/*.ts'
+        './**/*.ts',
+        '--stdin-filename',
+        './test-file.ts'
       ]
       const res = getCLIOptions()
       expect(res).toEqual({
@@ -111,7 +148,8 @@ describe('tsconfig', () => {
         plugins: ['plugin1'],
         envs: ['env1', 'env2'],
         parser: 'death-star',
-        report: 'stylish'
+        report: 'stylish',
+        stdInFilename: './test-file.ts'
       })
       mockProcess.argv = oldArgs
     })

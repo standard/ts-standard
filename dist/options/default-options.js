@@ -24,6 +24,7 @@ function getDefaultOptions(cwd = process.cwd()) {
         useStdIn: false,
         noDefaultIgnore: false,
         cwd,
+        stdInFilename: undefined,
         eslint: undefined,
         ignore: undefined,
         envs: undefined,

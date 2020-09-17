@@ -1,5 +1,12 @@
 # Changelog
 
+## 10.0.0 - Pending
+
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^19.0.0`. Please visit
+their github page for any style/linter changes
+- **Feature**: Added new `--stdin-filename` cli option so that the `--stdin` flag is actually usable.
+See this [issue](https://github.com/typescript-eslint/typescript-eslint/issues/885) for more info.
+
 ## 9.0.0
 
 - **BREAKING**: Dropped support for NodeJS `8.x`

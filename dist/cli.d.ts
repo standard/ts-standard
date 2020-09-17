@@ -19,6 +19,6 @@ export interface Options {
     eslint?: typeof eslint;
 }
 export declare function cli(): Promise<void>;
-export declare function lintStdIn(linter: TSStandard, options: Pick<DefaultOptions, 'fix'>): Promise<LintReport>;
+export declare function lintStdIn(linter: TSStandard, options: Pick<DefaultOptions, 'fix' | 'stdInFilename'>): Promise<LintReport>;
 export declare function lintFiles(linter: TSStandard, options: Pick<DefaultOptions, 'files'>): Promise<LintReport>;
 export declare function printReport(lintReport: LintReport, options: Pick<DefaultOptions, 'report' | 'fix' | 'useStdIn'>): Promise<void>;

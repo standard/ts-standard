@@ -67,7 +67,10 @@ async function lintStdIn(linter, options) {
     // Lint the text
     let lintReport;
     try {
-        lintReport = await linter.lintText(text);
+        lintReport = await linter.lintText(text, {
+            filename: options.stdInFilename,
+            fix: options.fix
+        });
     }
     catch (e) {
         const err = e;

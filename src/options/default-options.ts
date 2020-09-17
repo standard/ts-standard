@@ -23,6 +23,7 @@ export interface DefaultOptions {
   noDefaultIgnore: boolean
   eslint: undefined
   cwd: string
+  stdInFilename?: string
   project?: string
   ignore?: string[]
   envs?: string[]
@@ -40,6 +41,7 @@ export function getDefaultOptions (cwd: string = process.cwd()): DefaultOptions 
     useStdIn: false,
     noDefaultIgnore: false,
     cwd,
+    stdInFilename: undefined,
     eslint: undefined,
     ignore: undefined,
     envs: undefined,
