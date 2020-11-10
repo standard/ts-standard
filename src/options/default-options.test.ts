@@ -61,7 +61,7 @@ describe('default-options', () => {
         jest.requireActual('fs').statSync(...args)
       )
       const options = await getDefaultOptions()
-      expect(options.files).toHaveLength(6)
+      expect(options.files).toHaveLength(0)
       expect(options.project).toMatch(/tsconfig.eslint.json/gi)
       expect(options.fix).toEqual(false)
       expect(options.report).toEqual('standard')
@@ -75,12 +75,13 @@ describe('default-options', () => {
       expect(options.plugins).toBeUndefined()
       expect(options.parser).toBeUndefined()
       expect(options.stdInFilename).toBeUndefined()
+      expect(options.extensions).toHaveLength(6)
     })
 
     it('should use provided cwd', async (): Promise<void> => {
       mockStatSync.mockReturnValueOnce(true as any)
       const options = await getDefaultOptions('/custom/path')
-      expect(options.files).toHaveLength(6)
+      expect(options.files).toHaveLength(0)
       expect(options.project).toMatch(/\/custom\/path/gi)
       expect(options.fix).toEqual(false)
       expect(options.report).toEqual('standard')
@@ -94,6 +95,7 @@ describe('default-options', () => {
       expect(options.plugins).toBeUndefined()
       expect(options.parser).toBeUndefined()
       expect(options.stdInFilename).toBeUndefined()
+      expect(options.extensions).toHaveLength(6)
     })
 
     it('should return undefined if project options not provided', async (): Promise<

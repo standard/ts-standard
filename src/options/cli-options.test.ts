@@ -1,3 +1,4 @@
+import * as assert from 'assert'
 import { getCLIOptions, _convertToArray } from './cli-options'
 
 const mockProcess = process as any
@@ -6,13 +7,24 @@ describe('tsconfig', () => {
   describe('_convertToArray', () => {
     it('should convert a single value to an array', () => {
       const res = _convertToArray('luke')
+      assert(res != null)
       expect(res).toHaveLength(1)
       expect(res[0]).toEqual('luke')
+    })
+
+    it('should convert a comma separate list of values to an array', () => {
+      const res = _convertToArray('luke,leia,obi-wan')
+      assert(res != null)
+      expect(res).toHaveLength(3)
+      expect(res[0]).toEqual('luke')
+      expect(res[1]).toEqual('leia')
+      expect(res[2]).toEqual('obi-wan')
     })
 
     it('should ignore a provided array', () => {
       const data = ['luke', 'leia']
       const res = _convertToArray(data)
+      assert(res != null)
       expect(res).toEqual(data)
     })
 

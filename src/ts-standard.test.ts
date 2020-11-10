@@ -89,10 +89,10 @@ describe('ts-standard', () => {
       it('should throw error if no project file can be found', () => {
         jest
           .spyOn(defaultOptions, 'getDefaultOptions')
-          .mockReturnValue(undefined)
+          .mockReturnValue(undefined as any)
         jest
           .spyOn(packageOptions, 'getPackageOptions')
-          .mockReturnValue(undefined)
+          .mockReturnValue(undefined as any)
         expect.assertions(1)
 
         try {
@@ -116,7 +116,7 @@ describe('ts-standard', () => {
       beforeEach(() => {
         jest.spyOn(lintLib, 'linter').mockReturnValue({
           lintText: lintTextSpy
-        })
+        } as any)
         tsStandard = new TSStandard({
           ...defaultOptions,
           project: '../tsconfig.eslint.json'
@@ -189,7 +189,7 @@ describe('ts-standard', () => {
       beforeEach(() => {
         jest.spyOn(lintLib, 'linter').mockReturnValue({
           lintFiles: lintFilesSpy
-        })
+        } as any)
         tsStandard = new TSStandard({
           ...defaultOptions,
           project: '../tsconfig.eslint.json'

@@ -6,14 +6,7 @@ export const DEFAULT_TSCONFIG_LOCATIONS = [
   'tsconfig.json'
 ]
 
-const DEFAULT_PATTERNS = [
-  '**/*.js',
-  '**/*.jsx',
-  '**/*.mjs',
-  '**/*.cjs',
-  '**/*.ts',
-  '**/*.tsx'
-]
+export const DEFAULT_EXTENSIONS = ['js', 'jsx', 'mjs', 'cjs', 'ts', 'tsx']
 
 export interface DefaultOptions {
   files: string[]
@@ -30,11 +23,12 @@ export interface DefaultOptions {
   globals?: string[]
   plugins?: string[]
   parser?: string
+  extensions?: string[]
 }
 
 export function getDefaultOptions (cwd: string = process.cwd()): DefaultOptions {
   return {
-    files: DEFAULT_PATTERNS,
+    files: [],
     project: _getTSConfigFromDefaultLocations(cwd),
     fix: false,
     report: 'standard',
@@ -47,7 +41,8 @@ export function getDefaultOptions (cwd: string = process.cwd()): DefaultOptions 
     envs: undefined,
     globals: undefined,
     plugins: undefined,
-    parser: undefined
+    parser: undefined,
+    extensions: DEFAULT_EXTENSIONS
   }
 }
 

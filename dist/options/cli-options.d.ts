@@ -9,6 +9,7 @@ export interface CLIOptions {
     envs?: string[];
     parser?: string;
     report?: string;
+    extensions?: string[];
 }
 export declare function getCLIOptions(): CLIOptions;
-export declare function _convertToArray<T>(val?: T | T[]): T[] | undefined;
+export declare function _convertToArray(val?: string | string[]): string[] | undefined;

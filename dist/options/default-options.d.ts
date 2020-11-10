@@ -1,4 +1,5 @@
 export declare const DEFAULT_TSCONFIG_LOCATIONS: string[];
+export declare const DEFAULT_EXTENSIONS: string[];
 export interface DefaultOptions {
     files: string[];
     fix: boolean;
@@ -14,6 +15,7 @@ export interface DefaultOptions {
     globals?: string[];
     plugins?: string[];
     parser?: string;
+    extensions?: string[];
 }
 export declare function getDefaultOptions(cwd?: string): DefaultOptions;
 export declare function _getTSConfigFromDefaultLocations(cwd: string): string | undefined;

@@ -43,17 +43,18 @@ Usage:
     files/folders that begin with '.' like .git/) are automatically ignored.
     Paths in a project's root .gitignore file are also automatically ignored.
 Flags:
-        --fix       Automatically fix problems
-    -p, --project   Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
-        --version   Show current version
-    -h, --help      Show usage information
+        --fix           Automatically fix problems
+    -p, --project       Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
+        --version       Show current version
+    -h, --help          Show usage information
 Flags (advanced):
-        --stdin     Read file text from stdin
-        --globals   Declare global variable
-        --plugins   Use custom eslint plugin
-        --envs      Use custom eslint environment
-        --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
-        --report    Use a built-in eslint reporter or custom eslint reporter (default: standard)
+        --stdin         Read file text from stdin
+        --globals       Declare global variable
+        --plugins       Use custom eslint plugin
+        --envs          Use custom eslint environment
+        --parser        Use custom ts/js parser (default: @typescript-eslint/parser)
+        --report        Use a built-in eslint reporter or custom eslint reporter (default: standard)
+ --ext, --extensions    List of files extensions to lint by default (default: js,jsx,ts,tsx,mjs,cjs)
 ```
 
 ## 🧬 TSConfig: Linting with Type Information
@@ -108,6 +109,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
     "project": "",              // relative path to `tsconfig.json` file
     "fix": false,               // auto fix any lint errors found that are fixable
     "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
+    "extensions": "",           // a list of file extensions to lint by default (e.g. js,jsx,ts,tsx,mjs,cjs)
   }
 }
 ```

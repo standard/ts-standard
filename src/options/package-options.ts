@@ -17,6 +17,7 @@ interface PackageConfigOptions extends Config {
   project?: string
   fix?: boolean
   report?: string
+  extensions?: string[]
 }
 
 interface PackageOptions {
@@ -32,6 +33,7 @@ interface PackageOptions {
   parser?: string
   eslint?: string
   cwd?: string
+  extensions?: string[]
 }
 
 export function getPackageOptions (cwd?: string): PackageOptions {
@@ -49,7 +51,8 @@ export function getPackageOptions (cwd?: string): PackageOptions {
     envs: settings.envs,
     parser: settings.parser,
     eslint: settings.eslint,
-    cwd
+    cwd,
+    extensions: settings.extensions
   }
 }
 

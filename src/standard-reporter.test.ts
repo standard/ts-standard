@@ -15,7 +15,8 @@ describe('standard-reporter', () => {
               ruleId: 'custom-rule',
               message: 'lint error',
               fatal: true,
-              severity: 0
+              severity: 0,
+              nodeType: 'test'
             }
           ],
           errorCount: 1,
@@ -40,7 +41,8 @@ describe('standard-reporter', () => {
               ruleId: 'custom-rule',
               message: 'lint error',
               fatal: true,
-              severity: 0
+              severity: 0,
+              nodeType: 'test'
             },
             {
               column: 21,
@@ -50,7 +52,8 @@ describe('standard-reporter', () => {
               ruleId: 'other-rule',
               message: 'another lint error',
               fatal: false,
-              severity: 2
+              severity: 2,
+              nodeType: 'test'
             }
           ],
           errorCount: 1,
@@ -69,7 +72,8 @@ describe('standard-reporter', () => {
               ruleId: 'other-custom-rule',
               message: 'other lint error',
               fatal: false,
-              severity: 1
+              severity: 1,
+              nodeType: 'test'
             }
           ],
           errorCount: 0,
@@ -98,7 +102,8 @@ describe('standard-reporter', () => {
               ruleId: 'custom-rule',
               message: 'lint error',
               fatal: true,
-              severity: 0
+              severity: 0,
+              nodeType: 'test'
             },
             {
               column: 21,
@@ -108,7 +113,8 @@ describe('standard-reporter', () => {
               ruleId: 'other-rule',
               message: 'another lint error',
               fatal: false,
-              severity: 2
+              severity: 2,
+              nodeType: 'test'
             }
           ],
           errorCount: 1,

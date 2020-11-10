@@ -41,7 +41,8 @@ async function cli() {
         plugins: options.plugins,
         parser: options.parser,
         eslint: options.eslint,
-        cwd: options.cwd
+        cwd: options.cwd,
+        extensions: options.extensions
     });
     // Perform the lint operation on the given files or text
     let lintReport;

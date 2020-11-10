@@ -46,7 +46,8 @@ describe('cli', () => {
                   ruleId: 'custom-rule',
                   message: 'lint error',
                   fatal: true,
-                  severity: 0
+                  severity: 0,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -95,7 +96,8 @@ describe('cli', () => {
                   message: 'lint error',
                   fatal: true,
                   severity: 0,
-                  fix: false
+                  fix: false,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -138,7 +140,8 @@ describe('cli', () => {
                   ruleId: 'custom-rule',
                   message: 'lint error',
                   fatal: true,
-                  severity: 0
+                  severity: 0,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -181,7 +184,8 @@ describe('cli', () => {
                   ruleId: 'custom-rule',
                   message: 'lint error',
                   fatal: true,
-                  severity: 0
+                  severity: 0,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -222,7 +226,8 @@ describe('cli', () => {
                   ruleId: 'custom-rule',
                   message: 'lint error',
                   fatal: true,
-                  severity: 0
+                  severity: 0,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -258,7 +263,8 @@ describe('cli', () => {
                   ruleId: 'custom-rule',
                   message: 'lint error',
                   fatal: true,
-                  severity: 0
+                  severity: 0,
+                  nodeType: 'test'
                 }
               ],
               errorCount: 1,
@@ -298,7 +304,8 @@ describe('cli', () => {
                     ruleId: 'custom-rule',
                     message: 'lint error',
                     fatal: true,
-                    severity: 0
+                    severity: 0,
+                    nodeType: 'test'
                   }
                 ],
                 errorCount: 1,
@@ -340,7 +347,8 @@ describe('cli', () => {
                     ruleId: 'custom-rule',
                     message: 'lint error',
                     fatal: true,
-                    severity: 0
+                    severity: 0,
+                    nodeType: 'test'
                   }
                 ],
                 errorCount: 1,

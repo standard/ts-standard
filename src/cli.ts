@@ -43,6 +43,7 @@ export interface Options {
   // Really advanced options
   parser?: string
   eslint?: typeof eslint
+  extensions?: string[]
 }
 
 export async function cli (): Promise<void> {
@@ -76,7 +77,8 @@ export async function cli (): Promise<void> {
     plugins: options.plugins,
     parser: options.parser,
     eslint: options.eslint,
-    cwd: options.cwd
+    cwd: options.cwd,
+    extensions: options.extensions
   })
 
   // Perform the lint operation on the given files or text

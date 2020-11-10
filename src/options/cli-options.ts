@@ -13,6 +13,7 @@ interface ParsedArgs extends minimist.ParsedArgs {
   parser?: string
   project?: string
   report?: string
+  extensions?: string[]
 }
 
 export interface CLIOptions {
@@ -26,6 +27,7 @@ export interface CLIOptions {
   envs?: string[]
   parser?: string
   report?: string
+  extensions?: string[]
 }
 
 export function getCLIOptions (): CLIOptions {
@@ -36,7 +38,8 @@ export function getCLIOptions (): CLIOptions {
       plugins: 'plugin',
       envs: 'env',
       help: 'h',
-      project: 'p'
+      project: 'p',
+      extensions: 'ext'
     },
     boolean: ['fix', 'help', 'stdin', 'version'],
     string: [
@@ -46,7 +49,8 @@ export function getCLIOptions (): CLIOptions {
       'envs',
       'project',
       'report',
-      'stdin-filename'
+      'stdin-filename',
+      'extensions'
     ]
   }) as ParsedArgs
 
@@ -80,6 +84,7 @@ Flags (advanced):
         --envs             Use custom eslint environment
         --parser           Use custom ts/js parser (default: @typescript-eslint/parser)
         --report           Use a built-in eslint reporter or custom eslint reporter (default: standard)
+ --ext, --extensions       List of files extensions to lint by default (default: js,jsx,ts,tsx,mjs,cjs)
     `)
     return process.exit(0)
   }
@@ -103,7 +108,8 @@ Flags (advanced):
     plugins: exports._convertToArray(argv.plugins),
     envs: exports._convertToArray(argv.envs),
     parser: argv.parser,
-    report: argv.report
+    report: argv.report,
+    extensions: exports._convertToArray(argv.extensions)
   }
 
   if (options.useStdIn && options.stdInFilename == null) {
@@ -116,11 +122,12 @@ Flags (advanced):
   return options
 }
 
-export function _convertToArray<T> (val?: T | T[]): T[] | undefined {
+export function _convertToArray (val?: string | string[]): string[] | undefined {
   if (val != null && !Array.isArray(val)) {
-    return [val]
+    return [...val.split(',').map((v) => v.trim())]
   }
   if (Array.isArray(val)) {
     return val
   }
+  return undefined
 }

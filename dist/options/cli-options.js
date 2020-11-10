@@ -11,7 +11,8 @@ function getCLIOptions() {
             plugins: 'plugin',
             envs: 'env',
             help: 'h',
-            project: 'p'
+            project: 'p',
+            extensions: 'ext'
         },
         boolean: ['fix', 'help', 'stdin', 'version'],
         string: [
@@ -21,7 +22,8 @@ function getCLIOptions() {
             'envs',
             'project',
             'report',
-            'stdin-filename'
+            'stdin-filename',
+            'extensions'
         ]
     });
     // Unix convention: Command line argument `-` is a shorthand for `--stdin`
@@ -53,6 +55,7 @@ Flags (advanced):
         --envs             Use custom eslint environment
         --parser           Use custom ts/js parser (default: @typescript-eslint/parser)
         --report           Use a built-in eslint reporter or custom eslint reporter (default: standard)
+ --ext, --extensions       List of files extensions to lint by default (default: js,jsx,ts,tsx,mjs,cjs)
     `);
         return process.exit(0);
     }
@@ -73,7 +76,8 @@ Flags (advanced):
         plugins: exports._convertToArray(argv.plugins),
         envs: exports._convertToArray(argv.envs),
         parser: argv.parser,
-        report: argv.report
+        report: argv.report,
+        extensions: exports._convertToArray(argv.extensions)
     };
     if (options.useStdIn && options.stdInFilename == null) {
         console.error('Must provide the `--stdin-filename` flag when using the `--stdin` flag.');
@@ -84,10 +88,11 @@ Flags (advanced):
 exports.getCLIOptions = getCLIOptions;
 function _convertToArray(val) {
     if (val != null && !Array.isArray(val)) {
-        return [val];
+        return [...val.split(',').map((v) => v.trim())];
     }
     if (Array.isArray(val)) {
         return val;
     }
+    return undefined;
 }
 exports._convertToArray = _convertToArray;

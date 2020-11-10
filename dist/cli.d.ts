@@ -17,6 +17,7 @@ export interface Options {
     plugins?: string[];
     parser?: string;
     eslint?: typeof eslint;
+    extensions?: string[];
 }
 export declare function cli(): Promise<void>;
 export declare function lintStdIn(linter: TSStandard, options: Pick<DefaultOptions, 'fix' | 'stdInFilename'>): Promise<LintReport>;

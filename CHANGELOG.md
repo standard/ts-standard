@@ -4,8 +4,15 @@
 
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^19.0.0`. Please visit
 their github page for any style/linter changes
+- **BREAKING**: Updated `eslint-config-standard` to version `^16.0.0`. Please visit
+their github page for any style/linter changes
+- **BREAKING**: Updated `eslint-config-standard-jsx` to version `^10.0.0`. Please visit
+their github page for any style/linter changes
+- **BREAKING**: Updated `standard-engine` dependency to `^14.0.0`
 - **Feature**: Added new `--stdin-filename` cli option so that the `--stdin` flag is actually usable.
 See this [issue](https://github.com/typescript-eslint/typescript-eslint/issues/885) for more info.
+- **Feature**: Added new `--extensions` option for customizing the default linted file extensions.
+`.ts` and `.tsx` are added by default to the existing standard default ones (`js`, `jsx`, `cjs`, `mjs`)
 
 ## 9.0.0
 

@@ -52,7 +52,8 @@ class TSStandard {
             globals: options.globals,
             plugins: options.plugins,
             envs: options.envs,
-            parser: options.parser
+            parser: options.parser,
+            extensions: options.extensions
         };
     }
     async lintText(text, options) {

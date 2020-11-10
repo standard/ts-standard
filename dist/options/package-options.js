@@ -20,7 +20,8 @@ function getPackageOptions(cwd) {
         envs: settings.envs,
         parser: settings.parser,
         eslint: settings.eslint,
-        cwd
+        cwd,
+        extensions: settings.extensions
     };
 }
 exports.getPackageOptions = getPackageOptions;

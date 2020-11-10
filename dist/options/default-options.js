@@ -1,23 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports._isValidPath = exports._getTSConfigFromDefaultLocations = exports.getDefaultOptions = exports.DEFAULT_TSCONFIG_LOCATIONS = void 0;
+exports._isValidPath = exports._getTSConfigFromDefaultLocations = exports.getDefaultOptions = exports.DEFAULT_EXTENSIONS = exports.DEFAULT_TSCONFIG_LOCATIONS = void 0;
 const path_1 = require("path");
 const fs_1 = require("fs");
 exports.DEFAULT_TSCONFIG_LOCATIONS = [
     'tsconfig.eslint.json',
     'tsconfig.json'
 ];
-const DEFAULT_PATTERNS = [
-    '**/*.js',
-    '**/*.jsx',
-    '**/*.mjs',
-    '**/*.cjs',
-    '**/*.ts',
-    '**/*.tsx'
-];
+exports.DEFAULT_EXTENSIONS = ['js', 'jsx', 'mjs', 'cjs', 'ts', 'tsx'];
 function getDefaultOptions(cwd = process.cwd()) {
     return {
-        files: DEFAULT_PATTERNS,
+        files: [],
         project: _getTSConfigFromDefaultLocations(cwd),
         fix: false,
         report: 'standard',
@@ -30,7 +23,8 @@ function getDefaultOptions(cwd = process.cwd()) {
         envs: undefined,
         globals: undefined,
         plugins: undefined,
-        parser: undefined
+        parser: undefined,
+        extensions: exports.DEFAULT_EXTENSIONS
     };
 }
 exports.getDefaultOptions = getDefaultOptions;

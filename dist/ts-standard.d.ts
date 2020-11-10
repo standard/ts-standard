@@ -11,6 +11,7 @@ export interface Options {
     cwd?: string;
     parser?: string;
     eslint?: string | typeof eslint;
+    extensions?: string[];
 }
 export interface TSStandardLintOptions {
     fix?: boolean;
@@ -20,6 +21,7 @@ export interface TSStandardLintOptions {
     parser?: string;
     cwd?: string;
     filename?: string;
+    extensions?: string[];
 }
 export declare type LintCallBack = (error?: Error, results?: LintReport) => void;
 export declare class TSStandard {

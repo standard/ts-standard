@@ -16,6 +16,7 @@ export interface Options {
   // Really advanced options
   parser?: string
   eslint?: string | typeof eslint
+  extensions?: string[]
 }
 
 export interface TSStandardLintOptions {
@@ -26,6 +27,7 @@ export interface TSStandardLintOptions {
   parser?: string
   cwd?: string
   filename?: string
+  extensions?: string[]
 }
 
 export type LintCallBack = (error?: Error, results?: LintReport) => void
@@ -83,7 +85,8 @@ export class TSStandard {
       globals: options.globals,
       plugins: options.plugins,
       envs: options.envs,
-      parser: options.parser
+      parser: options.parser,
+      extensions: options.extensions
     }
   }
 
