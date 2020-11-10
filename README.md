@@ -1,10 +1,10 @@
-[![Tests](https://github.com/toddbluhm/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/toddbluhm/ts-standard/actions?query=workflow%3A%22tests%22)
-[![Coverage Status](https://badgen.net/coveralls/c/github/toddbluhm/ts-standard)](https://coveralls.io/github/toddbluhm/ts-standard?branch=master)
+[![Tests](https://github.com/standard/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/standard/ts-standard/actions?query=workflow%3A%22tests%22)
+[![Coverage Status](https://badgen.net/coveralls/c/github/standard/ts-standard)](https://coveralls.io/github/standard/ts-standard?branch=master)
 [![npm](https://badgen.net/npm/v/ts-standard)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://badgen.net/npm/dm/ts-standard)](https://www.npmjs.com/package/ts-standard)
-[![License](https://badgen.net/github/license/toddbluhm/ts-standard)](https://github.com/toddbluhm/ts-standard/blob/master/LICENSE)
-[![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/toddbluhm/ts-standard)
-[![Dependabot badge](https://badgen.net/dependabot/toddbluhm/ts-standard?icon=dependabot)](https://dependabot.com/)
+[![License](https://badgen.net/github/license/standard/ts-standard)](https://github.com/standard/ts-standard/blob/master/LICENSE)
+[![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
+[![Dependabot badge](https://badgen.net/dependabot/standard/ts-standard?icon=dependabot)](https://dependabot.com/)
 
 # ts-standard
 
@@ -27,13 +27,13 @@ ts-standard --fix
 ```
 
 Note: A `tsconfig.json` or similar project file is required. See
-**[TSConfig](https://github.com/toddbluhm/ts-standard#-tsconfig-linting-with-type-information)**
+**[TSConfig](https://github.com/standard/ts-standard#-tsconfig-linting-with-type-information)**
 section below for more details
 
 ## 📜 Help
 
 ```text
-ts-standard - Standard for Typescript! (https://github.com/toddbluhm/ts-standard)
+ts-standard - Standard for Typescript! (https://github.com/standard/ts-standard)
 
 Usage:
     ts-standard <flags> [FILES...]
@@ -144,6 +144,6 @@ creating a typescript specific standard.
 I welcome all pull requests. Please make sure you add appropriate test cases for any features
 added. Before opening a PR please make sure to run the following scripts:
 
-- `npm run lint` checks for code errors and format according to [ts-standard](https://github.com/toddbluhm/ts-standard)
+- `npm run lint` checks for code errors and format according to [ts-standard](https://github.com/standard/ts-standard)
 - `npm test` make sure all tests pass
 - `npm run coverage` make sure the coverage has not decreased from current master

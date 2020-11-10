@@ -15,14 +15,14 @@
     "ts-standard": "./bin/cmd.js"
   },
   "bugs": {
-    "url": "https://github.com/toddbluhm/ts-standard/issues"
+    "url": "https://github.com/standard/ts-standard/issues"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "author": "Todd Bluhm",
   "license": "MIT",
-  "homepage": "https://github.com/toddbluhm/ts-standard",
+  "homepage": "https://github.com/standard/ts-standard",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "eslint": "^7.0.0",
