@@ -1,6 +1,6 @@
 import * as tsStandardLib from './ts-standard'
 
-let parseOpts, lintFiles, lintText
+let parseOpts: Function, lintFiles: any, lintText: any
 jest.mock('standard-engine')
 
 const customEslint = jest.fn().mockReturnThis()
@@ -98,7 +98,7 @@ describe('standard-engine-api', () => {
       lintTextSpy.mockResolvedValueOnce('success!')
 
       expect.assertions(6)
-      lintText(text, (err, res) => {
+      lintText(text, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(res).toEqual('success!')
@@ -118,7 +118,7 @@ describe('standard-engine-api', () => {
       lintTextSpy.mockResolvedValueOnce('success!')
 
       expect.assertions(6)
-      lintText(text, options, (err, res) => {
+      lintText(text, options, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(res).toEqual('success!')
@@ -140,7 +140,7 @@ describe('standard-engine-api', () => {
       expect.assertions(3)
       parseOpts({})
       expect(tsStandardSpy).toHaveBeenCalledTimes(1)
-      lintText(text, options, (err, res) => {
+      lintText(text, options, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(tsStandardSpy).toHaveBeenCalledTimes(1)
@@ -156,7 +156,7 @@ describe('standard-engine-api', () => {
       lintTextSpy.mockRejectedValueOnce(new Error('the darkside'))
 
       expect.assertions(3)
-      lintText(text, options, (err, res) => {
+      lintText(text, options, (err: { message: any }, res: any) => {
         try {
           expect(err.message).toMatch(/the darkside/gi)
           expect(tsStandardSpy).toHaveBeenCalledTimes(1)
@@ -178,7 +178,7 @@ describe('standard-engine-api', () => {
         {
           filename: 'file:///some/path/to/the/darkside'
         },
-        (err, res) => {
+        (err: any, res: any) => {
           try {
             expect(err).toBeUndefined()
             expect(res).toEqual('success!')
@@ -220,7 +220,7 @@ describe('standard-engine-api', () => {
       lintFilesSpy.mockResolvedValueOnce('success!')
 
       expect.assertions(6)
-      lintFiles(files, (err, res) => {
+      lintFiles(files, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(res).toEqual('success!')
@@ -240,7 +240,7 @@ describe('standard-engine-api', () => {
       lintFilesSpy.mockResolvedValueOnce('success!')
 
       expect.assertions(6)
-      lintFiles(files, options, (err, res) => {
+      lintFiles(files, options, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(res).toEqual('success!')
@@ -262,7 +262,7 @@ describe('standard-engine-api', () => {
       expect.assertions(3)
       parseOpts({})
       expect(tsStandardSpy).toHaveBeenCalledTimes(1)
-      lintFiles(files, options, (err, res) => {
+      lintFiles(files, options, (err: any, res: any) => {
         try {
           expect(err).toBeUndefined()
           expect(tsStandardSpy).toHaveBeenCalledTimes(1)
@@ -278,7 +278,7 @@ describe('standard-engine-api', () => {
       lintFilesSpy.mockRejectedValueOnce(new Error('the darkside'))
 
       expect.assertions(3)
-      lintFiles(files, options, (err, res) => {
+      lintFiles(files, options, (err: { message: any }, res: any) => {
         try {
           expect(err.message).toMatch(/the darkside/gi)
           expect(tsStandardSpy).toHaveBeenCalledTimes(1)
