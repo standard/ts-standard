@@ -123,9 +123,7 @@ describe('ts-standard', () => {
         })
       })
 
-      it('should lint the given text with default options', async (): Promise<
-      void
-      > => {
+      it('should lint the given text with default options', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
         lintTextSpy.mockImplementationOnce((text, options, cb) =>
           cb(undefined, 'success!')
@@ -138,9 +136,7 @@ describe('ts-standard', () => {
         expect(lintTextSpy.mock.calls[0][1]).toEqual(defaultOptions)
       })
 
-      it('should overide default options with method options', async (): Promise<
-      void
-      > => {
+      it('should overide default options with method options', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
         lintTextSpy.mockImplementationOnce((text, options, cb) =>
           cb(undefined, 'success!')
@@ -196,9 +192,7 @@ describe('ts-standard', () => {
         })
       })
 
-      it('should lint the given files with default options', async (): Promise<
-      void
-      > => {
+      it('should lint the given files with default options', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
         lintFilesSpy.mockImplementationOnce((files, options, cb) =>
           cb(undefined, 'success!')
@@ -211,9 +205,7 @@ describe('ts-standard', () => {
         expect(lintFilesSpy.mock.calls[0][1]).toEqual(defaultOptions)
       })
 
-      it('should overide default options with method options', async (): Promise<
-      void
-      > => {
+      it('should overide default options with method options', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
         lintFilesSpy.mockImplementationOnce((files, options, cb) =>
           cb(undefined, 'success!')

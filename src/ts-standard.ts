@@ -104,7 +104,7 @@ export class TSStandard {
         if (err != null) {
           return reject(err)
         }
-        return resolve(val)
+        return resolve(val as LintReport)
       })
     })
   }
@@ -122,7 +122,7 @@ export class TSStandard {
         if (err != null) {
           return reject(err)
         }
-        return resolve(val)
+        return resolve(val as LintReport)
       })
     })
   }
