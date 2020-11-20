@@ -51,7 +51,7 @@ describe('standard-reporter', () => {
               endLine: 36,
               ruleId: 'other-rule',
               message: 'another lint error',
-              fatal: false,
+              fatal: undefined,
               severity: 2,
               nodeType: 'test'
             }
@@ -71,7 +71,7 @@ describe('standard-reporter', () => {
               endLine: 2,
               ruleId: 'other-custom-rule',
               message: 'other lint error',
-              fatal: false,
+              fatal: undefined,
               severity: 1,
               nodeType: 'test'
             }
@@ -112,7 +112,7 @@ describe('standard-reporter', () => {
               endLine: 36,
               ruleId: 'other-rule',
               message: 'another lint error',
-              fatal: false,
+              fatal: undefined,
               severity: 2,
               nodeType: 'test'
             }
@@ -127,8 +127,9 @@ describe('standard-reporter', () => {
           messages: [
             {
               message: 'other lint error',
-              fatal: false,
-              severity: 1
+              fatal: undefined,
+              severity: 1,
+              nodeType: 'test2'
             }
           ],
           errorCount: 0,
