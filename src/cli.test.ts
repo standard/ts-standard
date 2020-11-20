@@ -13,7 +13,7 @@ const mockCustomReporter = jest.fn()
 jest.mock('custom-reporter', () => mockCustomReporter, { virtual: true })
 jest.mock('custom-bad-reporter', () => undefined, { virtual: true })
 
-const mockStylish = stylish as jest.MockedFunction<typeof stylish>
+const mockStylish = stylish as jest.MockedFunction<any>
 const mockGetStdin = getStdin as jest.MockedFunction<typeof getStdin>
 const mockProcess = process
 
@@ -32,6 +32,10 @@ describe('cli', () => {
         .mockReturnValue(reporterSpy)
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -79,6 +83,10 @@ describe('cli', () => {
         .mockImplementation((() => undefined) as any)
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 1,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -122,6 +130,10 @@ describe('cli', () => {
         .mockImplementation((() => undefined) as any)
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -164,6 +176,10 @@ describe('cli', () => {
         .mockImplementation((() => undefined) as any)
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -204,6 +220,10 @@ describe('cli', () => {
       mockStylish.mockReturnValue('')
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -241,6 +261,10 @@ describe('cli', () => {
       jest.spyOn(console, 'error').mockImplementation((() => undefined) as any)
       await printReport(
         {
+          errorCount: 1,
+          warningCount: 0,
+          fixableErrorCount: 0,
+          fixableWarningCount: 0,
           results: [
             {
               filePath: '/some/path',
@@ -280,6 +304,10 @@ describe('cli', () => {
       try {
         await printReport(
           {
+            errorCount: 1,
+            warningCount: 0,
+            fixableErrorCount: 0,
+            fixableWarningCount: 0,
             results: [
               {
                 filePath: '/some/path',
@@ -321,6 +349,10 @@ describe('cli', () => {
       try {
         await printReport(
           {
+            errorCount: 1,
+            warningCount: 0,
+            fixableErrorCount: 0,
+            fixableWarningCount: 0,
             results: [
               {
                 filePath: '/some/path',
