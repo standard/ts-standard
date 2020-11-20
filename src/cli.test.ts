@@ -19,9 +19,7 @@ const mockProcess = process
 
 describe('cli', () => {
   describe('printReport', () => {
-    it('should use `standard` reporter to print the lint report to console', async (): Promise<
-    void
-    > => {
+    it('should use `standard` reporter to print the lint report to console', async (): Promise<void> => {
       const consoleLogSpy = jest
         .spyOn(console, 'log')
         .mockImplementation((() => undefined) as any)
@@ -72,9 +70,7 @@ describe('cli', () => {
       expect(reporterSpy.mock.calls[0][0]).toHaveLength(1)
     })
 
-    it('should print fixable message if `fix` option not provided and errors are fixable', async (): Promise<
-    void
-    > => {
+    it('should print fixable message if `fix` option not provided and errors are fixable', async (): Promise<void> => {
       const consoleLogSpy = jest
         .spyOn(console, 'log')
         .mockImplementation((() => undefined) as any)
@@ -117,9 +113,7 @@ describe('cli', () => {
       expect(consoleLogSpy).toHaveBeenCalledTimes(1)
     })
 
-    it('should not print fixable message if no errors are fixable', async (): Promise<
-    void
-    > => {
+    it('should not print fixable message if no errors are fixable', async (): Promise<void> => {
       const consoleLogSpy = jest
         .spyOn(console, 'log')
         .mockImplementation((() => undefined) as any)
@@ -161,9 +155,7 @@ describe('cli', () => {
       expect(consoleLogSpy).toHaveBeenCalledTimes(1)
     })
 
-    it('should log lint errors to stderror if stdin was used and fix is enabled', async (): Promise<
-    void
-    > => {
+    it('should log lint errors to stderror if stdin was used and fix is enabled', async (): Promise<void> => {
       const consoleLogSpy = jest
         .spyOn(console, 'log')
         .mockImplementation((() => undefined) as any)
@@ -206,9 +198,7 @@ describe('cli', () => {
       expect(consoleLogSpy).toHaveBeenCalledTimes(0)
     })
 
-    it('should use eslint built-in `stylish` reporter', async (): Promise<
-    void
-    > => {
+    it('should use eslint built-in `stylish` reporter', async (): Promise<void> => {
       jest.spyOn(console, 'log').mockImplementation((() => undefined) as any)
       jest.spyOn(console, 'error').mockImplementation((() => undefined) as any)
       mockStylish.mockReturnValue('')
@@ -283,9 +273,7 @@ describe('cli', () => {
       expect(mockCustomReporter).toHaveBeenCalledTimes(1)
     })
 
-    it('should throw error if custom lint reporter not found', async (): Promise<
-    void
-    > => {
+    it('should throw error if custom lint reporter not found', async (): Promise<void> => {
       jest.spyOn(console, 'log').mockImplementation((() => undefined) as any)
       jest.spyOn(console, 'error').mockImplementation((() => undefined) as any)
       expect.assertions(1)
@@ -326,9 +314,7 @@ describe('cli', () => {
       }
     })
 
-    it('should throw error if custom lint reporter import returns undefined', async (): Promise<
-    void
-    > => {
+    it('should throw error if custom lint reporter import returns undefined', async (): Promise<void> => {
       jest.spyOn(console, 'log').mockImplementation((() => undefined) as any)
       jest.spyOn(console, 'error').mockImplementation((() => undefined) as any)
       expect.assertions(1)
@@ -371,9 +357,7 @@ describe('cli', () => {
   })
 
   describe('lintFiles', () => {
-    it('should execute `lintFiles` with the given files on the provided linter', async (): Promise<
-    void
-    > => {
+    it('should execute `lintFiles` with the given files on the provided linter', async (): Promise<void> => {
       const mockLinter = { lintFiles: jest.fn() }
       mockLinter.lintFiles.mockResolvedValue('linted!')
       const options = { files: ['some/file.ts'] }
@@ -384,9 +368,7 @@ describe('cli', () => {
       expect(res).toEqual('linted!')
     })
 
-    it('should log error and exit with code 1 if `lintFiles` fails', async (): Promise<
-    void
-    > => {
+    it('should log error and exit with code 1 if `lintFiles` fails', async (): Promise<void> => {
       const mockLinter = { lintFiles: jest.fn() }
       mockLinter.lintFiles.mockRejectedValue(new Error('Bad lint!'))
       const options = { files: ['some/file.ts'] }
@@ -404,9 +386,7 @@ describe('cli', () => {
   })
 
   describe('lintStdIn', () => {
-    it('should execute `lintText` with the given stdin text on the provided linter', async (): Promise<
-    void
-    > => {
+    it('should execute `lintText` with the given stdin text on the provided linter', async (): Promise<void> => {
       const stdinText = 'I am stdin text!'
       mockGetStdin.mockResolvedValueOnce(stdinText)
 
@@ -448,9 +428,7 @@ describe('cli', () => {
       expect(stdoutSpy).toHaveBeenCalledWith('linted!')
     })
 
-    it('should write the original input to stdout if nothing fixed', async (): Promise<
-    void
-    > => {
+    it('should write the original input to stdout if nothing fixed', async (): Promise<void> => {
       const stdinText = 'I am stdin text!'
       mockGetStdin.mockResolvedValueOnce(stdinText)
 
@@ -476,9 +454,7 @@ describe('cli', () => {
       expect(stdoutSpy).toHaveBeenCalledWith(stdinText)
     })
 
-    it('should log error and exit with code 1 if `lintText` fails', async (): Promise<
-    void
-    > => {
+    it('should log error and exit with code 1 if `lintText` fails', async (): Promise<void> => {
       const stdinText = 'I am stdin text!'
       mockGetStdin.mockResolvedValueOnce(stdinText)
 
@@ -524,9 +500,7 @@ describe('cli', () => {
       expect(exitSpy).toHaveBeenCalledWith(1)
     })
 
-    it('should call `lintStdIn` function if `useStdIn` option provided and exit with code 0 if no errors/warnings', async (): Promise<
-    void
-    > => {
+    it('should call `lintStdIn` function if `useStdIn` option provided and exit with code 0 if no errors/warnings', async (): Promise<void> => {
       jest
         .spyOn(defaultOptionsLib, 'getDefaultOptions')
         .mockReturnValue({ project: '/project/location.json' } as any)
@@ -554,9 +528,7 @@ describe('cli', () => {
       expect(exitSpy).toHaveBeenCalledWith(0)
     })
 
-    it('should call `lintFiles` function and `printReport` and exit with code 1 if errors found', async (): Promise<
-    void
-    > => {
+    it('should call `lintFiles` function and `printReport` and exit with code 1 if errors found', async (): Promise<void> => {
       jest
         .spyOn(defaultOptionsLib, 'getDefaultOptions')
         .mockReturnValue({ project: '/project/location.json' } as any)
@@ -584,9 +556,7 @@ describe('cli', () => {
       expect(exitSpy).toHaveBeenCalledWith(1)
     })
 
-    it('should call `lintFiles` function and `printReport` and exit with code 0 if only warnings found', async (): Promise<
-    void
-    > => {
+    it('should call `lintFiles` function and `printReport` and exit with code 0 if only warnings found', async (): Promise<void> => {
       jest
         .spyOn(defaultOptionsLib, 'getDefaultOptions')
         .mockReturnValue({ project: '/project/location.json' } as any)

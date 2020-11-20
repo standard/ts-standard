@@ -98,9 +98,7 @@ describe('default-options', () => {
       expect(options.extensions).toHaveLength(6)
     })
 
-    it('should return undefined if project options not provided', async (): Promise<
-    void
-    > => {
+    it('should return undefined if project options not provided', async (): Promise<void> => {
       mockStatSync.mockImplementation(() => {
         throw new Error('Error')
       })
