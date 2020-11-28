@@ -1,58 +1,53 @@
-name: tests
+name: 'tests'
 
 on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: 'ubuntu-latest'
 
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
 
     steps:
-      - name: Checkout Project
-        uses: actions/checkout@v2
+      - name: 'Checkout Project'
+        uses: 'actions/checkout@v2'
         with:
           fetch-depth: 0
 
-      - name: Lint the Commit Messages
-        uses: wagoid/commitlint-github-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2.1.2
+        uses: 'actions/setup-node@v2.1.2'
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: 'Cache dependencies'
-        uses: actions/cache@v2
+        uses: 'actions/cache@v2'
         with:
           path: |
             **/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
 
-      - name: Install Dependencies
-        run: npm install
+      - name: 'Install Dependencies'
+        run: 'npm install'
 
       - name: Lint Files
-        run: npm run lint
+        run: 'npm run lint'
 
-      - name: Run Tests and Coverage
+      - name: 'Run Tests and Coverage'
         env:
           CI: true
-        run: npm run coverage
+        run: 'npm run coverage'
 
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
+      - name: 'Coveralls Parallel'
+        uses: 'coverallsapp/github-action@master'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel: true
-          path-to-lcov: ./coverage/lcov.info
+          path-to-lcov: './coverage/lcov.info'
 
-      - name: Coveralls Finished
-        uses: coverallsapp/github-action@master
+      - name: 'Coveralls Finished'
+        uses: 'coverallsapp/github-action@master'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           parallel-finished: true
