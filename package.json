@@ -7,7 +7,7 @@
     "test": "jest",
     "coverage": "npm test -- --coverage",
     "coveralls": "coveralls < coverage/lcov.info",
-    "lint": "prettier --write '**/*.{ts*,js*,yml}' && bin/cmd.js --fix && tsc --noEmit",
+    "lint": "prettier --write '**/*.{ts*,js*,yml}' && bin/cmd.js --fix && tsc -p './tsconfig.eslint.json' --noEmit",
     "build": "tsc",
     "watch": "tsc -w"
   },
@@ -125,6 +125,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "semi": false
+    "semi": false,
+    "trailingComma": "none"
   }
 }

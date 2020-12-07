@@ -125,7 +125,7 @@ describe('ts-standard', () => {
 
       it('should lint the given text with default options', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+        lintTextSpy.mockImplementationOnce((_text, _options, cb) =>
           cb(undefined, 'success!')
         )
         const res = await tsStandard.lintText(text)
@@ -138,7 +138,7 @@ describe('ts-standard', () => {
 
       it('should overide default options with method options', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+        lintTextSpy.mockImplementationOnce((_text, _options, cb) =>
           cb(undefined, 'success!')
         )
         const newOptions = {
@@ -158,7 +158,7 @@ describe('ts-standard', () => {
 
       it('should return error if linting failed', async (): Promise<void> => {
         const text = 'The darkside is strong in this one.'
-        lintTextSpy.mockImplementationOnce((text, options, cb) =>
+        lintTextSpy.mockImplementationOnce((_text, _options, cb) =>
           cb(new Error('the darkside'))
         )
         expect.assertions(2)
@@ -194,7 +194,7 @@ describe('ts-standard', () => {
 
       it('should lint the given files with default options', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+        lintFilesSpy.mockImplementationOnce((_files, _options, cb) =>
           cb(undefined, 'success!')
         )
         const res = await tsStandard.lintFiles(files)
@@ -207,7 +207,7 @@ describe('ts-standard', () => {
 
       it('should overide default options with method options', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+        lintFilesSpy.mockImplementationOnce((_files, _options, cb) =>
           cb(undefined, 'success!')
         )
         const newOptions = {
@@ -227,7 +227,7 @@ describe('ts-standard', () => {
 
       it('should return error if linting failed', async (): Promise<void> => {
         const files = ['The darkside is strong in this one.']
-        lintFilesSpy.mockImplementationOnce((files, options, cb) =>
+        lintFilesSpy.mockImplementationOnce((_files, _options, cb) =>
           cb(new Error('the darkside'))
         )
         expect.assertions(2)

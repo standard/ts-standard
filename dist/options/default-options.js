@@ -35,6 +35,7 @@ function _getTSConfigFromDefaultLocations(cwd) {
             return absPath;
         }
     }
+    return undefined;
 }
 exports._getTSConfigFromDefaultLocations = _getTSConfigFromDefaultLocations;
 function _isValidPath(pathToValidate) {

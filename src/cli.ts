@@ -1,5 +1,5 @@
 import type * as eslint from 'eslint'
-import type { LintReport, LintResult } from 'standard-engine'
+import type { LintReport, LintResult, LintMessage } from 'standard-engine'
 import * as getStdin from 'get-stdin'
 import {
   getCLIOptions,
@@ -128,7 +128,7 @@ export async function lintStdIn (
 
   // If we performed fixes then maybe return the fixed text
   if (options.fix) {
-    if (lintReport.results[0].output !== undefined) {
+    if (lintReport.results[0].output != null) {
       // Code contained fixable errors, so print the fixed code
       process.stdout.write(lintReport.results[0].output)
     } else {
@@ -170,9 +170,9 @@ export async function printReport (
   console.error(`${CMD}: ${TAGLINE} (${HOMEPAGE})`)
 
   // Check for any fixable rules
-  const isFixable: boolean = lintReport.results.some((res: any) => {
-    return res.messages.some((msg: any) => {
-      return msg.fix !== undefined
+  const isFixable: boolean = lintReport.results.some((res: LintResult) => {
+    return res.messages.some((msg: LintMessage) => {
+      return msg.fix != null
     })
   })
 

@@ -60,10 +60,11 @@ export function _resolveTSConfigPath (
   cwd: string,
   settingsProjectPath?: string
 ): string | undefined {
-  if (settingsProjectPath !== undefined) {
+  if (settingsProjectPath != null) {
     const settingsPath = join(cwd, settingsProjectPath)
     if (_isValidPath(settingsPath)) {
       return settingsPath
     }
   }
+  return undefined
 }

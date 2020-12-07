@@ -55,6 +55,7 @@ export function _getTSConfigFromDefaultLocations (
       return absPath
     }
   }
+  return undefined
 }
 
 export function _isValidPath (pathToValidate: string): boolean {

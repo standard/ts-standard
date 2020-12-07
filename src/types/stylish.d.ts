@@ -1,3 +1,7 @@
 declare module 'eslint/lib/cli-engine/formatters/stylish' {
-  export {}
+  import type { LintResult } from 'standard-engine'
+
+  function stylish (results: LintResult[]): string
+  namespace stylish {}
+  export = stylish
 }
