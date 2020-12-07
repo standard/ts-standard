@@ -8,7 +8,13 @@
     "resolveJsonModule": true,
     "lib": ["es2018", "es2019", "es2020"],
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "newLine": "lf",
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": ["src/**/*.ts", "bin/*.js", "*.json"]
+  "include": ["src", "bin", "*.json"]
 }

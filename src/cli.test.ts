@@ -13,7 +13,7 @@ const mockCustomReporter = jest.fn()
 jest.mock('custom-reporter', () => mockCustomReporter, { virtual: true })
 jest.mock('custom-bad-reporter', () => undefined, { virtual: true })
 
-const mockStylish = stylish as jest.MockedFunction<any>
+const mockStylish = stylish as jest.MockedFunction<typeof stylish>
 const mockGetStdin = getStdin as jest.MockedFunction<typeof getStdin>
 const mockProcess = process
 

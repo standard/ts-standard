@@ -26,11 +26,12 @@ function getPackageOptions(cwd) {
 }
 exports.getPackageOptions = getPackageOptions;
 function _resolveTSConfigPath(cwd, settingsProjectPath) {
-    if (settingsProjectPath !== undefined) {
+    if (settingsProjectPath != null) {
         const settingsPath = path_1.join(cwd, settingsProjectPath);
         if (default_options_1._isValidPath(settingsPath)) {
             return settingsPath;
         }
     }
+    return undefined;
 }
 exports._resolveTSConfigPath = _resolveTSConfigPath;

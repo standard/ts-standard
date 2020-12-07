@@ -83,7 +83,7 @@ async function lintStdIn(linter, options) {
     }
     // If we performed fixes then maybe return the fixed text
     if (options.fix) {
-        if (lintReport.results[0].output !== undefined) {
+        if (lintReport.results[0].output != null) {
             // Code contained fixable errors, so print the fixed code
             process.stdout.write(lintReport.results[0].output);
         }
@@ -118,7 +118,7 @@ async function printReport(lintReport, options) {
     // Check for any fixable rules
     const isFixable = lintReport.results.some((res) => {
         return res.messages.some((msg) => {
-            return msg.fix !== undefined;
+            return msg.fix != null;
         });
     });
     // If there were fixable rules, then that means that `--fix` was not provided
