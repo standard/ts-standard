@@ -1,8 +1,9 @@
 {
   "name": "ts-standard",
   "description": "Typescript Standard Style based on StandardJS",
-  "version": "9.0.0",
+  "version": "10.0.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "coverage": "npm test -- --coverage",

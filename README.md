@@ -1,10 +1,10 @@
 [![Tests](https://github.com/standard/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/standard/ts-standard/actions?query=workflow%3A%22tests%22)
-[![Coverage Status](https://badgen.net/coveralls/c/github/standard/ts-standard)](https://coveralls.io/github/standard/ts-standard?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/standard/ts-standard/badge.svg?branch=master)](https://coveralls.io/github/standard/ts-standard?branch=master)
 [![npm](https://badgen.net/npm/v/ts-standard)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://badgen.net/npm/dm/ts-standard)](https://www.npmjs.com/package/ts-standard)
 [![License](https://badgen.net/github/license/standard/ts-standard)](https://github.com/standard/ts-standard/blob/master/LICENSE)
 [![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
-[![Dependabot badge](https://badgen.net/dependabot/standard/ts-standard?icon=dependabot)](https://dependabot.com/)
+[![Dependabot badge](https://badgen.net/github/dependabot/standard/ts-standard?icon=dependabot)](https://dependabot.com/)
 
 # ts-standard
 
