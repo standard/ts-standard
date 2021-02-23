@@ -10,7 +10,10 @@
     "coveralls": "coveralls < coverage/lcov.info",
     "lint": "prettier --write '**/*.{ts*,js*,yml}' && bin/cmd.js --fix && tsc -p './tsconfig.eslint.json' --noEmit",
     "build": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "bin": {
     "ts-standard": "./bin/cmd.js"
@@ -53,6 +56,7 @@
     "coveralls": "^3.1.0",
     "husky": "^5.1.1",
     "jest": "^26.6.3",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
@@ -83,12 +87,6 @@
     "standardjs",
     "tslint"
   ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run build && git add ./dist"
-    }
-  },
   "ts-standard": {
     "project": "./tsconfig.eslint.json",
     "ignore": [
