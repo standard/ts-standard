@@ -41,7 +41,7 @@ describe('ts-standard', () => {
           eslint: options.eslint,
           eslintConfig: {
             cwd: options.cwd,
-            configFile: resolve(`${__dirname}/../eslintrc.json`),
+            configFile: resolve(__dirname, '..', 'eslintrc.json'),
             parserOptions: {
               project: options.project,
               tsconfigRootDir: options.cwd

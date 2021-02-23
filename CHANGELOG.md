@@ -1,5 +1,10 @@
 # Changelog
 
+## 11.0.0 - Pending
+
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^20.0.0`. Please visit
+their github page for any style/linter changes
+
 ## 10.0.0
 
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^19.0.1`. Please visit
