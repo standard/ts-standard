@@ -116,7 +116,7 @@
     "@types/eslint": "^7.2.6",
     "@types/jest": "^26.0.20",
     "@types/minimist": "^1.2.1",
-    "@types/node": "^14.14.31",
+    "@types/node": "^15.0.1",
     "coveralls": "^3.1.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
