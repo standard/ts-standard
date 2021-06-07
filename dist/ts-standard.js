@@ -15,7 +15,7 @@ class TSStandard {
         // Linting requires a project file
         if (options.project == null) {
             throw new Error('Unable to locate the project file. A project file (tsconfig.json or ' +
-                'tsconfig.eslint.json) is reqired in order to use ts-standard.');
+                'tsconfig.eslint.json) is required in order to use ts-standard.');
         }
         // Handle the case where eslint lib could be a string, library, or undefined (use default lib)
         let eslintLib;
