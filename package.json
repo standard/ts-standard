@@ -11,7 +11,7 @@
     "url": "https://github.com/standard/ts-standard/issues"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "author": "Todd Bluhm",
   "license": "MIT",
@@ -96,34 +96,34 @@
     "typescript": ">=3.8"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.15.2",
-    "eslint": "^7.20.0",
-    "eslint-config-standard": "^16.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "eslint": "^7.28.0",
+    "eslint-config-standard": "^16.0.3",
     "eslint-config-standard-jsx": "^10.0.0",
     "eslint-config-standard-with-typescript": "^20.0.0",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
     "get-stdin": "^8.0.0",
     "minimist": "^1.2.5",
     "pkg-conf": "^3.1.0",
     "standard-engine": "^14.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.0.0",
-    "@commitlint/config-conventional": "^12.0.0",
-    "@types/eslint": "^7.2.6",
-    "@types/jest": "^26.0.20",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@types/eslint": "^7.2.13",
+    "@types/jest": "^26.0.23",
     "@types/minimist": "^1.2.1",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.12.2",
     "coveralls": "^3.1.0",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "pinst": "^2.1.6",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.1",
     "ts-jest": "^26.5.1",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }

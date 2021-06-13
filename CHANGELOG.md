@@ -2,8 +2,12 @@
 
 ## 11.0.0 - Pending
 
+- **BREAKING**: Dropped support for NodeJS `10.x` (Minimum supported version is `12.x`)
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^20.0.0`. Please visit
 their github page for any style/linter changes
+- **BREAKING**: Updated `eslint-config-standard` to version `^16.0.3`. Please visit
+their github page for any style/linter changes
+- **Fix**: typo `reqired` to `required`
 
 ## 10.0.0
 
