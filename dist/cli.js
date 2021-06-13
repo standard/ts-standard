@@ -28,7 +28,7 @@ async function cli() {
     // Linting requires a project file
     if (options.project == null) {
         console.error('Unable to locate the project file. A project file (tsconfig.json or ' +
-            'tsconfig.eslint.json) is reqired in order to use ts-standard.');
+            'tsconfig.eslint.json) is required in order to use ts-standard.');
         return process.exit(1);
     }
     const tsStandard = new ts_standard_1.TSStandard({
