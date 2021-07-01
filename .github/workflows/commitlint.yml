@@ -1,5 +1,3 @@
-# For more information see: https://github.com/marketplace/actions/commit-linter
-
 name: 'Lint the Commit Messages'
 
 on:
@@ -15,4 +13,5 @@ jobs:
       - uses: 'actions/checkout@v2.3.4'
         with:
           fetch-depth: 0
+
       - uses: 'wagoid/commitlint-github-action@v3.1.4'
