@@ -24,13 +24,7 @@ jobs:
         uses: 'actions/setup-node@v2.2.0'
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: 'Cache dependencies'
-        uses: 'actions/cache@v2.1.6'
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package.json') }}
+          cache: 'npm'
 
       - name: 'Install Dependencies'
         run: 'npm install'
