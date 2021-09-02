@@ -14,7 +14,7 @@ interface PackageConfigOptions extends Config {
   cwd?: string
   eslint?: string
   files?: string[]
-  project?: string
+  project?: string | string[]
   fix?: boolean
   report?: string
   extensions?: string[]
@@ -22,7 +22,7 @@ interface PackageConfigOptions extends Config {
 
 interface PackageOptions {
   files?: string[]
-  project?: string
+  project?: string | string[]
   fix?: boolean
   report?: string
   ignore?: string[]
@@ -58,12 +58,24 @@ export function getPackageOptions (cwd?: string): PackageOptions {
 
 export function _resolveTSConfigPath (
   cwd: string,
-  settingsProjectPath?: string
-): string | undefined {
+  settingsProjectPath?: string | string[]
+): string | string[] | undefined {
   if (settingsProjectPath != null) {
-    const settingsPath = join(cwd, settingsProjectPath)
-    if (_isValidPath(settingsPath)) {
-      return settingsPath
+    if (Array.isArray(settingsProjectPath)) {
+      return settingsProjectPath
+        .map((p) => {
+          const settingsPath = join(cwd, p)
+          if (_isValidPath(settingsPath)) {
+            return settingsPath
+          }
+          return undefined
+        })
+        .filter((str): str is string => str !== undefined)
+    } else {
+      const settingsPath = join(cwd, settingsProjectPath)
+      if (_isValidPath(settingsPath)) {
+        return settingsPath
+      }
     }
   }
   return undefined

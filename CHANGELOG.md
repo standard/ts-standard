@@ -8,6 +8,7 @@ their github page for any style/linter changes
 - **BREAKING**: Updated `eslint-config-standard` to version `^16.0.3`. Please visit
 their github page for any style/linter changes
 - **Fix**: typo `reqired` to `required`
+- **Feature**: Add support for multiple tsconfig projects to be used
 
 ## 10.0.0
 

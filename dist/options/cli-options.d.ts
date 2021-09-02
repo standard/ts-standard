@@ -3,7 +3,7 @@ export interface CLIOptions {
     useStdIn: boolean;
     stdInFilename?: string;
     files?: string[];
-    project?: string;
+    project?: string[];
     globals?: string[];
     plugins?: string[];
     envs?: string[];

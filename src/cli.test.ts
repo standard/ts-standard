@@ -532,6 +532,29 @@ describe('cli', () => {
       expect(exitSpy).toHaveBeenCalledWith(1)
     })
 
+    it('should log error if empty project array is provided', async (): Promise<void> => {
+      jest
+        .spyOn(defaultOptionsLib, 'getDefaultOptions')
+        .mockReturnValue({} as any)
+      jest
+        .spyOn(packageOptionsLib, 'getPackageOptions')
+        .mockReturnValue({} as any)
+      jest
+        .spyOn(cliOptionsLib, 'getCLIOptions')
+        .mockReturnValue({ project: [] } as any)
+
+      const consoleErrorSpy = jest.spyOn(console, 'error').mockReturnValue()
+      const exitSpy = jest
+        .spyOn(mockProcess, 'exit')
+        .mockImplementation((() => undefined) as any)
+
+      await cli()
+
+      expect(consoleErrorSpy).toHaveBeenCalledTimes(1)
+      expect(exitSpy).toHaveBeenCalledTimes(1)
+      expect(exitSpy).toHaveBeenCalledWith(1)
+    })
+
     it('should call `lintStdIn` function if `useStdIn` option provided and exit with code 0 if no errors/warnings', async (): Promise<void> => {
       jest
         .spyOn(defaultOptionsLib, 'getDefaultOptions')

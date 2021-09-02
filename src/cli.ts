@@ -32,7 +32,7 @@ export interface Options {
   test?: string
   stdIn?: boolean
   // Additional options
-  project?: string
+  project?: string | string[]
   fix?: boolean
   report?: string
   envs?: string[]
@@ -59,7 +59,10 @@ export async function cli (): Promise<void> {
   )
 
   // Linting requires a project file
-  if (options.project == null) {
+  if (
+    options.project == null ||
+    (Array.isArray(options.project) && options.project.length === 0)
+  ) {
     console.error(
       'Unable to locate the project file. A project file (tsconfig.json or ' +
         'tsconfig.eslint.json) is required in order to use ts-standard.'

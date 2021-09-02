@@ -26,7 +26,8 @@ async function cli() {
     const cliOptions = (0, options_1.getCLIOptions)();
     const options = (0, options_1.mergeOptions)(defaultOptions, packageOptions, cliOptions);
     // Linting requires a project file
-    if (options.project == null) {
+    if (options.project == null ||
+        (Array.isArray(options.project) && options.project.length === 0)) {
         console.error('Unable to locate the project file. A project file (tsconfig.json or ' +
             'tsconfig.eslint.json) is required in order to use ts-standard.');
         return process.exit(1);

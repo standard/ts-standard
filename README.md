@@ -75,6 +75,9 @@ the `--project` flag or adding a `ts-standard` configuration property to your `p
 }
 ```
 
+Its possible to specify multiple projects using an array as in the underlying
+[parser](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser#parseroptionsproject).
+
 ## 🗑 Ignoring files and folders
 
 You can ignore files and folders by either providing specific files/globs of the files you want linted
@@ -106,7 +109,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
     "cwd": "",                  // the root working directory where the project file is located
     "eslint": "",               // path to a custom eslint linter
     "files": [""],              // files/folders/globs to include in the linting
-    "project": "",              // relative path to `tsconfig.json` file
+    "project": "", or [""]      // relative path to `tsconfig.json` file
     "fix": false,               // auto fix any lint errors found that are fixable
     "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
     "extensions": "",           // a list of file extensions to lint by default (e.g. js,jsx,ts,tsx,mjs,cjs)

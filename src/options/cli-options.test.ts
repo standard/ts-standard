@@ -155,7 +155,7 @@ describe('tsconfig', () => {
         fix: true,
         useStdIn: false,
         files: ['./**/*.ts'],
-        project: './project-file.json',
+        project: ['./project-file.json'],
         globals: ['$'],
         plugins: ['plugin1'],
         envs: ['env1', 'env2'],
