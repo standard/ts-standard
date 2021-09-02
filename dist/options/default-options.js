@@ -30,7 +30,7 @@ function getDefaultOptions(cwd = process.cwd()) {
 exports.getDefaultOptions = getDefaultOptions;
 function _getTSConfigFromDefaultLocations(cwd) {
     for (const tsFile of exports.DEFAULT_TSCONFIG_LOCATIONS) {
-        const absPath = path_1.join(cwd, tsFile);
+        const absPath = (0, path_1.join)(cwd, tsFile);
         if (exports._isValidPath(absPath)) {
             return absPath;
         }
@@ -40,7 +40,7 @@ function _getTSConfigFromDefaultLocations(cwd) {
 exports._getTSConfigFromDefaultLocations = _getTSConfigFromDefaultLocations;
 function _isValidPath(pathToValidate) {
     try {
-        fs_1.statSync(pathToValidate);
+        (0, fs_1.statSync)(pathToValidate);
     }
     catch (e) {
         return false;

@@ -21,10 +21,10 @@ exports.ESLINT_BUILTIN_REPORTERS = [
 ];
 async function cli() {
     // Get the default/cli options
-    const defaultOptions = options_1.getDefaultOptions();
-    const packageOptions = options_1.getPackageOptions();
-    const cliOptions = options_1.getCLIOptions();
-    const options = options_1.mergeOptions(defaultOptions, packageOptions, cliOptions);
+    const defaultOptions = (0, options_1.getDefaultOptions)();
+    const packageOptions = (0, options_1.getPackageOptions)();
+    const cliOptions = (0, options_1.getCLIOptions)();
+    const options = (0, options_1.mergeOptions)(defaultOptions, packageOptions, cliOptions);
     // Linting requires a project file
     if (options.project == null) {
         console.error('Unable to locate the project file. A project file (tsconfig.json or ' +
