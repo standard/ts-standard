@@ -109,7 +109,7 @@ to `ts-standard` when running the command or you can add an `ignore` property to
     "cwd": "",                  // the root working directory where the project file is located
     "eslint": "",               // path to a custom eslint linter
     "files": [""],              // files/folders/globs to include in the linting
-    "project": "", or [""]      // relative path to `tsconfig.json` file
+    "project": [""],            // relative path to `tsconfig.json` file
     "fix": false,               // auto fix any lint errors found that are fixable
     "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
     "extensions": "",           // a list of file extensions to lint by default (e.g. js,jsx,ts,tsx,mjs,cjs)
