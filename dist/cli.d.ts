@@ -7,7 +7,7 @@ export interface Options {
     files?: string[];
     test?: string;
     stdIn?: boolean;
-    project?: string;
+    project?: string | string[];
     fix?: boolean;
     report?: string;
     envs?: string[];

@@ -1,6 +1,6 @@
 interface PackageOptions {
     files?: string[];
-    project?: string;
+    project?: string | string[];
     fix?: boolean;
     report?: string;
     ignore?: string[];
@@ -14,5 +14,5 @@ interface PackageOptions {
     extensions?: string[];
 }
 export declare function getPackageOptions(cwd?: string): PackageOptions;
-export declare function _resolveTSConfigPath(cwd: string, settingsProjectPath?: string): string | undefined;
+export declare function _resolveTSConfigPath(cwd: string, settingsProjectPath?: string | string[]): string | string[] | undefined;
 export {};

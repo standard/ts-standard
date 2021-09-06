@@ -21,7 +21,7 @@ export interface CLIOptions {
   useStdIn: boolean
   stdInFilename?: string
   files?: string[]
-  project?: string
+  project?: string[]
   globals?: string[]
   plugins?: string[]
   envs?: string[]
@@ -103,7 +103,7 @@ Flags (advanced):
     useStdIn: argv.stdin,
     stdInFilename: argv['stdin-filename'],
     files,
-    project: argv.project,
+    project: exports._convertToArray(argv.project),
     globals: exports._convertToArray(argv.globals),
     plugins: exports._convertToArray(argv.plugins),
     envs: exports._convertToArray(argv.envs),

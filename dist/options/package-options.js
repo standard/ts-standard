@@ -27,9 +27,22 @@ function getPackageOptions(cwd) {
 exports.getPackageOptions = getPackageOptions;
 function _resolveTSConfigPath(cwd, settingsProjectPath) {
     if (settingsProjectPath != null) {
-        const settingsPath = (0, path_1.join)(cwd, settingsProjectPath);
-        if ((0, default_options_1._isValidPath)(settingsPath)) {
-            return settingsPath;
+        if (Array.isArray(settingsProjectPath)) {
+            return settingsProjectPath
+                .map((p) => {
+                const settingsPath = (0, path_1.join)(cwd, p);
+                if ((0, default_options_1._isValidPath)(settingsPath)) {
+                    return settingsPath;
+                }
+                return undefined;
+            })
+                .filter((str) => str !== undefined);
+        }
+        else {
+            const settingsPath = (0, path_1.join)(cwd, settingsProjectPath);
+            if ((0, default_options_1._isValidPath)(settingsPath)) {
+                return settingsPath;
+            }
         }
     }
     return undefined;

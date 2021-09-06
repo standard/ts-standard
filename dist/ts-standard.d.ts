@@ -1,7 +1,7 @@
 import * as eslint from 'eslint';
 import { LintReport } from 'standard-engine';
 export interface Options {
-    project?: string;
+    project?: string | string[];
     fix?: boolean;
     envs?: string[];
     ignore?: string[];

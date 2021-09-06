@@ -9,7 +9,7 @@ export interface DefaultOptions {
     eslint: undefined;
     cwd: string;
     stdInFilename?: string;
-    project?: string;
+    project?: string | string[];
     ignore?: string[];
     envs?: string[];
     globals?: string[];

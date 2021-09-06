@@ -5,7 +5,7 @@ import { getDefaultOptions, getPackageOptions, mergeOptions } from './options'
 import { CMD, TAGLINE, BUGS_URL, HOMEPAGE, VERSION } from './constants'
 
 export interface Options {
-  project?: string
+  project?: string | string[]
   fix?: boolean
   envs?: string[]
   ignore?: string[]
@@ -43,7 +43,10 @@ export class TSStandard {
     options = mergeOptions(defaultOptions, packageOptions, options)
 
     // Linting requires a project file
-    if (options.project == null) {
+    if (
+      options.project == null ||
+      (Array.isArray(options.project) && options.project.length === 0)
+    ) {
       throw new Error(
         'Unable to locate the project file. A project file (tsconfig.json or ' +
           'tsconfig.eslint.json) is required in order to use ts-standard.'

@@ -12,6 +12,15 @@ describe('package-options', () => {
       expect(validPath).toMatch(packageJsonPath)
     })
 
+    it('should return a valid path[] from package.json first', (): void => {
+      jest.spyOn(defaultLib, '_isValidPath').mockReturnValue(true)
+      const validPath = _resolveTSConfigPath(process.cwd(), [
+        packageJsonPath,
+        packageJsonPath
+      ])
+      expect(validPath).toHaveLength(2)
+    })
+
     it('should use provided cwd when resolving the path', (): void => {
       jest.spyOn(defaultLib, '_isValidPath').mockReturnValueOnce(true)
       const validPath = _resolveTSConfigPath('/custom/cwd', packageJsonPath)
@@ -23,6 +32,12 @@ describe('package-options', () => {
       jest.spyOn(defaultLib, '_isValidPath').mockReturnValueOnce(false)
       const validPath = _resolveTSConfigPath(process.cwd(), packageJsonPath)
       expect(validPath).toBeUndefined()
+    })
+
+    it('should return [] if no valid paths found', (): void => {
+      jest.spyOn(defaultLib, '_isValidPath').mockReturnValueOnce(false)
+      const validPath = _resolveTSConfigPath(process.cwd(), [packageJsonPath])
+      expect(validPath).toStrictEqual([])
     })
 
     it('should return undefined if no valid project path given', (): void => {
