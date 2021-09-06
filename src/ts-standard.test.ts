@@ -97,7 +97,7 @@ describe('ts-standard', () => {
 
         try {
           new TSStandard() // eslint-disable-line no-new
-        } catch (e) {
+        } catch (e: any) {
           expect(e.message).toMatch(/unable to locate the project file/gi)
         }
       })
@@ -165,7 +165,7 @@ describe('ts-standard', () => {
 
         try {
           await tsStandard.lintText(text)
-        } catch (e) {
+        } catch (e: any) {
           expect(lintTextSpy).toHaveBeenCalledTimes(1)
           expect(e.message).toMatch(/the darkside/gi)
         }
@@ -234,7 +234,7 @@ describe('ts-standard', () => {
 
         try {
           await tsStandard.lintFiles(files)
-        } catch (e) {
+        } catch (e: any) {
           expect(lintFilesSpy).toHaveBeenCalledTimes(1)
           expect(e.message).toMatch(/the darkside/gi)
         }

@@ -9,9 +9,9 @@ const constants_1 = require("./constants");
 class TSStandard {
     constructor(options = {}) {
         // Get the default/cli options
-        const defaultOptions = options_1.getDefaultOptions(options.cwd);
-        const packageOptions = options_1.getPackageOptions(options.cwd);
-        options = options_1.mergeOptions(defaultOptions, packageOptions, options);
+        const defaultOptions = (0, options_1.getDefaultOptions)(options.cwd);
+        const packageOptions = (0, options_1.getPackageOptions)(options.cwd);
+        options = (0, options_1.mergeOptions)(defaultOptions, packageOptions, options);
         // Linting requires a project file
         if (options.project == null) {
             throw new Error('Unable to locate the project file. A project file (tsconfig.json or ' +
@@ -37,7 +37,7 @@ class TSStandard {
             tagline: constants_1.TAGLINE,
             eslint: eslintLib,
             eslintConfig: {
-                configFile: path_1.resolve(path_1.join(__dirname, '../eslintrc.json')),
+                configFile: (0, path_1.resolve)((0, path_1.join)(__dirname, '../eslintrc.json')),
                 cwd: options.cwd,
                 parserOptions: {
                     project: options.project,

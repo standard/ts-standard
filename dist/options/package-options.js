@@ -6,7 +6,7 @@ const pkg_conf_1 = require("pkg-conf");
 const default_options_1 = require("./default-options");
 function getPackageOptions(cwd) {
     var _a;
-    const settings = pkg_conf_1.sync('ts-standard', { cwd });
+    const settings = (0, pkg_conf_1.sync)('ts-standard', { cwd });
     cwd = (_a = cwd !== null && cwd !== void 0 ? cwd : settings.cwd) !== null && _a !== void 0 ? _a : process.cwd();
     return {
         files: settings.files,
@@ -27,8 +27,8 @@ function getPackageOptions(cwd) {
 exports.getPackageOptions = getPackageOptions;
 function _resolveTSConfigPath(cwd, settingsProjectPath) {
     if (settingsProjectPath != null) {
-        const settingsPath = path_1.join(cwd, settingsProjectPath);
-        if (default_options_1._isValidPath(settingsPath)) {
+        const settingsPath = (0, path_1.join)(cwd, settingsProjectPath);
+        if ((0, default_options_1._isValidPath)(settingsPath)) {
             return settingsPath;
         }
     }

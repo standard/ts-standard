@@ -337,7 +337,7 @@ describe('cli', () => {
             fix: false
           }
         )
-      } catch (e) {
+      } catch (e: any) {
         expect(e.message).toMatch(/cannot find/gi)
       }
     })
@@ -382,7 +382,7 @@ describe('cli', () => {
             fix: false
           }
         )
-      } catch (e) {
+      } catch (e: any) {
         expect(e.message).toMatch(/import custom/gi)
       }
     })
