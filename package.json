@@ -88,9 +88,7 @@
     "lint": "prettier --write '**/*.{ts*,js*,yml}' && bin/cmd.js --fix && tsc -p './tsconfig.eslint.json' --noEmit",
     "build": "tsc",
     "watch": "tsc -w",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "prepare": "husky install"
   },
   "peerDependencies": {
     "typescript": ">=3.8"
@@ -120,7 +118,6 @@
     "coveralls": "^3.1.0",
     "husky": "^7.0.0",
     "jest": "^26.6.3",
-    "pinst": "^2.1.6",
     "prettier": "^2.3.1",
     "ts-jest": "^26.5.1",
     "ts-node": "^10.0.0",
