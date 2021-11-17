@@ -1,6 +1,8 @@
 # Changelog
 
-## 11.0.0 - Pending
+## 12.0.0 - Pending
+
+## 11.0.0
 
 - **BREAKING**: Dropped support for NodeJS `10.x` (Minimum supported version is `12.x`)
 - **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^21.0.1`. Please visit
