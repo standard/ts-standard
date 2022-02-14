@@ -112,7 +112,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
+    "@commitlint/config-conventional": "^16.2.1",
     "@types/eslint": "^7.2.13",
     "@types/jest": "^27.0.1",
     "@types/minimist": "^1.2.1",
