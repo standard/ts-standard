@@ -1,21 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "target": "es2017",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "node",
+    "rootDir": "./",
     "strict": true,
-    "declaration": true,
-    "resolveJsonModule": true,
-    "lib": ["es2018", "es2019", "es2020"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowJs": true,
-    "checkJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "newLine": "lf",
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts"]
+    "noEmit": true
+  }
 }

@@ -2,6 +2,8 @@
 
 ## 12.0.0 - Pending
 
+**BREAKING:** Major rewrite of `ts-standard` to follow the structure of other `standard` engines (like `standard`, `semistandard`, `standardx`).
+
 ## 11.0.0
 
 - **BREAKING**: Dropped support for NodeJS `10.x` (Minimum supported version is `12.x`)
