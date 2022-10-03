@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  tests:
     runs-on: 'ubuntu-latest'
 
     strategy:
@@ -15,10 +15,7 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
 
     steps:
-      - name: 'Checkout Project'
-        uses: 'actions/checkout@v2.4.0'
-        with:
-          fetch-depth: 0
+      - uses: 'actions/checkout@v3.0.0'
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: 'actions/setup-node@v3.4.1'
@@ -28,23 +25,7 @@ jobs:
       - name: 'Install Dependencies'
         run: 'npm install'
 
-      - name: Lint Files
-        run: 'npm run lint'
-
-      - name: 'Run Tests and Coverage'
-        env:
-          CI: true
-        run: 'npm run coverage'
-
-      - name: 'Coveralls Parallel'
-        uses: 'coverallsapp/github-action@master'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel: true
-          path-to-lcov: './coverage/lcov.info'
-
-      - name: 'Coveralls Finished'
-        uses: 'coverallsapp/github-action@master'
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+      - run: 'npm run lint:commit -- --to "${{ github.sha }}"'
+      - run: 'npm run lint:standard'
+      - run: 'npm run lint:ts-standard'
+      - run: 'npm run test'

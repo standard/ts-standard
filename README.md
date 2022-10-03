@@ -1,9 +1,8 @@
 [![Tests](https://github.com/standard/ts-standard/workflows/tests/badge.svg?branch=master)](https://github.com/standard/ts-standard/actions?query=workflow%3A%22tests%22)
-[![Coverage Status](https://coveralls.io/repos/github/standard/ts-standard/badge.svg?branch=master)](https://coveralls.io/github/standard/ts-standard?branch=master)
 [![npm](https://badgen.net/npm/v/ts-standard)](https://www.npmjs.com/package/ts-standard)
 [![npm](https://badgen.net/npm/dm/ts-standard)](https://www.npmjs.com/package/ts-standard)
 [![License](https://badgen.net/github/license/standard/ts-standard)](https://github.com/standard/ts-standard/blob/master/LICENSE)
-[![TS-Standard - Typescript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
+[![TS-Standard - TypeScript Standard Style Guide](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
 [![Dependabot badge](https://badgen.net/github/dependabot/standard/ts-standard?icon=dependabot)](https://dependabot.com/)
 
 # ts-standard
@@ -12,7 +11,7 @@ TypeScript Style Guide, with linter and automatic code fixer based on [StandardJ
 
 ## 💾 Install
 
-`npm install ts-standard`
+`npm install --save-dev ts-standard`
 
 ## ⌨️ Basic Usage
 
@@ -33,28 +32,33 @@ section below for more details
 ## 📜 Help
 
 ```text
-ts-standard - Standard for Typescript! (https://github.com/standard/ts-standard)
+ts-standard - Standard for TypeScript! (https://github.com/standard/ts-standard)
 
 Usage:
-    ts-standard <flags> [FILES...]
-    If FILES is omitted, all JavaScript/Typescript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts)
-    in the current working directory are checked, recursively.
-    Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
-    files/folders that begin with '.' like .git/) are automatically ignored.
-    Paths in a project's root .gitignore file are also automatically ignored.
+  ts-standard <flags> [FILES...]
+
+  If FILES is omitted, all JavaScript/TypeScript source files (*.js, *.jsx, *.mjs, *.cjs, *.ts, *.tsx)
+  in the current working directory are checked, recursively.
+
+  Certain paths (node_modules/, coverage/, vendor/, *.min.js, and
+  files/folders that begin with '.' like .git/) are automatically ignored.
+
+  Paths in a project's root .gitignore file are also automatically ignored.
+
 Flags:
-        --fix           Automatically fix problems
-    -p, --project       Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
-        --version       Show current version
-    -h, --help          Show usage information
+      --fix       Automatically fix problems
+  -p, --project   Specify ts-config location (default: ./tsconfig.eslint.json or ./tsconfig.json)
+      --version   Show current version
+  -h, --help      Show usage information
+
 Flags (advanced):
-        --stdin         Read file text from stdin
-        --globals       Declare global variable
-        --plugins       Use custom eslint plugin
-        --envs          Use custom eslint environment
-        --parser        Use custom ts/js parser (default: @typescript-eslint/parser)
-        --report        Use a built-in eslint reporter or custom eslint reporter (default: standard)
- --ext, --extensions    List of files extensions to lint by default (default: js,jsx,ts,tsx,mjs,cjs)
+      --stdin     Read file text from stdin
+      --ext       Specify JavaScript/TypeScript file extensions
+      --global    Declare global variable
+      --plugin    Use custom eslint plugin
+      --env       Use custom eslint environment
+      --parser    Use custom ts/js parser (default: @typescript-eslint/parser)
+
 ```
 
 ## 🧬 TSConfig: Linting with Type Information
@@ -75,14 +79,9 @@ the `--project` flag or adding a `ts-standard` configuration property to your `p
 }
 ```
 
-Its possible to specify multiple projects using an array as in the underlying
-[parser](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser#parseroptionsproject).
-
 ## 🗑 Ignoring files and folders
 
-You can ignore files and folders by either providing specific files/globs of the files you want linted
-to `ts-standard` when running the command or you can add an `ignore` property to your `package.json`
-`ts-standard` configuration settings.
+You can add an `ignore` property to your `package.json` `ts-standard` configuration settings.
 
 ```json
 {
@@ -91,28 +90,6 @@ to `ts-standard` when running the command or you can add an `ignore` property to
       "dist",
       "src/**/*.js"
     ]
-  }
-}
-```
-
-## 🎛 Package.json Options
-
-```jsonc
-{
-  "ts-standard": {
-    "ignore": [""],             // files/folders/globs to ignore
-    "noDefaultIgnore": false,   // disable ignoring default locations (e.g. node_modules, .git, etc...)
-    "globals": [""],            // global variables to define (e.g. $, jquery, etc...)
-    "plugins": [""],            // Extra eslint plugins to use
-    "envs": [""],               // eslint environments to use (e.g. node, browser, etc...)
-    "parser": "",               // a different eslint parser to use (e.g. babel, etc...)
-    "cwd": "",                  // the root working directory where the project file is located
-    "eslint": "",               // path to a custom eslint linter
-    "files": [""],              // files/folders/globs to include in the linting
-    "project": [""],            // relative path to `tsconfig.json` file
-    "fix": false,               // auto fix any lint errors found that are fixable
-    "report": "",               // an eslint formatter to output the lint results as (e.g. standard, stylish, json, etc...)
-    "extensions": "",           // a list of file extensions to lint by default (e.g. js,jsx,ts,tsx,mjs,cjs)
   }
 }
 ```
@@ -147,6 +124,5 @@ creating a typescript specific standard.
 I welcome all pull requests. Please make sure you add appropriate test cases for any features
 added. Before opening a PR please make sure to run the following scripts:
 
-- `npm run lint` checks for code errors and format according to [ts-standard](https://github.com/standard/ts-standard)
+- `npm run lint:standard` checks for code errors and format according to [standard](https://github.com/standard/standard)
 - `npm test` make sure all tests pass
-- `npm run coverage` make sure the coverage has not decreased from current master

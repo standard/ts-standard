@@ -1,23 +1,23 @@
 {
   "name": "ts-standard",
-  "description": "Typescript Standard Style based on StandardJS",
-  "version": "11.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "TypeScript Standard Style based on StandardJS",
+  "version": "12.0.0",
+  "main": "./index.js",
+  "type": "module",
   "bin": {
-    "ts-standard": "./bin/cmd.js"
+    "ts-standard": "./cli.js"
   },
   "bugs": {
     "url": "https://github.com/standard/ts-standard/issues"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
   },
   "author": "Todd Bluhm",
   "license": "MIT",
   "homepage": "https://github.com/standard/ts-standard",
   "keywords": [
-    "Typescript Standard Style",
+    "TypeScript Standard Style",
     "check",
     "checker",
     "code",
@@ -42,88 +42,37 @@
     "tslint"
   ],
   "ts-standard": {
-    "project": "./tsconfig.eslint.json",
-    "ignore": [
-      "dist"
-    ],
-    "env": [
-      "node",
-      "jest"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node",
-    "clearMocks": true,
-    "bail": true,
-    "testPathIgnorePatterns": [
-      "/dist"
-    ],
-    "globals": {
-      "ts-jest": {
-        "diagnostics": false
-      }
-    },
-    "collectCoverageFrom": [
-      "**/*.ts",
-      "!**/*.d.ts",
-      "!**/dist/**",
-      "!**/node_modules/**"
-    ]
-  },
-  "prettier": {
-    "singleQuote": true,
-    "semi": false,
-    "trailingComma": "none"
+    "ignore": ["test/fixtures/*.ts"]
   },
   "scripts": {
-    "test": "jest",
-    "coverage": "npm test -- --coverage",
-    "coveralls": "coveralls < coverage/lcov.info",
-    "lint": "prettier --write '**/*.{ts*,js*,yml}' && bin/cmd.js --fix && tsc -p './tsconfig.eslint.json' --noEmit",
-    "build": "tsc",
-    "watch": "tsc -w",
-    "postinstall": "husky install",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "lint:standard": "standard",
+    "lint:ts-standard": "node cli.js",
+    "lint:commit": "commitlint",
+    "test": "tape test/*.js"
   },
   "peerDependencies": {
-    "typescript": ">=3.8"
+    "typescript": "*"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "eslint": "^7.28.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-config-standard-jsx": "^10.0.0",
-    "eslint-config-standard-with-typescript": "^21.0.1",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-react": "^7.24.0",
-    "get-stdin": "^8.0.0",
-    "minimist": "^1.2.5",
-    "pkg-conf": "^3.1.0",
-    "standard-engine": "^14.0.1"
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-jsx": "^11.0.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "minimist": "^1.2.6",
+    "pkg-conf": "^4.0.0",
+    "standard-engine": "^15.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^14.1.0",
-    "@commitlint/config-conventional": "^14.1.0",
-    "@types/eslint": "^7.2.13",
-    "@types/jest": "^27.0.1",
-    "@types/minimist": "^1.2.1",
-    "@types/node": "^16.0.0",
-    "coveralls": "^3.1.0",
-    "husky": "^7.0.0",
-    "jest": "^26.6.3",
-    "pinst": "^2.1.6",
-    "prettier": "^2.3.1",
-    "ts-jest": "^26.5.1",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.3.2"
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.0.6",
+    "standard": "^17.0.0",
+    "tape": "^5.5.3"
   }
 }

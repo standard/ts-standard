@@ -1,6 +1,13 @@
 # Changelog
 
-## 12.0.0 - Pending
+## 13.0.0 - Pending
+
+## 12.0.0
+
+- **BREAKING:** Major rewrite of `ts-standard` to follow the structure of other `standard` engines (like `standard`, `semistandard`, `standardx`).
+- **BREAKING**: Updated `eslint-config-standard-with-typescript` to version `^23.0.0`. Please visit their github page for any style/linter changes.
+- **BREAKING**: Dropped support for many options (e.g: `--cwd`), these options should now be implemented in `standard-engine`.
+- **BREAKING**: Dropped support for multiple tsconfig projects to be used (need to be rethought, please open an issue, if you really need this feature, explaining why you need this use case).
 
 ## 11.0.0
 
