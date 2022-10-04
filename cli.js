@@ -56,6 +56,12 @@ Flags (advanced):
     return
   }
 
+  if (argv.version) {
+    console.log(cliOptions.version)
+    process.exitCode = 0
+    return
+  }
+
   cliOptions.eslintConfig.overrideConfig.parserOptions.project = _getTSConfigPath(
     CURRENT_WORKING_DIRECTORY,
     argv.project
