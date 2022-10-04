@@ -5,7 +5,6 @@ import crossSpawn from 'cross-spawn'
 import options from '../options.js'
 
 const CLI_PATH = fileURLToPath(new URL('../cli.js', import.meta.url))
-const CLI_OPTIONS = fileURLToPath(new URL('../options.js', import.meta.url))
 
 test('command line usage: --help', (t) => {
   t.plan(1)
