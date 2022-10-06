@@ -2,6 +2,10 @@
 
 ## 13.0.0 - Pending
 
+## 12.0.1
+
+- **Fix:** Process `--version` Flag Directly without the need of `--project` option [(#264)](https://github.com/standard/ts-standard/pull/264).
+
 ## 12.0.0
 
 - **BREAKING:** Major rewrite of `ts-standard` to follow the structure of other `standard` engines (like `standard`, `semistandard`, `standardx`).
