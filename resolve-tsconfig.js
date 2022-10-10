@@ -1,4 +1,4 @@
-import { join, isAbsolute } from 'node:path'
+import { isAbsolute, join } from 'node:path'
 import { statSync } from 'node:fs'
 
 import { packageConfigSync } from 'pkg-conf'
