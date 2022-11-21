@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { isAbsolute, join } from 'node:path'
 import { statSync } from 'node:fs'
 
 import { packageConfigSync } from 'pkg-conf'
@@ -26,7 +26,10 @@ const _isValidPath = (pathToValidate) => {
  * @returns {string | undefined}
  */
 export const _resolveTSConfigPath = (cwd, settingsProjectPath) => {
-  const settingsPath = join(cwd, settingsProjectPath)
+  let settingsPath = settingsProjectPath
+  if (!isAbsolute(settingsPath)) {
+    settingsPath = join(cwd, settingsProjectPath)
+  }
   if (_isValidPath(settingsPath)) {
     return settingsPath
   }
