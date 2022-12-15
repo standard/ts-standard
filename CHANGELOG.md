@@ -2,6 +2,10 @@
 
 ## 13.0.0 - Pending
 
+## 12.0.2
+
+- **Fix:** Allow absolute `--project` path [(#269)](https://github.com/standard/ts-standard/pull/269).
+
 ## 12.0.1
 
 - **Fix:** Process `--version` Flag Directly without the need of `--project` option [(#264)](https://github.com/standard/ts-standard/pull/264).
