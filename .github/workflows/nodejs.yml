@@ -5,11 +5,11 @@ jobs:
     needs: ci
     runs-on: ubuntu-latest
     steps:
-      - uses: navikt/github-app-token-generator@v1
+      - uses: tibdex/github-app-token@v1
         id: get-token
         with:
-          app-id: ${{ secrets.BOT_APP_ID }}
-          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          app_id: ${{ secrets.BOT_APP_ID }}
+          private_key: ${{ secrets.BOT_PRIVATE_KEY }}
       - uses: actions/checkout@v3
         with:
           persist-credentials: false
