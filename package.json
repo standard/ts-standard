@@ -16,6 +16,10 @@
   "author": "Todd Bluhm",
   "license": "MIT",
   "homepage": "https://github.com/standard/ts-standard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Maytha8/ts-standard.git"
+  },
   "keywords": [
     "TypeScript Standard Style",
     "check",
