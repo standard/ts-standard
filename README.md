@@ -86,10 +86,7 @@ You can add an `ignore` property to your `package.json` `ts-standard` configurat
 ```json
 {
   "ts-standard": {
-    "ignore": [
-      "dist",
-      "src/**/*.js"
-    ]
+    "ignore": ["dist", "src/**/*.js"]
   }
 }
 ```
@@ -119,10 +116,6 @@ Special thanks to [`standard`](https://github.com/standard/standard) for inspira
 to [`eslint-config-standard-with-typescript`](https://github.com/standard/eslint-config-standard-with-typescript) for
 creating a typescript specific standard.
 
-## 📋 Contributing Guide
+## 📋 Contributing
 
-I welcome all pull requests. Please make sure you add appropriate test cases for any features
-added. Before opening a PR please make sure to run the following scripts:
-
-- `npm run lint:standard` checks for code errors and format according to [standard](https://github.com/standard/standard)
-- `npm test` make sure all tests pass
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
