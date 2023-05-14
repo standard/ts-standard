@@ -1,7 +1,5 @@
 # Changelog
 
-## 13.0.0 - Pending
-
 ## 12.0.2
 
 - **Fix:** Allow absolute `--project` path [(#269)](https://github.com/standard/ts-standard/pull/269).
