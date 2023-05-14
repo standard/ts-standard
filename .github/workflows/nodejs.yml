@@ -1,31 +1,54 @@
-name: 'tests'
-
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push, pull_request]
 
 jobs:
-  tests:
-    runs-on: 'ubuntu-latest'
-
+  publish:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: navikt/github-app-token-generator@v1
+        id: get-token
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ steps.get-token.outputs.token }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  ci:
+    needs: ci-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0
+  ci-matrix:
+    needs: get-supported-node-versions
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-
+        node-version: ${{ fromJson(needs.get-supported-node-versions.outputs.versions) }}
     steps:
-      - uses: 'actions/checkout@v3.0.2'
-
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: 'actions/setup-node@v3.5.0'
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: 'Install Dependencies'
-        run: 'npm install'
-
-      - run: 'npm run lint:commit -- --to "${{ github.sha }}"'
-      - run: 'npm run lint:standard'
-      - run: 'npm run lint:ts-standard'
-      - run: 'npm run test'
+      - run: npm install
+      - run: npm run lint:commit -- --from "7b4219a67b4fe94b1a1487b7d545d0cc7742f770" --to "${{ github.sha }}"
+      - run: npm run lint:standard
+      - run: npm run lint:ts-standard
+      - run: npm run test
+  get-supported-node-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - id: get
+        uses: msimerson/node-lts-versions@v1
+    outputs:
+      versions: ${{ steps.get.outputs.active }}

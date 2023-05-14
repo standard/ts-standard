@@ -1,7 +1,7 @@
 {
   "name": "ts-standard",
   "description": "TypeScript Standard Style based on StandardJS",
-  "version": "12.0.2",
+  "version": "0.0.0-development",
   "main": "./index.js",
   "type": "module",
   "bin": {
@@ -74,6 +74,7 @@
     "@commitlint/config-conventional": "^17.0.3",
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.0.6",
+    "semantic-release": "^21.0.2",
     "standard": "^17.0.0",
     "tape": "^5.5.3"
   }
