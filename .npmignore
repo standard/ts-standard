@@ -5,6 +5,11 @@
 .editorconfig
 .github
 .prettierignore
+.commitlintrc.json
+.releaserc.yml
+.husky/
+CONTRIBUTING.md
+eslintrc.json
 coverage/
 node_modules/
 src/
