@@ -1,0 +1,39 @@
+name: 'publish'
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  publish:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  ci:
+    needs: get-supported-node-versions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use latest version of Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+      - run: npm install
+      - run: npm run lint:commit -- --from "7b4219a67b4fe94b1a1487b7d545d0cc7742f770" --to "${{ github.sha }}"
+      - run: npm run lint:standard
+      - run: npm run lint:ts-standard
+      - run: npm run test
+

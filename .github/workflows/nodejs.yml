@@ -1,49 +1,31 @@
-on: [push, pull_request]
+name: 'tests'
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-  publish:
-    needs: ci
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@v3
-        with:
-          node-version: latest
-      - run: npm install
-      - run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  ci:
-    needs: ci-matrix
-    runs-on: ubuntu-latest
-    steps:
-      - run: exit 0
-  ci-matrix:
-    needs: get-supported-node-versions
-    runs-on: ubuntu-latest
+  tests:
+    runs-on: 'ubuntu-latest'
+
     strategy:
       matrix:
-        node-version: ${{ fromJson(needs.get-supported-node-versions.outputs.versions) }}
+        node-version: [12.x, 14.x, 16.x]
+
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      - uses: 'actions/checkout@v3.0.2'
+
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: 'actions/setup-node@v3.5.0'
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run lint:commit -- --from "7b4219a67b4fe94b1a1487b7d545d0cc7742f770" --to "${{ github.sha }}"
-      - run: npm run lint:standard
-      - run: npm run lint:ts-standard
-      - run: npm run test
-  get-supported-node-versions:
-    runs-on: ubuntu-latest
-    steps:
-      - id: get
-        uses: msimerson/node-lts-versions@v1
-    outputs:
-      versions: ${{ steps.get.outputs.active }}
+
+      - name: 'Install Dependencies'
+        run: 'npm install'
+
+      - run: 'npm run lint:commit -- --to "${{ github.sha }}"'
+      - run: 'npm run lint:standard'
+      - run: 'npm run lint:ts-standard'
+      - run: 'npm run test'
