@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: latest
       - run: npm install
-      - run: npm run lint:commit -- --from "7b4219a67b4fe94b1a1487b7d545d0cc7742f770" --to "${{ github.sha }}"
+      - run: npm run lint:commit -- --to "${{ github.sha }}"
       - run: npm run lint:standard
       - run: npm run lint:ts-standard
       - run: npm run test

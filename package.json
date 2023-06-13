@@ -54,7 +54,7 @@
     "prepare": "husky install",
     "lint:standard": "standard",
     "lint:ts-standard": "node cli.js",
-    "lint:commit": "commitlint",
+    "lint:commit": "commitlint --from \"7b4219a67b4fe94b1a1487b7d545d0cc7742f770\"",
     "test": "tape test/*.js"
   },
   "peerDependencies": {
