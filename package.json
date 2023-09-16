@@ -11,7 +11,7 @@
     "url": "https://github.com/standard/ts-standard/issues"
   },
   "engines": {
-    "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    "node": "^18.17.1 || >=20.0.0"
   },
   "author": "Todd Bluhm",
   "license": "MIT",
