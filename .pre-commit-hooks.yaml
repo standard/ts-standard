@@ -1,0 +1,7 @@
+- id: ts-standard
+  name: ts-standard
+  entry: ts-standard --fix
+  language: node
+  files: "\\.(\
+    ts|tsx\
+    )$"
